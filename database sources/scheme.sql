@@ -1,7 +1,16 @@
 create table Hidden_Village (
     village_ID serial primary key,
     name varchar(100),
-    Kage integer references Ninja(ninja_ID)
+);
+
+create table Ninja (
+    ninja_ID serial primary key,
+    name varchar(100),
+    age integer,
+    sex varchar(1),
+    village integer references Hidden_Village(village_ID),
+    clan integer references Clan(clan_ID),
+    status varchar(10)
 );
 
 create table Destroyed_village (
@@ -47,16 +56,6 @@ create table Clan (
     prestige integer
 );
 
-create table Ninja (
-    ninja_ID serial primary key,
-    name varchar(100),
-    age integer,
-    sex varchar(1),
-    village integer references Hidden_Village(village_ID),
-    clan integer references Clan(clan_ID),
-    status varchar(10)
-);
-
 create table Ninja_parents (
     children_ID integer references Ninja(ninja_ID),
     parent_ID integer references Ninja(ninja_ID)
@@ -69,15 +68,15 @@ create table Biju (
     jinchuriki integer references Ninja(ninja_ID)
 );
 
-create table Ranked_ninja (
-    rank_ID integer references Ninjas_rank(rank_ID),
-    ninja_ID integer references Ninja(ninja_ID)
-);
-
 create table Ninjas_rank (
     rank_ID serial primary key,
     name varchar(100),
     condition_of_receipt varchar(100)
+);
+
+create table Ranked_ninja (
+    rank_ID integer references Ninjas_rank(rank_ID),
+    ninja_ID integer references Ninja(ninja_ID)
 );
 
 create table Type (
