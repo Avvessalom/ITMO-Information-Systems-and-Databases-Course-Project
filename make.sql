@@ -4,7 +4,7 @@ create table Hidden_Village (
     Kage integer references Ninja(ninja_ID)
 );
 
-create table Destroyed_village(
+create table Destroyed_village (
     village_ID integer references Hidden_Village(village_ID),
     destroyer integer references Ninja(ninja_ID),
     quantity integer
