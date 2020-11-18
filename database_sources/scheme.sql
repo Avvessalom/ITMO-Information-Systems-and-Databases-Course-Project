@@ -18,8 +18,8 @@ create table Ninja
     name     varchar(100) not null,
     age      integer      not null check (age > 0),
     sex      varchar(1)   not null check (sex = 'М' or sex = 'Ж'),
-    village  integer 1 references Hidden_Village (village_ID) on delete set default,
-    clan     integer 1 references Clan (clan_ID) on delete set default,
+    village  integer default 1 references Hidden_Village (village_ID) on delete set default,
+    clan     integer default 1 references Clan (clan_ID) on delete set default,
     status   varchar(10)
 );
 
@@ -42,7 +42,7 @@ create table Country
     country_ID     serial primary key,
     name           varchar(100) unique not null,
     country_lord   varchar(100) unique not null,
-    hidden_village integer references Hidden_Village (village_ID) unique not null on delete cascade
+    hidden_village integer references Hidden_Village (village_ID) on delete cascade unique not null
 );
 
 create table Country_lord
@@ -86,7 +86,7 @@ create table Biju
 create table Jinchuriki
 (
     ninja_ID integer references Ninja (ninja_id) on delete cascade,
-    biju     integer references biju (biju_id) not null on delete cascade
+    biju     integer references biju (biju_id) on delete cascade not null
 );
 
 create table Ninjas_rank
@@ -140,8 +140,8 @@ create table War
 (
     war_ID            serial primary key,
     name              varchar(100) unique not null,
-    attacking_country integer references Country (country_ID) check (attacking_country != defending_country) on delete set null on update cascade,
-    defending_country integer references Country (country_ID) check (defending_country != attacking_country) on delete set null on update cascade,
+    attacking_country integer references Country (country_ID) on delete set null on update cascade check (attacking_country != defending_country),
+    defending_country integer references Country (country_ID) on delete set null on update cascade check (defending_country != attacking_country),
     loss_of_attackers integer check (loss_of_attackers >= 0),
     loss_of_defenders integer check (loss_of_defenders >= 0)
 );
@@ -149,8 +149,8 @@ create table War
 create table Battle
 (
     battle_ID serial primary key,
-    war       integer references War (war_ID) not null on delete cascade,
-    territory integer references Country (country_ID) not null on delete cascade,
+    war       integer references War (war_ID) on delete cascade not null,
+    territory integer references Country (country_ID) on delete cascade not null,
     loss      integer check (loss >= 0),
     duration  integer      check (loss >= 0) not null,
     name      varchar(100) unique not null
