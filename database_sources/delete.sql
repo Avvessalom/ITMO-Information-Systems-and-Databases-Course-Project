@@ -1,19 +1,20 @@
-drop table Hidden_Village cascade;
-drop table Destroyed_village cascade;
-drop table Country cascade;
-drop table Country_lord cascade;
-drop table Citizen cascade;
-drop table Parents cascade;
-drop table Clan cascade;
-drop table Ninja cascade;
-drop table Ninja_parents cascade;
-drop table Biju cascade;
-drop table Ranked_ninja cascade;
-drop table Ninjas_rank cascade;
-drop table Type cascade;
-drop table Additional_type cascade;
-drop table Technic_rank cascade;
-drop table Technic cascade;
-drop table Ninja_technic cascade;
-drop table War cascade;
-drop table Battle cascade;
+drop table if exists Hidden_Village,
+                     Destroyed_village,
+                     Country,
+                     Country_lord,
+                     Citizen,
+                     Parents,
+                     Clan,
+                     Ninja,
+                     Ninja_parents,
+                     Biju,
+                     Ranked_ninja,
+                     Ninjas_rank,
+                     "Type",
+                     Additional_type,
+                     Technic_rank,
+                     Technic,
+                     Ninja_technic,
+                     War,
+                     Battle cascade;
+
