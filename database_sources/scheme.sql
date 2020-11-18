@@ -9,7 +9,7 @@ create table Clan
     clan_ID  serial primary key,
     name     varchar(100) unique not null,
     village  integer references Hidden_Village (village_ID) on delete cascade on update cascade,
-    prestige integer      not null check (prestige >= 0 and prestige <= 10)
+    prestige integer             not null check (prestige >= 0 and prestige <= 10)
 );
 
 create table Ninja
@@ -54,22 +54,18 @@ create table Country
     hidden_village integer references Hidden_Village (village_ID) on delete cascade on update cascade unique not null
 );
 
---create table Country_lord
---(
---    lord_ID serial primary key,
---    name    varchar(100) not null,
---    age     integer      not null check (age > 15),
---    sex     varchar(1)   not null check (sex = 'M' or sex = 'F'),
---    status  varchar(10)
---);
-
 create table Citizen
 (
     citizen_ID serial primary key,
     village    integer references Hidden_Village (village_ID) on delete set null on update cascade,
     name       varchar(100) unique not null,
+<<<<<<< HEAD
     age        integer      not null check (age > 0),
     sex        varchar(1)   not null check (sex = 'M' or sex = 'F'),
+=======
+    age        integer             not null check (age > 0),
+    sex        varchar(1)          not null check (sex = 'М' or sex = 'Ж'),
+>>>>>>> 8f282631710aa85648312750c116badebc7f29a8
     status     varchar(10)
 );
 
@@ -89,7 +85,7 @@ create table Biju
 (
     biju_Id        serial primary key,
     name           varchar(100) unique not null,
-    count_of_tails integer      unique not null check (count_of_tails >= 0 and count_of_tails <= 10)
+    count_of_tails integer unique      not null check (count_of_tails >= 0 and count_of_tails <= 10)
 );
 
 create table Jinchuriki
@@ -158,9 +154,9 @@ create table War
 create table Battle
 (
     battle_ID serial primary key,
-    war       integer references War (war_ID) on delete cascade on update cascade not null,
+    war       integer references War (war_ID) on delete cascade on update cascade         not null,
     territory integer references Country (country_ID) on delete cascade on update cascade not null,
     loss      integer check (loss >= 0),
-    duration  integer      check (loss >= 0) not null,
-    name      varchar(100) unique not null
+    duration  integer check (loss >= 0)                                                   not null,
+    name      varchar(100) unique                                                         not null
 );
