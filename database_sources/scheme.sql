@@ -59,13 +59,8 @@ create table Citizen
     citizen_ID serial primary key,
     village    integer references Hidden_Village (village_ID) on delete set null on update cascade,
     name       varchar(100) unique not null,
-<<<<<<< HEAD
     age        integer      not null check (age > 0),
     sex        varchar(1)   not null check (sex = 'M' or sex = 'F'),
-=======
-    age        integer             not null check (age > 0),
-    sex        varchar(1)          not null check (sex = 'М' or sex = 'Ж'),
->>>>>>> 8f282631710aa85648312750c116badebc7f29a8
     status     varchar(10)
 );
 
