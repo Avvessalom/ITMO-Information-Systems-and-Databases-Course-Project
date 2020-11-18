@@ -1,10 +1,10 @@
 insert into Hidden_Village(name) values
-	('homeless')		--1
+	('homeless'),		--1
 	('Konoha'), 		--2
 	('Rain'), 		--3
 	('Sand'), 		--4
-	('Rock'); 		--5
-	('Tonika') 		--6
+	('Rock'), 		--5
+	('Tonika'); 		--6
 
 insert into Clan(name,village,prestige) values
 	('clanless',1,0), 		--1
