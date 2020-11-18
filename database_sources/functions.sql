@@ -4,9 +4,10 @@
 -- добавление битвы                                         X
 -- выбор нового каге                                        X
 
--- внести в ER модель таблицу "clan_leader"                 X
+-- внести в ER модель таблицу "clan_leader"                 V
+-- внести в ER модель таблицу "jinchuriki"                  V
 -- заполнить тестовыми данными                              Х
--- адекватно настроить ограничения целостности              Х
+-- адекватно настроить ограничения целостности              V
 
 create or replace function clan_selection_for_a_child(ninja_child integer) returns void as
 $$
