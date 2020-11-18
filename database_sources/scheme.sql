@@ -17,7 +17,7 @@ create table Ninja
     ninja_ID serial primary key,
     name     varchar(100) not null,
     age      integer      not null check (age > 0),
-    sex      varchar(1)   not null check (sex = 'М' or sex = 'Ж'),
+    sex      varchar(1)   not null check (sex = 'M' or sex = 'F'),
     village  integer default 1 references Hidden_Village (village_ID) on delete set default on update cascade,
     clan     integer default 1 references Clan (clan_ID) on delete set default on update cascade,
     status   varchar(10)
@@ -37,22 +37,31 @@ create table Destroyed_village
     quantity   integer
 );
 
-create table Country
-(
-    country_ID     serial primary key,
-    name           varchar(100) unique not null,
-    country_lord   varchar(100) unique not null,
-    hidden_village integer references Hidden_Village (village_ID) on delete cascade on update cascade unique not null
-);
-
 create table Country_lord
 (
     lord_ID serial primary key,
     name    varchar(100) not null,
     age     integer      not null check (age > 15),
-    sex     varchar(1)   not null check (sex = 'М' or sex = 'Ж'),
+    sex     varchar(1)   not null check (sex = 'M' or sex = 'F'),
     status  varchar(10)
 );
+
+create table Country
+(
+    country_ID     serial primary key,
+    name           varchar(100) not null,
+    country_lord   integer references Country_lord (lord_ID) on delete set null on update cascade,
+    hidden_village integer references Hidden_Village (village_ID) on delete cascade on update cascade unique not null
+);
+
+--create table Country_lord
+--(
+--    lord_ID serial primary key,
+--    name    varchar(100) not null,
+--    age     integer      not null check (age > 15),
+--    sex     varchar(1)   not null check (sex = 'M' or sex = 'F'),
+--    status  varchar(10)
+--);
 
 create table Citizen
 (
@@ -60,7 +69,7 @@ create table Citizen
     village    integer references Hidden_Village (village_ID) on delete set null on update cascade,
     name       varchar(100) unique not null,
     age        integer      not null check (age > 0),
-    sex        varchar(1)   not null check (sex = 'М' or sex = 'Ж'),
+    sex        varchar(1)   not null check (sex = 'M' or sex = 'F'),
     status     varchar(10)
 );
 
