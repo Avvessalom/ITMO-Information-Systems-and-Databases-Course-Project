@@ -8,7 +8,7 @@ create table Clan
 (
     clan_ID  serial primary key,
     name     varchar(100) unique not null,
-    village  integer references Hidden_Village (village_ID) on delete cascade,
+    village  integer references Hidden_Village (village_ID) on delete cascade on update cascade,
     prestige integer      not null check (prestige >= 0 and prestige <= 10)
 );
 
@@ -18,22 +18,22 @@ create table Ninja
     name     varchar(100) not null,
     age      integer      not null check (age > 0),
     sex      varchar(1)   not null check (sex = 'М' or sex = 'Ж'),
-    village  integer default 1 references Hidden_Village (village_ID) on delete set default,
-    clan     integer default 1 references Clan (clan_ID) on delete set default,
+    village  integer default 1 references Hidden_Village (village_ID) on delete set default on update cascade,
+    clan     integer default 1 references Clan (clan_ID) on delete set default on update cascade,
     status   varchar(10)
 );
 
 
 create table Clan_leader
 (
-    clan_ID  integer references Clan (clan_ID) on delete cascade,
-    ninja_ID integer references Ninja (ninja_ID) on delete cascade
+    clan_ID  integer references Clan (clan_ID) on delete cascade on update cascade,
+    ninja_ID integer references Ninja (ninja_ID) on delete cascade on update cascade
 );
 
 create table Destroyed_village
 (
-    village_ID integer references Hidden_Village (village_ID) on delete cascade,
-    destroyer  integer references Ninja (ninja_ID) on delete set NULL,
+    village_ID integer references Hidden_Village (village_ID) on delete cascade on update cascade,
+    destroyer  integer references Ninja (ninja_ID) on delete set NULL on update cascade,
     quantity   integer
 );
 
@@ -42,7 +42,7 @@ create table Country
     country_ID     serial primary key,
     name           varchar(100) unique not null,
     country_lord   varchar(100) unique not null,
-    hidden_village integer references Hidden_Village (village_ID) on delete cascade unique not null
+    hidden_village integer references Hidden_Village (village_ID) on delete cascade on update cascade unique not null
 );
 
 create table Country_lord
@@ -57,7 +57,7 @@ create table Country_lord
 create table Citizen
 (
     citizen_ID serial primary key,
-    village    integer references Hidden_Village (village_ID) on delete set null,
+    village    integer references Hidden_Village (village_ID) on delete set null on update cascade,
     name       varchar(100) unique not null,
     age        integer      not null check (age > 0),
     sex        varchar(1)   not null check (sex = 'М' or sex = 'Ж'),
@@ -66,14 +66,14 @@ create table Citizen
 
 create table Parents
 (
-    children_ID integer references Citizen (citizen_ID) on delete cascade,
-    parent_Id   integer references Citizen (citizen_ID) on delete cascade
+    children_ID integer references Citizen (citizen_ID) on delete cascade on update cascade,
+    parent_Id   integer references Citizen (citizen_ID) on delete cascade on update cascade
 );
 
 create table Ninja_parents
 (
-    children_ID integer references Ninja (ninja_ID) on delete cascade,
-    parent_ID   integer references Ninja (ninja_ID) on delete cascade
+    children_ID integer references Ninja (ninja_ID) on delete cascade on update cascade,
+    parent_ID   integer references Ninja (ninja_ID) on delete cascade on update cascade
 );
 
 create table Biju
@@ -85,8 +85,8 @@ create table Biju
 
 create table Jinchuriki
 (
-    ninja_ID integer references Ninja (ninja_id) on delete cascade,
-    biju     integer references biju (biju_id) on delete cascade not null
+    ninja_ID integer references Ninja (ninja_id) on delete cascade on update cascade,
+    biju     integer references biju (biju_id) on delete cascade on update cascade not null
 );
 
 create table Ninjas_rank
@@ -98,8 +98,8 @@ create table Ninjas_rank
 
 create table Ranked_ninja
 (
-    rank_ID  integer references Ninjas_rank (rank_ID) on delete cascade,
-    ninja_ID integer references Ninja (ninja_ID) on delete cascade
+    rank_ID  integer references Ninjas_rank (rank_ID) on delete cascade on update cascade,
+    ninja_ID integer references Ninja (ninja_ID) on delete cascade on update cascade
 );
 
 create table Type
@@ -123,17 +123,17 @@ create table Technic_rank
 create table Technic
 (
     technic_ID        serial primary key,
-    type              integer references Type (type_ID) on delete cascade,
-    additional_type   integer references Additional_type (addtype_ID) on delete cascade,
+    type              integer references Type (type_ID) on delete cascade on update cascade,
+    additional_type   integer references Additional_type (addtype_ID) on delete cascade on update cascade,
     blood_restriction Boolean not null,
-    rank              integer references Technic_rank (techrank_ID) on delete set null,
+    rank              integer references Technic_rank (techrank_ID) on delete set null on update cascade,
     rune_seals        varchar(255)
 );
 
 create table Ninja_technic
 (
-    ninja_ID   integer references Ninja (ninja_ID) on delete cascade,
-    technic_ID integer references Technic (technic_ID) on delete cascade
+    ninja_ID   integer references Ninja (ninja_ID) on delete cascade on update cascade,
+    technic_ID integer references Technic (technic_ID) on delete cascade on update cascade
 );
 
 create table War
@@ -149,8 +149,8 @@ create table War
 create table Battle
 (
     battle_ID serial primary key,
-    war       integer references War (war_ID) on delete cascade not null,
-    territory integer references Country (country_ID) on delete cascade not null,
+    war       integer references War (war_ID) on delete cascade on update cascade not null,
+    territory integer references Country (country_ID) on delete cascade on update cascade not null,
     loss      integer check (loss >= 0),
     duration  integer      check (loss >= 0) not null,
     name      varchar(100) unique not null
