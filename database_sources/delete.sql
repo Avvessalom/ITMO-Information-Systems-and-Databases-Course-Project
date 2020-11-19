@@ -22,3 +22,4 @@ drop table if exists Hidden_Village,
 
 drop function if exists clan_selection_for_a_child(ninja_child integer) cascade;
 drop function if exists seal_the_biju(biju_for_sealing integer, new_jinchuriki integer) cascade;
+drop function if exists choose_kage(old_kage integer, war integer) cascade;

@@ -1,9 +1,9 @@
 insert into Hidden_Village(name) values
 	('homeless'),		--1
 	('Konoha'), 		--2
-	('Rain'), 		--3
-	('Sand'), 		--4
-	('Rock'), 		--5
+	('Rain'), 		    --3
+	('Sand'), 		    --4
+	('Rock'), 		    --5
 	('Tonika'); 		--6
 
 insert into Clan(name,village,prestige) values
@@ -25,11 +25,11 @@ insert into Ninja(name, age,sex,village, clan, status) values
 	('Itachi Uchiha', 21, 'M',2,3, 'dead'),		--6
 	('Roman Uzumaki', 20, 'M',2,2, 'alive'), 	--7 будущий хокагэ
 	('Eugene Uchiha', 22, 'M',2,3, 'alive'), 	--8 чудом выжил
-	('Salamandr Hanzo', 70, 'M', 3, 4, 'dead'), 	--9 босс деревни дождя
-	('Konan', 35, 'F', 3, 1, 'dead'),		--10
-	('Gaara', 36, 'M', 4, 1, 'alive'),		--11 5 казэкагэ
-	('Rasa', 40, 'M', 4, 1, 'dead'),		--12 ЭТО БАТЯ ГААРЫ И 4 КАЗЭКАГЭ
-	('Deidara', 20, 'M', 5, 1, 'dead');		--13
+	('Salamandr Hanzo', 70, 'M', 3, 4, 'dead'), --9 босс деревни дождя
+	('Konan', 35, 'F', 3, 1, 'dead'),		    --10
+	('Gaara', 36, 'M', 4, 1, 'alive'),		    --11 5 казэкагэ
+	('Rasa', 40, 'M', 4, 1, 'dead'),		    --12 ЭТО БАТЯ ГААРЫ И 4 КАЗЭКАГЭ
+	('Deidara', 20, 'M', 5, 1, 'dead');		    --13
 
 insert into Clan_leader(clan_ID, ninja_ID) values
 	(8,1),
@@ -42,7 +42,7 @@ insert into Destroyed_village(village_ID, destroyer, quantity) values
 
 insert into Country_lord(name, age, sex, status) values
 	('Van Darkholm',55, 'M', 'alive'),		--1
-	('Pain', 33, 'M', 'dead'),			--2
+	('Pain', 33, 'M', 'dead'),  			--2
 	('Billy', 48, 'M', 'alive'),			--3
 	('Snake', 45, 'M', 'alive');			--4
 
@@ -60,8 +60,8 @@ insert into Citizen(village, name, age, sex, status) values
 	(3, 'Anon', 30, 'M', 'alive'),			--4
 	(3, 'Eot', 29, 'F', 'alive'),			--5
 	(3, 'Lichi', 1, 'F', 'alive'),			--6
-	(4, 'Kazuma Kiryuu', 20, 'M', 'alive'),		--7
-	(5, 'Goro Majima', 24, 'M', 'alive'),		--8
+	(4, 'Kazuma Kiryuu', 20, 'M', 'alive'),	--7
+	(5, 'Goro Majima', 24, 'M', 'alive'),	--8
 	(6, 'Cinderella', 19, 'F', 'dead');		--9
 
 insert into Parents(children_ID, parent_Id) values
@@ -81,10 +81,10 @@ insert into Jinchuriki(ninja_ID, biju) values
 	(11,2);
 
 insert into Ninjas_rank(name, condition_of_receipt) values
-	('Genin', 'Pass school exam'),				--1
-	('Chuunin', 'Complete list of missions'),		--2
+	('Genin', 'Pass school exam'),				            --1
+	('Chuunin', 'Complete list of missions'),		        --2
 	('Jounin', 'Complete list of high ranked missions'),	--3
-	('Hokage', 'Hero of war');				--4
+	('Hokage', 'Hero of war');				                --4
 
 insert into Ranked_ninja(rank_ID, ninja_ID) values
 	(1, 5),
@@ -107,7 +107,7 @@ insert into Type(name) values
 	('fire'),		--3
 	('water'),		--4
 	('wind'),		--5
-	('lighting');		--6
+	('lighting');	--6
 
 insert into Additional_type(name) values
 	('eyes'),
