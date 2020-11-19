@@ -1,6 +1,5 @@
 -- внести в ER модель таблицу "Heroes"                      X
 -- индексы
--- триггеры
 
 create or replace function clan_selection_for_a_child(ninja_child integer) returns void as
 $$
@@ -74,14 +73,14 @@ $$
 
 create function actions_with_village() returns trigger as
 $village$
-    declare
-        destroy_quantity integer ;
-    begin
-        if (tg_op = 'delete') then
-            destroy_quantity = (select quantity from  destroyed_village where destroyed_village.village_id = old.village_id);
-            insert into destroyed_village(village_id, quantity) values (old.village_id, destroy_quantity + 1);
-        end if;
-    end;
+declare
+    destroy_quantity integer ;
+begin
+    if (tg_op = 'delete') then
+        destroy_quantity = (select quantity from destroyed_village where destroyed_village.village_id = old.village_id);
+        insert into destroyed_village(village_id, quantity) values (old.village_id, destroy_quantity + 1);
+    end if;
+end;
 $village$ language plpgsql;
 
 create function check_on_delete_jinchuriki() returns trigger as
@@ -93,7 +92,23 @@ begin
 end;
 $$ language plpgsql;
 
-
+create function ninja_death() returns trigger as
+$$
+declare
+    old_country  integer;
+    rank_of_dead integer;
+begin
+    rank_of_dead = (select rank_id from ranked_ninja where ranked_ninja.ninja_id = old.ninja_id);
+    if (rank_of_dead = 4) then
+        old_country = (select country_id
+                       from country
+                                join hidden_village hv on hv.village_id = country.hidden_village
+                       where old.village = village_id);
+        select choose_kage_candidates(old.ninja_id, old_country);
+    end if;
+end;
+$$
+    language plpgsql;
 -- Triggers
 
 create trigger on_destroy
@@ -105,11 +120,17 @@ execute procedure destroy_village();
 create trigger on_jinchuriki_die
     before delete
     on jinchuriki
-    for each row
+    for each statement
 execute procedure check_on_delete_jinchuriki();
 
 create trigger on_actions_with_village
-    after delete or insert
+    after delete
     on hidden_village
     for each row
 execute procedure actions_with_village();
+
+create trigger on_death
+    after update
+    on ninja
+    for each statement
+execute procedure ninja_death();

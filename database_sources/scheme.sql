@@ -80,7 +80,7 @@ create table Biju
 (
     biju_Id        serial primary key,
     name           varchar(100) unique not null,
-    count_of_tails integer      unique not null check (count_of_tails >= 0 and count_of_tails <= 10)
+    count_of_tails integer unique      not null check (count_of_tails >= 0 and count_of_tails <= 10)
 );
 
 create table Jinchuriki
@@ -161,3 +161,10 @@ create table Heroes
     ninja_ID integer references Ninja (ninja_id) on delete cascade on update cascade,
     war_Id   integer references War (war_ID) on delete cascade on update cascade
 );
+
+
+-- Indexes
+
+create index ninjaid on ninja using hash (ninja_id);
+create index countryid on country using hash (country_ID);
+create index clan_name on clan (clan_id, name);

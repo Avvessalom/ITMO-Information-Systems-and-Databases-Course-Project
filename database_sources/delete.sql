@@ -27,3 +27,7 @@ drop function if exists choose_kage_candidates(old_kage integer, war integer) ca
 drop function if exists destroy_village() cascade;
 drop function if exists actions_with_village() cascade;
 drop function if exists check_on_delete_jinchuriki() cascade;
+
+drop index if exists ninjaid,
+                     countryid,
+                     clan_name cascade;
