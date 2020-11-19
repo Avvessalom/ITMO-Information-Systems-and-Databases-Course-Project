@@ -6,7 +6,8 @@
 
 -- внести в ER модель таблицу "clan_leader"                 V
 -- внести в ER модель таблицу "jinchuriki"                  V
--- заполнить тестовыми данными                              Х
+-- внести в ER модель таблицу "Heroes"                      X
+-- заполнить тестовыми данными                              V
 -- адекватно настроить ограничения целостности              V
 
 create or replace function clan_selection_for_a_child(ninja_child integer) returns void as
@@ -52,4 +53,21 @@ begin
     insert into jinchuriki (ninja_id, biju) values (new_jinchuriki, biju_for_sealing);
 end;
 $$
-    language plpgsql
+    language plpgsql;
+
+create or replace function choose_kage(old_kage integer, war integer) returns integer as
+$$
+declare
+    village_of_kage integer;
+    candidates      integer;
+begin
+    village_of_kage = (select village from ninja where ninja_id = old_kage);
+    candidates = (select *
+                  from heroes
+                           join ninja on ninja.ninja_id = heroes.ninja_id
+                  where village = village_of_kage);
+    return candidates;
+end;
+$$
+    language plpgsql;
+

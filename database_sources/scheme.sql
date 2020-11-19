@@ -155,3 +155,9 @@ create table Battle
     duration  integer check (loss >= 0)                                                   not null,
     name      varchar(100) unique                                                         not null
 );
+
+create table Heroes
+(
+    ninja_ID integer references Ninja (ninja_id) on delete cascade on update cascade,
+    war_Id   integer references War (war_ID)     on delete cascade on update cascade
+);
