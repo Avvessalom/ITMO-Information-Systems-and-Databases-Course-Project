@@ -49,7 +49,7 @@ create table Country_lord
 create table Country
 (
     country_ID     serial primary key,
-    name           varchar(100)                                                                              not null,
+    name           varchar(100) unique                                                                       not null,
     country_lord   integer references Country_lord (lord_ID) on delete set null on update cascade,
     hidden_village integer references Hidden_Village (village_ID) on delete cascade on update cascade unique not null
 );
@@ -80,7 +80,7 @@ create table Biju
 (
     biju_Id        serial primary key,
     name           varchar(100) unique not null,
-    count_of_tails integer unique      not null check (count_of_tails >= 0 and count_of_tails <= 10)
+    count_of_tails integer      unique not null check (count_of_tails >= 0 and count_of_tails <= 10)
 );
 
 create table Jinchuriki
@@ -105,19 +105,19 @@ create table Ranked_ninja
 create table Type
 (
     type_ID serial primary key,
-    name    varchar(100) not null
+    name    varchar(100) unique not null
 );
 
 create table Additional_type
 (
     addtype_ID serial primary key,
-    name       varchar(100) not null
+    name       varchar(100) unique not null
 );
 
 create table Technic_rank
 (
     techrank_ID serial primary key,
-    name        varchar(20) not null
+    name        varchar(20) unique not null
 );
 
 create table Technic
@@ -159,5 +159,5 @@ create table Battle
 create table Heroes
 (
     ninja_ID integer references Ninja (ninja_id) on delete cascade on update cascade,
-    war_Id   integer references War (war_ID)     on delete cascade on update cascade
+    war_Id   integer references War (war_ID) on delete cascade on update cascade
 );

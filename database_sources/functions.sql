@@ -1,14 +1,6 @@
--- по функциям:
--- выбор более престижного клана при рождении микрочела     V
--- захват бидзю и запечатывание в микрочеле                 V
--- добавление битвы                                         X
--- выбор нового каге                                        X
-
--- внести в ER модель таблицу "clan_leader"                 V
--- внести в ER модель таблицу "jinchuriki"                  V
 -- внести в ER модель таблицу "Heroes"                      X
--- заполнить тестовыми данными                              V
--- адекватно настроить ограничения целостности              V
+-- индексы
+-- триггеры
 
 create or replace function clan_selection_for_a_child(ninja_child integer) returns void as
 $$
@@ -55,7 +47,7 @@ end;
 $$
     language plpgsql;
 
-create or replace function choose_kage(old_kage integer, war integer) returns integer as
+create or replace function choose_kage_candidates(old_kage integer, war integer) returns integer as
 $$
 declare
     village_of_kage integer;
@@ -71,3 +63,53 @@ end;
 $$
     language plpgsql;
 
+
+create function destroy_village() returns trigger as
+$$
+begin
+    insert into hidden_village(name) values ('ruin of village');
+end;
+$$
+    language plpgsql;
+
+create function actions_with_village() returns trigger as
+$village$
+    declare
+        destroy_quantity integer ;
+    begin
+        if (tg_op = 'delete') then
+            destroy_quantity = (select quantity from  destroyed_village where destroyed_village.village_id = old.village_id);
+            insert into destroyed_village(village_id, quantity) values (old.village_id, destroy_quantity + 1);
+        end if;
+    end;
+$village$ language plpgsql;
+
+create function check_on_delete_jinchuriki() returns trigger as
+$$
+begin
+    if (tg_op = 'delete') then
+        raise exception 'Jinchuriki cannot be removed';
+    end if;
+end;
+$$ language plpgsql;
+
+
+-- Triggers
+
+create trigger on_destroy
+    after insert or update
+    on destroyed_village
+    for each statement
+execute procedure destroy_village();
+
+create trigger on_jinchuriki_die
+    before delete
+    on jinchuriki
+    for each row
+execute procedure check_on_delete_jinchuriki();
+
+create trigger on_actions_with_village
+    after delete or insert
+    on hidden_village
+    for each row
+execute procedure actions_with_village();
