@@ -1,15 +1,15 @@
 package main
 
 import (
-	"fmt"
 	"encoding/json"
-	"html/template"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"math/rand"
 	"os"
 	"strconv"
 	"strings"
+	"text/template"
 	"time"
 )
 
@@ -17,17 +17,12 @@ type Request struct{
 	Table_name string;
 	Fields []Field_container;
 	Data []string;
-	Dependency []Depend;
-}
-
-type Depend struct{
-	Dep string;
-	Dependent string;
 }
 
 type Field_container struct{
 	Field string;
 	Type string;
+	Dependent string;
 }
 
 var (
@@ -36,17 +31,21 @@ var (
 	alphabet []string = []string{}
 	tables []Request = []Request{}
 	dependencies map[string]int = make(map[string]int)
-	n, _ = strconv.Atoi(os.Args[1])
+	n int
 )
 
 func main() {
+	var err error
+	n, err = strconv.Atoi(os.Args[1])
+	if err != nil {
+		logger.Println(err)
+		n = 100
+	}
 	rand.Seed(time.Now().UnixNano())
 	var template_str string = "insert into {{.Table_name}}({{range .Fields}}{{.Field}}{{end}}) values {{range .Data}}\n\t{{.}}{{end}}\n"
 
 	Parse_alphabet("./alphabet.json")
 	Parse_scheme("./table.json")
-
-	fmt.Println(len(alphabet))
 
 	sql_script_file, err := os.Create("./inserts.sql")
 	if err != nil {
@@ -59,11 +58,17 @@ func main() {
 	}
 
 	for i := 0; i < len(tables); i++{
+		Update_variables(tables[i])
 		Generate_table(tables[i], sql_script_file, template)
 	}
+}
 
-	//if len(tables[0].Dependency) == 0 {fmt.Println("ok")}
-	//fmt.Println(alphabet[4])
+func Update_variables(request Request) {
+	for i := 0; i < len(request.Fields); i++ {
+		if i != len(request.Fields) - 1{
+			request.Fields[i].Field += ","
+		}
+	}
 }
 
 func Generate_table(request Request, file *os.File, tmp *template.Template){
@@ -71,14 +76,21 @@ func Generate_table(request Request, file *os.File, tmp *template.Template){
 	for i := 0; i < n; i++ {
 		b.WriteString("(")
 		for j := 0; j < len(request.Fields); j++ {
-			fmt.Println(len(request.Fields))
 			b.WriteString(Gen_data(request.Fields[j]))
-			b.WriteString(",")
+			if j != len(request.Fields)-1 {
+				b.WriteString(",")
+			}
 		}
-		b.WriteString("),")
-		request.Data = append(request.Data, b.String())
+		b.WriteString(")")
+		if i != n - 1{
+			b.WriteString(",\n\t")
+		} else {
+			b.WriteString(";\n")
+		}
 	}
-	fmt.Println(b.String())
+	request.Data = append(request.Data, b.String())
+	dependencies[request.Table_name] = n
+	//TODO соотношения
 	Write_data(file, tmp, &request)
 }
 
@@ -93,11 +105,16 @@ func Gen_data(field Field_container) string{
 	switch field.Type {
 	case "string":
 		var str string = "'"
-		str += Gen_rand_string(5)
+		str += Gen_rand_string(2+rand.Intn(4))
 		str += "'"
 		return str
 	case "int":
-		return strconv.Itoa(1+rand.Intn(10))
+		var depend int = 10
+		if field.Dependent != "" {
+			depend = dependencies[field.Dependent]
+			fmt.Println(depend)
+		}
+		return strconv.Itoa(1+rand.Intn(depend))
 	}
 	return ""
 }

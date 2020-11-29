@@ -1,0 +1,29 @@
+[
+	{
+		"Table_name": "Hidden_Village",
+		"Fields": [
+			{
+				"Field":"name",
+				"Type":"string"
+			}
+		]
+	},
+	{
+		"Table_name": "Clan",
+		"Fields": [
+			{
+				"Field":"name",
+				"Type":"string"
+			},
+			{
+				"Field":"village",
+				"Type":"int",
+				"Dependent":"Hidden_Village"
+			},
+			{
+				"Field":"prestige",
+				"Type":"int"
+			}
+		]
+	}
+]
