@@ -29,6 +29,8 @@ type Field_container struct{
 	Field string;
 	Type string;
 	Dependent string;
+	Options []string;
+	Max, Min int;
 }
 
 var (
@@ -130,16 +132,27 @@ func Write_data(file *os.File, tmp *template.Template, data *Request){
 func Gen_data(field Field_container) string{
 	switch field.Type {
 	case "string":
+		if len(field.Options) != 0{
+			return field.Options[rand.Intn(len(field.Options))]
+		}
 		var str string = "'"
 		str += Gen_rand_string(2+rand.Intn(4))
 		str += "'"
 		return str
 	case "int":
-		var depend int = 10
 		if field.Dependent != "" {
-			depend = dependencies[field.Dependent]
+			depend := dependencies[field.Dependent]
+			return strconv.Itoa(1+rand.Intn(depend))
 		}
-		return strconv.Itoa(1+rand.Intn(depend))
+		max := 10
+		min := 0
+		if field.Max != 0 {
+			max = field.Max
+		}
+		if field.Min != 0 {
+			min = field.Min
+		}
+		return strconv.Itoa(min+rand.Intn(max))
 	}
 	return ""
 }

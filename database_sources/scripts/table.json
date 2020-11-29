@@ -29,5 +29,46 @@
 			"Operator": "/",
 			"Number": 4
 		}
+	},
+	{
+		"Table_name": "Ninja",
+		"Fields": [
+			{
+				"Field":"name",
+				"Type":"string"
+			},
+			{
+				"Field":"age",
+				"Type":"int",
+				"Min":0,
+				"Max":100
+			},
+			{
+				"Field":"sex",
+				"Type":"string",
+				"Options": [
+					"F",
+					"M"
+				]
+			},
+			{
+				"Field":"village",
+				"Type":"int",
+				"Dependent":"Hidden_Village"
+			},
+			{
+				"Field":"clan",
+				"Type":"int",
+				"Dependent":"Clan"
+			},
+			{
+				"Field":"status",
+				"Type":"string",
+				"Options": [
+					"alive",
+					"dead"
+				]
+			}
+		]
 	}
 ]
