@@ -24,6 +24,10 @@
 				"Field":"prestige",
 				"Type":"int"
 			}
-		]
+		],
+		"Ratio": {
+			"Operator": "/",
+			"Number": 4
+		}
 	}
 ]

@@ -1,5 +1,6 @@
 # IntelliJ project files
 database_sources/scripts/*.sql
+database_sources/scripts/log.txt
 .idea
 *.iml
 out

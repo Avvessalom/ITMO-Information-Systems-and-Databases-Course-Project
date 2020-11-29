@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"math/rand"
@@ -17,6 +16,13 @@ type Request struct{
 	Table_name string;
 	Fields []Field_container;
 	Data []string;
+	Ratio Rati;
+	Count int;
+}
+
+type Rati struct{
+	Operator string;
+	Number int;
 }
 
 type Field_container struct{
@@ -72,8 +78,12 @@ func Update_variables(request Request) {
 }
 
 func Generate_table(request Request, file *os.File, tmp *template.Template){
+	request.Count = Count_comp(request.Ratio)
+
+	dependencies[request.Table_name] = request.Count
+
 	var b strings.Builder
-	for i := 0; i < n; i++ {
+	for i := 0; i < request.Count; i++ {
 		b.WriteString("(")
 		for j := 0; j < len(request.Fields); j++ {
 			b.WriteString(Gen_data(request.Fields[j]))
@@ -82,16 +92,32 @@ func Generate_table(request Request, file *os.File, tmp *template.Template){
 			}
 		}
 		b.WriteString(")")
-		if i != n - 1{
+		if i != request.Count - 1{
 			b.WriteString(",\n\t")
 		} else {
 			b.WriteString(";\n")
 		}
 	}
 	request.Data = append(request.Data, b.String())
-	dependencies[request.Table_name] = n
-	//TODO соотношения
+
 	Write_data(file, tmp, &request)
+}
+
+func Count_comp(req Rati) int {
+	if req == (Rati{}) {
+		return n
+	}
+	switch req.Operator{
+	case "/":
+		return n/req.Number
+	case "*":
+		return n*req.Number
+	case "+":
+		return n+req.Number
+	case "-":
+		return n-req.Number
+	}
+	return 0
 }
 
 func Write_data(file *os.File, tmp *template.Template, data *Request){
@@ -112,7 +138,6 @@ func Gen_data(field Field_container) string{
 		var depend int = 10
 		if field.Dependent != "" {
 			depend = dependencies[field.Dependent]
-			fmt.Println(depend)
 		}
 		return strconv.Itoa(1+rand.Intn(depend))
 	}
