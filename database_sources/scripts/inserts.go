@@ -25,9 +25,11 @@ var (
 		"a", "sa", "ki", "yu", "me", "mi", "shi",
 		"we", "hi", "mo", "se", "su",
 	}
+	count, err = strconv.Atoi(os.Args[1])
 )
 
 func main() {
+	if err != nil || count <=0 {panic(err)}
 	_ = os.Remove("./inserts.sql")
 	inserts, err := os.OpenFile("./inserts.sql",os.O_RDWR|os.O_CREATE, 0777)
 	if err != nil {panic(err)}
@@ -64,7 +66,7 @@ func hid_vil_gen(inserts *os.File, hidden_vil_tmp *template.Template) int {
 			"name",
 		},
 	}
-	for i := 0; i < 10; i++ {
+	for i := 0; i < count; i++ {
 		test_data.Data = append(test_data.Data, "('" + generate_rand_str(2+rand.Intn(3)) + "'),")
 	}
 	test_data.Data = append(test_data.Data, "('" + generate_rand_str(2+rand.Intn(3)) + "');")
@@ -82,7 +84,7 @@ func clan_gen(inserts *os.File, tmp *template.Template, vil_id int) int {
 			"prestige",
 		},
 	}
-	for i := 0; i < 10; i++ {
+	for i := 0; i < count; i++ {
 		clans.Data = append(clans.Data, "('"+ generate_rand_str(3+rand.Intn(3)) + "'," +
 			strconv.Itoa(1+rand.Intn(vil_id)) + "," +
 			strconv.Itoa(rand.Intn(100)) + "),")
@@ -107,7 +109,7 @@ func ninja_gen(inserts *os.File, tmp *template.Template, vil_id, clan_id int) in
 			"status",
 		},
 	}
-	for i := 0; i < 10; i++ {
+	for i := 0; i < count; i++ {
 		var sex string = "M"
 		var status string = "alive"
 		if rand.Intn(2) == 1 {
@@ -166,7 +168,7 @@ func Destroyed_village_gen(inserts *os.File, tmp *template.Template, vil_count, 
 			"quantity",
 		},
 	}
-	for i := 1; i < 3; i++ {
+	for i := 1; i < vil_count/5; i++ {
 		request.Data = append(request.Data, "(" +
 			strconv.Itoa(1+rand.Intn(vil_count)) + "," +
 			strconv.Itoa(1+rand.Intn(ninja_count)) + ","+
@@ -190,7 +192,7 @@ func Country_lord_gen(inserts *os.File, tmp *template.Template) int {
 			"status",
 		},
 	}
-	for i := 0; i < 10; i++ {
+	for i := 0; i < count; i++ {
 		var sex string = "M"
 		var status string = "alive"
 		if rand.Intn(2) == 1 {
@@ -225,7 +227,7 @@ func Country_gen(inserts *os.File, tmp *template.Template, lord_count, vil_count
 			"hidden_village",
 		},
 	}
-	for i := 0; i < 5; i++ {
+	for i := 0; i < count/3; i++ {
 		request.Data = append(request.Data, "('"+
 			generate_rand_str(2+rand.Intn(4)) + "'," +
 			strconv.Itoa(1+rand.Intn(lord_count)) + "," +
@@ -251,7 +253,7 @@ func Citizen_gen(inserts *os.File, tmp *template.Template, vil_count int) int {
 			"status",
 		},
 	}
-	for i := 0; i < 20; i++ {
+	for i := 0; i < 3*count; i++ {
 		var sex string = "M"
 		var status string = "alive"
 		if rand.Intn(2) == 1 {
@@ -359,7 +361,7 @@ func Jinchuriki_gen(inserts *os.File, tmp *template.Template, ninja_count, biju_
 			"biju",
 		},
 	}
-	for i := 0; i < 10; i++ {
+	for i := 0; i < count/10; i++ {
 		request.Data = append(request.Data, "(" +
 			strconv.Itoa(1+rand.Intn(ninja_count)) + "," +
 			strconv.Itoa(1+rand.Intn(biju_count)) + "),")
@@ -410,7 +412,7 @@ func Type_gen(inserts *os.File, hidden_vil_tmp *template.Template) int {
 			"name",
 		},
 	}
-	for i := 0; i < 10; i++ {
+	for i := 0; i < count/2; i++ {
 		test_data.Data = append(test_data.Data, "('" + generate_rand_str(2+rand.Intn(3)) + "'),")
 	}
 	test_data.Data = append(test_data.Data, "('" + generate_rand_str(2+rand.Intn(3)) + "');")
@@ -426,7 +428,7 @@ func Additional_type_gen(inserts *os.File, hidden_vil_tmp *template.Template) in
 			"name",
 		},
 	}
-	for i := 0; i < 10; i++ {
+	for i := 0; i < count/3; i++ {
 		test_data.Data = append(test_data.Data, "('" + generate_rand_str(2+rand.Intn(3)) + "'),")
 	}
 	test_data.Data = append(test_data.Data, "('" + generate_rand_str(2+rand.Intn(3)) + "');")
@@ -461,7 +463,7 @@ func Technic(inserts *os.File, tmp *template.Template, type_count, additional_co
 			"rune_seals",
 		},
 	}
-	for i := 0; i < 10; i++ {
+	for i := 0; i < count/2; i++ {
 		var blood string = "false"
 		if rand.Intn(2) == 1 {
 			blood = "true"
@@ -494,7 +496,7 @@ func Ninja_technic_gen(inserts *os.File, tmp *template.Template, ninja_count, te
 			"technic_ID",
 		},
 	}
-	for i := 1; i < 10; i++ {
+	for i := 1; i < 2*count; i++ {
 		request.Data = append(request.Data, "(" +
 			strconv.Itoa(1+rand.Intn(ninja_count)) + "," +
 			strconv.Itoa(1+rand.Intn(technic_count)) + "),")
