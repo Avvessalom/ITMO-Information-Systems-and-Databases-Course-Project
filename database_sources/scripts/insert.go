@@ -153,6 +153,11 @@ func Gen_data(field Field_container) string{
 			min = field.Min
 		}
 		return strconv.Itoa(min+rand.Intn(max))
+	case "boolean":
+		if rand.Intn(2) == 1 {
+			return "true"
+		}
+		return "false"
 	}
 	return ""
 }
