@@ -8,4 +8,4 @@ run:
 	go run $(SRC) 10
 
 clean:
-	rm inserts.sql
+	rm inserts.sql log.txt $(OUTPUT)

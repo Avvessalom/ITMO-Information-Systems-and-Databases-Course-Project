@@ -1,5 +1,4 @@
--- внести в ER модель таблицу "Heroes"                      X
--- индексы
+-- Functions
 
 create or replace function clan_selection_for_a_child(ninja_child integer) returns void as
 $$
@@ -62,6 +61,8 @@ end;
 $$
     language plpgsql;
 
+
+--Triggers
 
 create function destroy_village() returns trigger as
 $$

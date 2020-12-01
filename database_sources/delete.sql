@@ -18,7 +18,11 @@ drop table if exists Hidden_Village,
                      Technic,
                      Ninja_technic,
                      War,
-                     Battle cascade;
+                     Battle,
+                     heroes cascade;
+
+
+
 
 drop function if exists clan_selection_for_a_child(ninja_child integer) cascade;
 drop function if exists seal_the_biju(biju_for_sealing integer, new_jinchuriki integer) cascade;

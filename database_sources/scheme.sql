@@ -16,7 +16,7 @@ create table Ninja
 (
     ninja_ID serial primary key,
     name     varchar(100) not null,
-    age      integer      not null check (age > 0),
+    age      integer      not null check (age >= 0),
     sex      varchar(1)   not null check (sex = 'M' or sex = 'F'),
     village  integer default 1 references Hidden_Village (village_ID) on delete set default on update cascade,
     clan     integer default 1 references Clan (clan_ID) on delete set default on update cascade,
@@ -58,9 +58,9 @@ create table Citizen
 (
     citizen_ID serial primary key,
     village    integer references Hidden_Village (village_ID) on delete set null on update cascade,
-    name       varchar(100) unique not null,
-    age        integer             not null check (age > 0),
-    sex        varchar(1)          not null check (sex = 'M' or sex = 'F'),
+    name       varchar(100) not null,
+    age        integer      not null check (age >= 0),
+    sex        varchar(1)   not null check (sex = 'M' or sex = 'F'),
     status     varchar(10)
 );
 
