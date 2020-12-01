@@ -2,21 +2,21 @@ delete from hidden_Village;
 delete from destroyed_village;
 delete from jinchuriki;
 delete from clan_leader;
-    Country,
-    Country_lord,
-    Citizen,
-    Parents,
-    Clan,
-    Ninja,
-    Ninja_parents,
-    Biju,
-    Ranked_ninja,
-    Ninjas_rank,
-    "type",
-    Additional_type,
-    Technic_rank,
-    Technic,
-    Ninja_technic,
-    War,
-    Battle,
-    heroes
+delete from Country;
+delete from Country_lord;
+delete from Citizen;
+delete from Parents;
+delete from Clan;
+delete from Ninja;
+delete from Ninja_parents;
+delete from Biju;
+delete from Ranked_ninja;
+delete from Ninjas_rank;
+delete from "type";
+delete from Additional_type;
+delete from Technic_rank;
+delete from Technic;
+delete from Ninja_technic;
+delete from War;
+delete from Battle;
+delete from heroes;

@@ -61,6 +61,20 @@ end;
 $$
     language plpgsql;
 
+create or replace function check_clan(ninja_to_check integer, clan_to_check integer) returns boolean as
+$$
+declare
+    checker integer;
+begin
+    checker = (select count() from ninja where ninja_id = ninja_to_check and clan = clan_to_check);
+    if (checker = 1) then
+        return true;
+    else
+        return false;
+    end if;
+end;
+$$
+    language plpgsql;
 
 --Triggers
 
@@ -110,6 +124,71 @@ begin
 end;
 $$
     language plpgsql;
+
+create function check_blood_restriction() returns trigger as
+$$
+declare
+    clan          integer;
+    blood         integer;
+    blood_of_clan integer;
+begin
+    blood = (select blood_restriction from technic where technic.technic_id = new.technic_id);
+    if (blood = true) then
+        clan = (select clan from ninja where ninja.ninja_id = old.ninja_id);
+        blood_of_clan = (select count() from blood_restriction_of_clan where clan_id = clan);
+        if (blood_of_clan > 0) then
+            blood_of_clan = (select count()
+                             from blood_restriction_of_clan
+                             where clan_id = clan
+                               and blood_restriction_of_clan.technic_id = new.technic_id);
+            if (blood_of_clan = 0) then
+                raise exception 'techniс cannot be added';
+            end if;
+        end if;
+    end if;
+end;
+$$
+    language plpgsql;
+
+create function check_clan_leader() returns trigger as
+$$
+declare
+    new_guy integer;
+begin
+    if (check_clan(new.ninja_id, old.clan_id)) then
+        new_guy = (select status from ninja where ninja.ninja_id = new.ninja_id);
+        if (new_guy = 'dead') then
+            raise exception 'He is DEAD!!!';
+        end if;
+    else
+        raise exception 'new leader of clan not a clan member';
+    end if;
+end;
+$$
+    language plpgsql;
+
+create function check_parents() returns trigger as
+$$
+declare
+    count_of_parent integer;
+    first_parent integer;
+begin
+    count_of_parent = (select count(parent_id) from parents where children_id = new.children_id);
+    if (count_of_parent > 1) then
+        raise exception 'more 2 parent';
+    else
+        if (count_of_parent = 1) then
+            first_parent = (select parent_id from parents where children_id = new.children_id);
+            if (new.parent_id = first_parent) then
+                raise exception 'Double parent';
+            end if;
+        end if;
+    end if;
+end;
+$$
+    language plpgsql;
+select count(parent_id)
+from parents;
 -- Triggers
 
 create trigger on_destroy
@@ -135,3 +214,18 @@ create trigger on_death
     on ninja
     for each statement
 execute procedure ninja_death();
+
+create trigger check_blood_restriction
+    after insert or update
+    on ninja_technic
+execute procedure check_blood_restriction();
+
+create trigger check_clan_leader
+    after update
+    on clan_leader
+execute procedure check_clan_leader();
+
+create trigger check_parents
+    after insert or update
+    on parents
+execute procedure check_parents();

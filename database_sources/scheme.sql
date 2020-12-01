@@ -162,6 +162,11 @@ create table Heroes
     war_Id   integer references War (war_ID) on delete cascade on update cascade
 );
 
+create table Blood_restriction_of_clan
+(
+    clan_ID    integer references clan (clan_id) on delete cascade on update cascade,
+    technic_ID integer references technic (technic_id) on delete cascade on update cascade
+);
 
 -- Indexes
 

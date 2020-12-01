@@ -1,6 +1,7 @@
 # IntelliJ project files
 database_sources/scripts/*.sql
 database_sources/scripts/log.txt
+database_sources/scripts/sqlTester
 .idea
 *.iml
 out
