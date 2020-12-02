@@ -176,6 +176,4 @@ create table Blood_restriction_of_clan
 
 -- Indexes
 
-create index ninjaid on ninja using hash (ninja_id);
-create index countryid on country using hash (country_ID);
-create index clan_name on clan (clan_id, name);
+create index ninja_status on ninja (status);

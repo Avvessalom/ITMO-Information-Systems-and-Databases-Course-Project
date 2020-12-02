@@ -76,6 +76,21 @@ end;
 $$
     language plpgsql;
 
+create or replace function period_of_government(country_leader_id integer) returns integer as
+$$
+declare
+    start_of_period date;
+    end_of_period date;
+    period  integer;
+begin
+    start_of_period = (select beginning_of_reign from country_lord where lord_id = country_leader_id);
+    end_of_period = (select end_of_reign from country_lord where lord_id = country_leader_id);
+    period = (select end_of_period - start_of_period);
+    return period;
+end;
+$$
+language plpgsql;
+
 --Triggers
 
 create or replace function destroy_village() returns trigger as
@@ -196,6 +211,7 @@ $$
     language plpgsql;
 select count(parent_id)
 from parents;
+
 -- Triggers
 
 create trigger on_destroy
