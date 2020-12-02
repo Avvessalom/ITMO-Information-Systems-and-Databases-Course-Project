@@ -143,17 +143,20 @@ create table War
     attacking_country integer references Country (country_ID) on delete set null on update cascade check (attacking_country != defending_country),
     defending_country integer references Country (country_ID) on delete set null on update cascade check (defending_country != attacking_country),
     loss_of_attackers integer check (loss_of_attackers >= 0),
-    loss_of_defenders integer check (loss_of_defenders >= 0)
+    loss_of_defenders integer check (loss_of_defenders >= 0),
+    start_date        date                not null,
+    end_date          date                not null
 );
 
 create table Battle
 (
-    battle_ID serial primary key,
-    war       integer references War (war_ID) on delete cascade on update cascade         not null,
-    territory integer references Country (country_ID) on delete cascade on update cascade not null,
-    loss      integer check (loss >= 0),
-    duration  integer check (loss >= 0)                                                   not null,
-    name      varchar(100) unique                                                         not null
+    battle_ID      serial primary key,
+    war            integer references War (war_ID) on delete cascade on update cascade         not null,
+    territory      integer references Country (country_ID) on delete cascade on update cascade not null,
+    loss           integer check (loss >= 0),
+    duration       integer check (loss >= 0)                                                   not null,
+    name           varchar(100) unique                                                         not null,
+    date_of_battle date                                                                        not null
 );
 
 create table Heroes
