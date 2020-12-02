@@ -39,11 +39,13 @@ create table Destroyed_village
 
 create table Country_lord
 (
-    lord_ID serial primary key,
-    name    varchar(100) not null,
-    age     integer      not null check (age > 15),
-    sex     varchar(1)   not null check (sex = 'M' or sex = 'F'),
-    status  varchar(10)
+    lord_ID            serial primary key,
+    name               varchar(100) not null,
+    age                integer      not null check (age > 15),
+    sex                varchar(1)   not null check (sex = 'M' or sex = 'F'),
+    status             varchar(10),
+    beginning_of_reign date         not null,
+    end_of_reign       date         not null
 );
 
 create table Country
