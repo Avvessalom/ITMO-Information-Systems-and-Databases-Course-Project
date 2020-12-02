@@ -148,7 +148,7 @@ create table War
     loss_of_attackers integer check (loss_of_attackers >= 0),
     loss_of_defenders integer check (loss_of_defenders >= 0),
     start_date        date                not null,
-    end_date          date                not null
+    end_date          date
 );
 
 create table Battle

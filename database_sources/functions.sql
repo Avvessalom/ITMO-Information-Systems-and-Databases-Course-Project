@@ -78,15 +78,16 @@ $$
 
 --Triggers
 
-create function destroy_village() returns trigger as
+create or replace function destroy_village() returns trigger as
 $$
 begin
     insert into hidden_village(name) values ('ruin of village');
+    return new;
 end;
 $$
     language plpgsql;
 
-create function actions_with_village() returns trigger as
+create or replace function actions_with_village() returns trigger as
 $village$
 declare
     destroy_quantity integer ;
@@ -95,6 +96,7 @@ begin
         destroy_quantity = (select quantity from destroyed_village where destroyed_village.village_id = old.village_id);
         insert into destroyed_village(village_id, quantity) values (old.village_id, destroy_quantity + 1);
     end if;
+    return new;
 end;
 $village$ language plpgsql;
 
@@ -104,10 +106,11 @@ begin
     if (tg_op = 'delete') then
         raise exception 'Jinchuriki cannot be removed';
     end if;
+    return new;
 end;
 $$ language plpgsql;
 
-create function ninja_death() returns trigger as
+create or replace function ninja_death() returns trigger as
 $$
 declare
     old_country  integer;
@@ -121,11 +124,12 @@ begin
                        where old.village = village_id);
         select choose_kage_candidates(old.ninja_id, old_country);
     end if;
+    return new;
 end;
 $$
     language plpgsql;
 
-create function check_blood_restriction() returns trigger as
+create or replace function check_blood_restriction() returns trigger as
 $$
 declare
     clan          integer;
@@ -146,11 +150,12 @@ begin
             end if;
         end if;
     end if;
+    return new;
 end;
 $$
     language plpgsql;
 
-create function check_clan_leader() returns trigger as
+create or replace function check_clan_leader() returns trigger as
 $$
 declare
     new_guy integer;
@@ -163,11 +168,12 @@ begin
     else
         raise exception 'new leader of clan not a clan member';
     end if;
+    return new;
 end;
 $$
     language plpgsql;
 
-create function check_parents() returns trigger as
+create or replace function check_parents() returns trigger as
 $$
 declare
     count_of_parent integer;
@@ -184,6 +190,7 @@ begin
             end if;
         end if;
     end if;
+    return new;
 end;
 $$
     language plpgsql;
@@ -221,11 +228,11 @@ create trigger check_blood_restriction
 execute procedure check_blood_restriction();
 
 create trigger check_clan_leader
-    after update
+    before update
     on clan_leader
 execute procedure check_clan_leader();
 
 create trigger check_parents
-    after insert or update
+    before insert or update
     on parents
 execute procedure check_parents();
