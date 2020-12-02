@@ -127,9 +127,10 @@ create table Technic
     technic_ID        serial primary key,
     type              integer references Type (type_ID) on delete cascade on update cascade,
     additional_type   integer references Additional_type (addtype_ID) on delete cascade on update cascade,
-    blood_restriction Boolean not null,
+    blood_restriction Boolean             not null,
     rank              integer references Technic_rank (techrank_ID) on delete set null on update cascade,
-    rune_seals        varchar(255)
+    rune_seals        varchar(255),
+    name              varchar(255) unique not null
 );
 
 create table Ninja_technic
