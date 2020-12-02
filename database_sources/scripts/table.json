@@ -147,6 +147,14 @@
 					"alive",
 					"dead"
 				]
+			},
+			{
+				"Field": "beginning_of_reign",
+				"Type": "date"
+			},
+			{
+				"Field": "end_of_reign",
+				"Type": "date"
 			}
 		],
 		"Ratio": {
@@ -387,6 +395,11 @@
 			{
 				"Field": "rune_seals",
 				"Type": "string"
+			},
+			{
+				"Field": "name",
+				"Type": "string",
+				"Unique": true
 			}
 		],
 		"Ratio": {
@@ -442,6 +455,14 @@
 				"Field": "loss_of_defenders",
 				"Type": "int",
 				"Max": 100500
+			},
+			{
+				"Field": "start_date",
+				"Type": "date"
+			},
+			{
+				"Field": "end_date",
+				"Type": "date"
 			}
 		]
 	},
@@ -472,11 +493,34 @@
 				"Field": "name",
 				"Type": "string",
 				"Unique": true
+			},
+			{
+				"Field": "date_of_battle",
+				"Type": "date"
 			}
 		],
 		"Ratio": {
 			"Operator": "*",
 			"Number": 3
+		}
+	},
+	{
+		"Table_name": "Blood_restriction_of_clan",
+		"Fields": [
+			{
+				"Field": "clan_ID",
+				"Type": "int",
+				"Dependent": "Clan"
+			},
+			{
+				"Field": "technic_ID",
+				"Type": "int",
+				"Dependent": "Technic"
+			}
+		],
+		"Ratio": {
+			"Operator": "*",
+			"Number": 4
 		}
 	}
 ]
