@@ -8,7 +8,7 @@ export const Search_form = () => {
                 <input className="form-control form-control-lg" type="search" placeholder="Search" aria-label="Search" />
                 </div>
                 <div>
-                    <button className="btn btn-primary btn-block btn-lg" type="submit">Search</button>
+                    <button className="btn btn-warning btn-block btn-lg" type="submit">Search</button>
                 </div>
             </div>
         </form>
