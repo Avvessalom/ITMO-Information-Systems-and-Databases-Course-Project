@@ -11,10 +11,28 @@ export const Navbar = () => (
         <div className="container-fluid">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                    <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
+                    <NavLink className="nav-link active" aria-current="page" to="/~s250643/">Home</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink className="nav-link" to="/">Link</NavLink>
+                    <NavLink className="nav-link" to="/~s250643/ninjas">Ninjas</NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/~s250643/villages">Villages</NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/~s250643/countries">Countries</NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/~s250643/bijus">Bijus</NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/~s250643/clans">Clans</NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/~s250643/citizens">Citizens</NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/~s250643/technics">Technics</NavLink>
                 </li>
             </ul>
             <Navbar_form />

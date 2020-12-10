@@ -14,7 +14,65 @@ code {
     monospace;
 }
 
-element {
-  background:url('https://images6.alphacoders.com/605/605598.jpg')no-repeat center center;
+.home_back {
+  background:url(./assets/images/background.jpg)no-repeat center center;
   background-size: cover
+}
+
+/*.masthead{*/
+/*  display: table;*/
+/*  width: 100%;*/
+/*  height: auto;*/
+/*  padding: 200px 0;*/
+/*  text-align: center;*/
+/*  background:url(./assets/images/background.jpg)no-repeat center center;*/
+/*  background-size: cover;*/
+/*}*/
+
+.masthead {
+  position: relative;
+  /*background: url(./assets/images/background.jpg)no-repeat center center;*/
+  /*background-size: cover;*/
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .masthead {
+    height: 100%;
+    padding: 0;
+  }
+}
+
+.intro-body {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.brand-heading {
+  padding-top: 25%;
+  font-size: 100px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 35px;
+  font-weight: 700;
+}
+
+.overlay {
+  position: absolute;
+  height: 860px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: .3;
+}
+
+header .masthead .overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: .3;
 }
