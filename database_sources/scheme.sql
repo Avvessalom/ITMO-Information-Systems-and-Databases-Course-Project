@@ -175,5 +175,3 @@ create table Blood_restriction_of_clan
 );
 
 -- Indexes
-
-create index ninja_status on ninja (status);
