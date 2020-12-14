@@ -158,8 +158,8 @@
 			}
 		],
 		"Ratio": {
-			"Operator": "/",
-			"Number": 2
+			"Operator": "*",
+			"Number": 10
 		}
 	},
 	{
