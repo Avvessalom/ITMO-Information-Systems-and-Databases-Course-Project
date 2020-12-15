@@ -1,0 +1,5 @@
+com/kursach/ejb/SearchEJB.class
+com/kursach/SearchHandler.class
+com/kursach/models/Technic.class
+com/kursach/hibernate/HibernateUtil.class
+com/kursach/models/SearchResult.class
