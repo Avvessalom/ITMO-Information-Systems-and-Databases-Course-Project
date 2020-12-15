@@ -16,8 +16,7 @@ public class SearchEJB{
 
 		List<SearchResult> result = session.createQuery(
 //"select new SearchResult(technic_id, name, name) from (select *, word_similarity('nuno', name) as sim from technic) as result where result.sim > 0.5 order by result.sim desc"
-				"select new com.kursach.models.SearchResult(t.id, t.name, :type) from "+table+" t where word_similarity(:word, name) > 0.5")
-			.setParameter("type", "'"+type+"'")
+				"select new com.kursach.models.SearchResult(t.id, t.name, '"+type+"') from "+table+" t where word_similarity(:word, name) > 0.5")
 			.setParameter("word", "'"+word+"'")
 			.list();
 

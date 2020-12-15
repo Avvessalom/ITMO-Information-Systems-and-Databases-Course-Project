@@ -14,12 +14,17 @@ import com.kursach.ejb.SearchEJB;
 public class SearchHandler {
 	@EJB
 	SearchEJB searchEJB;
+
 	@GET
 	@Path("/search")
 	@Produces("application/json")
 	public List<SearchResult> search(){
-		List<SearchResult> result = searchEJB.searchResult("nuno","Technic", "technic");
-		result.addAll(searchEJB.searchResult("nuno","Technic","technic"));
+		String[] listOfEntities = new String[]{ "Country","Hidden_village","Clan","War","Battle","Ninja","Biju","Ninjas_rank","Technic","Type","Additional_type","Technic_rank","Citizen","Country_lord"};
+
+		List<SearchResult> result = new ArrayList<SearchResult>();
+		for (String table : listOfEntities){
+			result.addAll(searchEJB.searchResult("nuno",table,table));
+		}
 		return result;
 	}
 }

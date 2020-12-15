@@ -12,6 +12,19 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="connection.pool_size">100</property>
         <mapping class="com.kursach.models.Technic"/>
-        <mapping class="com.kursach.models.SearchResult"/>
+	<mapping class="com.kursach.models.SearchResult"/>
+	<mapping class="com.kursach.models.Additional_type"/>
+	<mapping class="com.kursach.models.Battle"/>
+	<mapping class="com.kursach.models.Biju"/>
+	<mapping class="com.kursach.models.Citizen"/>
+	<mapping class="com.kursach.models.Clan"/>
+	<mapping class="com.kursach.models.Country"/>
+	<mapping class="com.kursach.models.Country_lord"/>
+	<mapping class="com.kursach.models.Hidden_village"/>
+	<mapping class="com.kursach.models.Ninja"/>
+	<mapping class="com.kursach.models.Ninjas_rank"/>
+	<mapping class="com.kursach.models.Technic_rank"/>
+	<mapping class="com.kursach.models.Type"/>
+	<mapping class="com.kursach.models.War"/>
     </session-factory>
 </hibernate-configuration>
