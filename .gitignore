@@ -7,4 +7,5 @@ database_sources/scripts/sqlTester
 out
 gen
 frontend/node_modules/*
-backend/conf/config.yaml
+backgo/conf/config.yaml
+backend/target/*
