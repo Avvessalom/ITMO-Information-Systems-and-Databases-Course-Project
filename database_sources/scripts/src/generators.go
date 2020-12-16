@@ -120,7 +120,7 @@ func String_type(field Field_container) string{
 	if len(field.Options) != 0{
 		return field.Options[rand.Intn(len(field.Options))]
 	}
-	return Gen_rand_string(2+rand.Intn(4))
+	return Gen_rand_string(2+rand.Intn(10))
 }
 
 func Itn_type(field Field_container) string {
