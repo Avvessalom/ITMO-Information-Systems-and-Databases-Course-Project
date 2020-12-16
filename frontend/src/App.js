@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import {Home} from "./pages/Home";
-import {Ninjas} from "./pages/Ninjas"
+import Ninjas from "./pages/Ninjas"
 import {Navbar} from "./components/Navbar";
 import {Clans} from "./pages/Clans";
 import {Bijus} from "./pages/Bijus"
