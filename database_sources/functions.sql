@@ -239,7 +239,7 @@ create trigger on_death
 execute procedure ninja_death();
 
 create trigger check_blood_restriction
-    after insert or update
+    before insert or update
     on ninja_technic
 execute procedure check_blood_restriction();
 
