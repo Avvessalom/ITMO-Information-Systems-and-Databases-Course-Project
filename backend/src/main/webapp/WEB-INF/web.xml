@@ -11,7 +11,7 @@
 
 	<context-param>
 		<param-name>resteasy.resources</param-name>
-		<param-value>com.kursach.SearchHandler</param-value>
+		<param-value>com.kursach.SearchHandler,com.kursach.Main</param-value>
     </context-param>
 	
 	<context-param>
