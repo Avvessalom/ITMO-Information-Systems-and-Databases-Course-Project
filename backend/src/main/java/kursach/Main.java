@@ -14,12 +14,12 @@ import javax.ejb.EJB;
 @Path("/stdquery")
 public class Main{
 	@EJB
-	Entities entities;
+	Entities<Ninja> entities;
 
 	@GET
 	@Path("/ninjas")
 	@Produces("application/json")
 	public List<Ninja> getNinjas(){
-		return (List<Ninja>)(Object)entities.getModel();
+		return entities.getModel();
 	}
 }

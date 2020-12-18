@@ -4,10 +4,12 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Date;
 
+import com.kursach.models.StdModel;
+
 @Data
 @Entity
 @Table(name = "Battle")
-public class Battle {
+public class Battle extends StdModel{
 	@Id
 	@Column(name = "battle_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,4 +33,8 @@ public class Battle {
 	@Column(name = "date_of_battle")
 	//@Temporal(TemporalType.TIMESTAMP)
 	private Date date_of_battle;
+
+	public static String getTableName(){
+		return "Battle";
+	}
 }

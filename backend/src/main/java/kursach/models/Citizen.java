@@ -3,10 +3,12 @@ package com.kursach.models;
 import lombok.Data;
 import javax.persistence.*;
 
+import com.kursach.models.StdModel;
+
 @Data
 @Entity
 @Table(name = "Citizen")
-public class Citizen {
+public class Citizen extends StdModel{
 	@Id
 	@Column(name = "citizen_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,4 +28,8 @@ public class Citizen {
 
 	@Column(name = "status")
 	private String status;
+
+	public static String getTableName(){
+		return "Citizen";
+	}
 }

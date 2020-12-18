@@ -3,6 +3,8 @@ package com.kursach.models;
 import lombok.Data;
 import javax.persistence.*;
 
+import com.kursach.models.StdModel;
+
 @Data
 @Entity
 @Table(name = "Hidden_village")
@@ -14,4 +16,8 @@ public class Hidden_village {
 
 	@Column(name = "name")
 	private String name;
+
+	public static String StdModel(){
+		return "Hidden_village";
+	}
 }

@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "Ninja")
-public class Ninja{
+public class Ninja extends StdModel{
 	@Id
 	@Column(name = "ninja_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,4 +29,8 @@ public class Ninja{
 
 	@Column(name = "status")
 	private String status;
+
+	public static String getTableName(){
+		return "Ninja";
+	}
 }
