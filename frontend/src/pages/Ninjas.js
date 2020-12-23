@@ -1,10 +1,37 @@
 import React, {Component} from "react";
 import Table from "react-bootstrap/Table"
 import {Add_ninja} from "../components/Add_ninja";
-import {connect} from "react-redux";
+import axios from "axios";
 
 class Ninjas extends Component {
+    state = {
+        ninjas: []
+    }
+
+    componentWillMount() {
+        axios.get('http://localhost:8080/backend/naruto-api/stdquery/ninjas')
+            .then((response) => {
+            this.setState({
+                ninjas: response.data
+            })
+            .then(error => console.log(error))
+        });
+    }
+
     render() {
+        let ninjas = this.state.ninjas.map((ninja) => {
+            return (
+                <tr key={ninja.id}>
+                    <td>{ninja.id}</td>
+                    <td>{ninja.name}</td>
+                    <td>{ninja.clan}</td>
+                    <td>{ninja.age}</td>
+                    <td>{ninja.sex}</td>
+                    <td>{ninja.village}</td>
+                    <td>{ninja.status}</td>
+                </tr>
+            )
+        });
         return (
             <header className="masthead text-center">
                 <div className="ninja-button"><Add_ninja/></div>
@@ -27,42 +54,7 @@ class Ninjas extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Eugege</td>
-                                    <td>Cool</td>
-                                    <td>54</td>
-                                    <td>M</td>
-                                    <td>Saint P</td>
-                                    <td>Alive</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Roma</td>
-                                    <td>Lox</td>
-                                    <td>0</td>
-                                    <td>F</td>
-                                    <td>Siberia</td>
-                                    <td>Alive</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Vladimir</td>
-                                    <td>Nikolaev</td>
-                                    <td>~30</td>
-                                    <td>M</td>
-                                    <td>Saint P</td>
-                                    <td>Alive</td>
-                                </tr>
-                                <tr>
-                                    <td>{this.props.ID}</td>
-                                    <td>{this.props.Name}</td>
-                                    <td>{this.props.Clan}</td>
-                                    <td>{this.props.Age}</td>
-                                    <td>{this.props.Sex}</td>
-                                    <td>{this.props.Village}</td>
-                                    <td>{this.props.Status}</td>
-                                </tr>
+                                {ninjas}
                                 </tbody>
                             </Table>
                         </div>
@@ -72,20 +64,5 @@ class Ninjas extends Component {
         )
     }
 }
-function mapStateToProps(state) {
-    return{
-        ID: state.ninjaInfo.ID,
-        Name: state.ninjaInfo.Name,
-        Clan: state.ninjaInfo.Clan,
-        Age: state.ninjaInfo.Age,
-        Sex: state.ninjaInfo.Sex,
-        Village: state.ninjaInfo.Village,
-        Status: state.ninjaInfo.Status
-    }
-}
 
-function mapDispatchToProps(){
-    return{};
-}
-
-export default connect (mapStateToProps, mapDispatchToProps)(Ninjas);
+export default Ninjas;
