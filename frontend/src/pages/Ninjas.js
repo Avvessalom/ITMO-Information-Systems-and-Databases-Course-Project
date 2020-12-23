@@ -10,8 +10,7 @@ class Ninjas extends Component {
 
     componentWillMount() {
         axios.get('http://localhost:8080/backend/naruto-api/stdquery/ninjas')
-            .then((response) => {
-            this.setState({
+            .then((response) => {this.setState({
                 ninjas: response.data
             })
             .then(error => console.log(error))
