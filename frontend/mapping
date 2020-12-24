@@ -1,0 +1,10 @@
+ninja
+        http://localhost:8080/backend/naruto-api/stdquery/ninjas
+        GET
+        {"id": id,"name":"name","age": age,"sex": "sex","village":"village:","clan":"clan","status":"status"}
+
+villages
+        http://localhost:8080/backend/naruto-api/stdquery/village
+        GET
+        {"id": "id", "name":"name", "country":"country", "ninjas":"count of ninjas", "clans":"count of clans", "number_of_destruction":"number of destruction"}
+
