@@ -8,3 +8,7 @@ villages
         GET
         {"id": "id", "name":"name", "country":"country", "ninjas":"count of ninjas", "clans":"count of clans", "number_of_destruction":"number of destruction"}
 
+countries
+        http://localhost:8080/backend/naruto-api/stdquery/countries
+        GET
+        {"id": "id", "name":"name", "lord":"lord", "village":"village", "wars":"count of wars", "lords":"count of lords", "citizens":"count of citizens"}
