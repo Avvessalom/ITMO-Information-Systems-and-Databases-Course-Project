@@ -4,7 +4,7 @@ ninja
         {"id": id,"name":"name","age": age,"sex": "sex","village":"village:","clan":"clan","status":"status"}
 
 villages
-        http://localhost:8080/backend/naruto-api/stdquery/village
+        http://localhost:8080/backend/naruto-api/stdquery/villages
         GET
         {"id": "id", "name":"name", "country":"country", "ninjas":"count of ninjas", "clans":"count of clans", "number_of_destruction":"number of destruction"}
 
@@ -12,3 +12,8 @@ countries
         http://localhost:8080/backend/naruto-api/stdquery/countries
         GET
         {"id": "id", "name":"name", "lord":"lord", "village":"village", "wars":"count of wars", "lords":"count of lords", "citizens":"count of citizens"}
+
+clans
+        http://localhost:8080/backend/naruto-api/stdquery/clans
+        GET
+        {"id": "id", "name":"name", "village":"village", "prestige":"prestige", "ninjas":"count of ninjas", "leader":"clan leader", "blood":"blood restriction"}
