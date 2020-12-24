@@ -17,3 +17,8 @@ clans
         http://localhost:8080/backend/naruto-api/stdquery/clans
         GET
         {"id": "id", "name":"name", "village":"village", "prestige":"prestige", "ninjas":"count of ninjas", "leader":"clan leader", "blood":"blood restriction"}
+
+citizens
+        http://localhost:8080/backend/naruto-api/stdquery/citizens
+        GET
+        {"id": "id", "name":"name", "village":"village", "age":"age", "sex":"sex", "status":"status}

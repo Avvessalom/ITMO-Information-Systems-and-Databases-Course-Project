@@ -7,7 +7,7 @@ import Clans from "./pages/Clans";
 import {Bijus} from "./pages/Bijus"
 import Villages from "./pages/Villages"
 import Countries from "./pages/Countries"
-import {Citizens} from "./pages/Citizens"
+import Citizens from "./pages/Citizens"
 import {Technics} from "./pages/Technics"
 
 function App() {
