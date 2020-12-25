@@ -15,34 +15,79 @@ import axios from "axios";
 
 class Bijus extends Component {
     state = {
-        bijus: []
+        biju1: [],
+        biju2: [],
+        biju3: [],
+        biju4: [],
+        biju5: [],
+        biju6: [],
+        biju7: [],
+        biju8: [],
+        biju9: []
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus')
+        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=1',)
             .then((response) => {
                 this.setState({
-                    bijus: response.data
+                    biju1: response.data
+                })
+            })
+        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=2',)
+            .then((response) => {
+                this.setState({
+                    biju2: response.data
+                })
+            })
+        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=3',)
+            .then((response) => {
+                this.setState({
+                    biju3: response.data
+                })
+            })
+        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=4',)
+            .then((response) => {
+                this.setState({
+                    biju4: response.data
+                })
+            })
+        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=5',)
+            .then((response) => {
+                this.setState({
+                    biju5: response.data
+                })
+            })
+        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=6',)
+            .then((response) => {
+                this.setState({
+                    biju6: response.data
+                })
+            })
+        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=7',)
+            .then((response) => {
+                this.setState({
+                    biju7: response.data
+                })
+            })
+        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=8',)
+            .then((response) => {
+                this.setState({
+                    biju8: response.data
+                })
+            })
+        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=9',)
+            .then((response) => {
+                this.setState({
+                    biju9: response.data
                 })
             })
     }
 
     render() {
-        let bijus1 = this.state.bijus.map((biju) => {
-            if (biju.count_of_tails === 1) {
+        let bijus1 = this.state.biju1.map((biju) => {
                 return (
-                    <ListGroup.Item>biju.previous</ListGroup.Item>
+                    <ListGroup.Item>{biju.previous}</ListGroup.Item>
                 )
-            }
-            return []
-        })
-        let bijus2 = this.state.bijus.map((biju) => {
-            if (biju.count_of_tails === 2) {
-                return (
-                    <ListGroup.Item>biju.previous</ListGroup.Item>
-                )
-            }
-            return []
-        })
+        });
 
         return (
             <div className="container">
@@ -67,7 +112,7 @@ class Bijus extends Component {
                             <Card.Subtitle className="mb-2 text-muted">2 tail</Card.Subtitle>
                             <Card.Header>Previous jinchurikis</Card.Header>
                             <ListGroup variant="flush">
-                                {bijus2}
+                                123
                             </ListGroup>
                             <Button variant="danger">Seal</Button>
                         </Card.Body>
