@@ -22,3 +22,9 @@ citizens
         http://localhost:8080/backend/naruto-api/stdquery/citizens
         GET
         {"id": "id", "name":"name", "village":"village", "age":"age", "sex":"sex", "status":"status}
+
+bijus
+        http://localhost:8080/backend/naruto-api/stdquery/bijus
+        {"name":"name", "count_of_tails":"count of tails", "previous":""first jinchuriki"}
+        {"name":"name", "count_of_tails":"count of tails", "previous":"second jinchuriki"}
+        ...

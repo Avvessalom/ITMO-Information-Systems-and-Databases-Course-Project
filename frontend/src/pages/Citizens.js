@@ -18,15 +18,15 @@ class Citizens extends Component {
     }
 
     render() {
-        let citizens = this.state.citizens.map((citizens) => {
+        let citizens = this.state.citizens.map((citizen) => {
             return (
-                <tr key={citizens.id}>
-                    <td>{citizens.id}</td>
-                    <td>{citizens.name}</td>
-                    <td>{citizens.village}</td>
-                    <td>{citizens.age}</td>
-                    <td>{citizens.sex}</td>
-                    <td>{citizens.status}</td>
+                <tr key={citizen.id}>
+                    <td>{citizen.id}</td>
+                    <td>{citizen.name}</td>
+                    <td>{citizen.village}</td>
+                    <td>{citizen.age}</td>
+                    <td>{citizen.sex}</td>
+                    <td>{citizen.status}</td>
                 </tr>
             )
         })
