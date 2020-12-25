@@ -11,7 +11,9 @@ import javax.ejb.Stateless;
 @Stateless
 public class SearchEJB{
 	public List<SearchResult> searchResult(String word, String table, String type){
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = HibernateUtil
+			.getSessionFactory()
+			.openSession();
 		session.beginTransaction();
 
 		List<SearchResult> result = session.createQuery(

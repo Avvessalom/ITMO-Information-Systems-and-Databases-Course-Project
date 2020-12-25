@@ -21,11 +21,19 @@ public class Ninja extends StdModel{
 	@Column(name = "sex")
 	private String sex;
 
-	@Column(name = "village")
-	private long village;
+	//@Column(name = "village")
+	//private long village;
+	@ManyToOne(cascade = CascadeType.ALL,
+	fetch = FetchType.EAGER
+	)
+	@JoinColumn(name = "village")
+	private Hidden_village village;
 
-	@Column(name = "clan")
-	private long clan;
+	@ManyToOne(cascade = CascadeType.ALL,
+	fetch = FetchType.EAGER
+	)
+	@JoinColumn(name = "clan")
+	private Clan clan;
 
 	@Column(name = "status")
 	private String status;

@@ -20,6 +20,6 @@ public class Main{
 	@Path("/ninjas")
 	@Produces("application/json")
 	public List<Ninja> getNinjas(){
-		return entities.getModel();
+		return entities.getModelCriteria(Ninja.class);
 	}
 }
