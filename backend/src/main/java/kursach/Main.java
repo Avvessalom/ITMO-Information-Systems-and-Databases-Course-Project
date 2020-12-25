@@ -22,4 +22,14 @@ public class Main{
 	public List<Ninja> getNinjas(){
 		return entities.getModelCriteria(Ninja.class);
 	}
+
+	@EJB
+	Entities<Hidden_village> villagesEJB;
+
+	@GET
+	@Path("/villages")
+	@Produces("application/json")
+	public List<Hidden_village> getVillages(){
+		return villagesEJB.getModelCriteria(Hidden_village.class);
+	}
 }

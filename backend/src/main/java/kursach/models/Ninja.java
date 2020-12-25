@@ -21,8 +21,6 @@ public class Ninja extends StdModel{
 	@Column(name = "sex")
 	private String sex;
 
-	//@Column(name = "village")
-	//private long village;
 	@ManyToOne(cascade = CascadeType.ALL,
 	fetch = FetchType.EAGER
 	)

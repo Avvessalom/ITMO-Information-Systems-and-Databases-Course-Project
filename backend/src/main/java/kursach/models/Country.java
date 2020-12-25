@@ -3,6 +3,8 @@ package com.kursach.models;
 import lombok.Data;
 import javax.persistence.*;
 
+import java.util.List;
+
 import com.kursach.models.StdModel;
 
 @Data
