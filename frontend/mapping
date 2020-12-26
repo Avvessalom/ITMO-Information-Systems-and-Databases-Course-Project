@@ -23,6 +23,11 @@ countries
         GET
         {"id": "id", "name":"name", "lord":"lord", "village":"village", "wars":"count of wars", "lords":"count of lords", "citizens":"count of citizens"}
 
+declare war
+        http://localhost:8080/backend/naruto-api/stdquery/countries
+        POST
+        {name: '', attacking: '', defending: '', lossa: '', lossd: '', start: '', end: ''}
+
 clans
         http://localhost:8080/backend/naruto-api/stdquery/clans
         GET
