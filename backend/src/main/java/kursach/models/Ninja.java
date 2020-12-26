@@ -22,16 +22,23 @@ public class Ninja extends StdModel{
 	private String sex;
 
 	@ManyToOne(cascade = CascadeType.ALL,
-	fetch = FetchType.EAGER
+	fetch = FetchType.LAZY
 	)
 	@JoinColumn(name = "village")
 	private Hidden_village village;
+	public Hidden_village getVillage(){
+		return this.village;
+	}
 
 	@ManyToOne(cascade = CascadeType.ALL,
-	fetch = FetchType.EAGER
+	fetch = FetchType.LAZY
 	)
 	@JoinColumn(name = "clan")
 	private Clan clan;
+	public Clan getClan() {
+		return this.clan;
+	}
+	//private Clan clan;
 
 	@Column(name = "status")
 	private String status;
