@@ -3,6 +3,10 @@ ninja
         GET
         {"id": id,"name":"name","age": age,"sex": "sex","village":"village:","clan":"clan","status":"status"}
 
+add new ninja
+        http://localhost:8080/backend/naruto-api/stdquery/ninjas
+        POST
+        {"name":"asdsa","clan":"2","village":"10","status":"Alive","age":"1","sex":"F"}
 villages
         http://localhost:8080/backend/naruto-api/stdquery/villages
         GET
