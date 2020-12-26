@@ -98,12 +98,27 @@ class WarModal extends Component {
                         <br />
 
                         <Form.Label>Loss of Defenders</Form.Label>
-                        <Form.Control type="text" placeholder="Enter loss" id="name" value={this.state.newWarData.lossd} onChange={(event => {
+                        <Form.Control type="text" placeholder="Enter loss" id="lossd" value={this.state.newWarData.lossd} onChange={(event => {
                             let {newWarData} = this.state;
                             newWarData.lossd = event.target.value;
                             this.setState(newWarData);
                         })}/>
+                        <br />
 
+                        <Form.Label>Start of war</Form.Label>
+                        <Form.Control type="text" placeholder="Enter loss" id="start" value={this.state.newWarData.start} onChange={(event => {
+                            let {newWarData} = this.state;
+                            newWarData.start = event.target.value;
+                            this.setState(newWarData);
+                        })}/>
+                        <br />
+
+                        <Form.Label>End of war</Form.Label>
+                        <Form.Control type="text" placeholder="Enter loss" id="end" value={this.state.newWarData.end} onChange={(event => {
+                            let {newWarData} = this.state;
+                            newWarData.end = event.target.value;
+                            this.setState(newWarData);
+                        })}/>
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
