@@ -179,14 +179,11 @@ class CenteredModal extends Component {
                         <br />
 
                         <Form.Label>Age</Form.Label>
-                        <Form.Control as="select" value={this.state.newNinjaData.age} onChange={(event => {
+                        <Form.Control type="text" placeholder="Enter age" value={this.state.newNinjaData.age} onChange={(event => {
                             let {newNinjaData} = this.state;
                             newNinjaData.age = event.target.value;
                             this.setState(newNinjaData);
-                        })}>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
+                        })} >
                         </Form.Control>
                         <br />
 
