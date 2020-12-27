@@ -135,7 +135,7 @@ export const Declare_war_button = () => {
     return (
         <form>
             <div>
-                <Button variant="danger" onClick={() => setModalShow(true)}>
+                <Button variant="danger" size="lg" onClick={() => setModalShow(true)}>
                     Declare war
                 </Button>
                 <WarModal
