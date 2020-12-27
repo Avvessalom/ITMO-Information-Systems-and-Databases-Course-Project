@@ -1,12 +1,38 @@
 import React, {Component, Fragment} from "react";
-import {Add_ninja} from "../components/Add_ninja";
 import Table from "react-bootstrap/Table";
+import {Add_technic} from "../components/Add_technic_button";
+import axios from "axios";
 
 class Technics extends Component {
+    state = {
+        technics: []
+    }
+
+    componentWillMount() {axios.get('http://localhost:8080/backend/naruto-api/stdquery/technics')
+        .then((response) => {
+            this.setState({
+                technics: response.data
+            })
+        })
+    }
+
     render() {
+        let technics = this.state.technics.map((ninja) => {
+            return (
+                <tr key={technics.id}>
+                    <td>{technics.id}</td>
+                    <td>{technics.name}</td>
+                    <td>{technics.type}</td>
+                    <td>{technics.adtype}</td>
+                    <td>{technics.bloodrest}</td>
+                    <td>{technics.rank}</td>
+                    <td>{technics.runes}</td>
+                </tr>
+            )
+        });
         return(
             <header className="masthead text-center">
-                <div className="ninja-button">la</div>
+                <div className="ninja-button"><Add_technic /></div>
                 <div className="container">
                     <div className="row">
                         <div className="col-xl-9 mx-auto">
@@ -26,15 +52,7 @@ class Technics extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Clan</th>
-                                    <th>Age</th>
-                                    <th>Sex</th>
-                                    <th>Village</th>
-                                    <th>Status</th>
-                                </tr>
+                                {technics}
                                 </tbody>
                             </Table>
                         </div>
