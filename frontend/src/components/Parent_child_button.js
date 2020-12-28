@@ -85,7 +85,7 @@ export const Parent_child_button = () => {
     const [modalShow, setModalShow] = React.useState(false);
     return (
         <form>
-            <div>
+            <div className="ml-1">
                 <Button variant="warning" className="widthNinja" size="lg" onClick={() => setModalShow(true)}>
                     Parent Child pair
                 </Button>

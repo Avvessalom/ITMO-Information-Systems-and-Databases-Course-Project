@@ -3,6 +3,7 @@ import Table from "react-bootstrap/Table"
 import {Add_ninja} from "../components/Add_ninja";
 import axios from "axios";
 import {Parent_child_button} from "../components/Parent_child_button";
+import {Ninja_death_button} from "../components/Ninja_death_button";
 
 class Ninjas extends Component {
     state = {
@@ -34,8 +35,8 @@ class Ninjas extends Component {
         });
         return (
             <header className="masthead text-center">
-                <div className="ninja-button"><Add_ninja/></div>
-                <div className="ninja-button"><Parent_child_button/></div>
+                <div className="ninja-button"><Add_ninja/><Parent_child_button/></div>
+                <div className="ninja-button"><Ninja_death_button/></div>
                 <div className="container">
                     <div className="row">
                         <div className="col-xl-9 mx-auto">
