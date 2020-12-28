@@ -52,21 +52,42 @@ public class MapService {
 		clansDTO.setVillage(clan.getVillage().getName());
 		clansDTO.setPrestige(clan.getPrestige());
 		clansDTO.setNinjas(clan.getNinja().size());
-		//HashSet<String> clanLeaders = new HashSet<String>();
-		//for (Ninja s : clan.getLeaders()){
-		//	clanLeaders.add(s.getName());
-		//}
 		if (clan.getLeaders().isEmpty()){
 			clansDTO.setLeader("anarchy");
 		} else {
 			clansDTO.setLeader(clan.getLeaders().stream().findFirst().get().getName());
 		}
-		//clansDTO.setLeader(clanLeaders);
 		if ( clan.getTechnics().size() == 0 ){
 			clansDTO.setBlood(false);
 		} else {
 			clansDTO.setBlood(true);
 		}
 		return clansDTO;
+	}
+
+	@Autowired
+	private VillageRepository villageRepository;
+
+	public List<VillagesDTO> getVillages() {
+		return ((List<Hidden_village>) villageRepository
+			.findAll())
+			.stream()
+			.map(this::convertToVillageDTO)
+			.collect(Collectors.toList());
+	}
+
+	private VillagesDTO convertToVillageDTO(Hidden_village village) {
+		VillagesDTO villageDTO = new VillagesDTO();
+		villageDTO.setId(village.getId());
+		villageDTO.setName(village.getName());
+		if (village.getCountry() == null) {
+			villageDTO.setCountry("independent");
+		} else {
+			villageDTO.setCountry(village.getCountry().getName());
+		}
+		villageDTO.setNinjas(village.getNinja().size());
+		villageDTO.setClans(village.getClans().size());
+		villageDTO.setNumber_of_destruction(5);
+		return villageDTO;
 	}
 }

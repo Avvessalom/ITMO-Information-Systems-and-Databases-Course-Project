@@ -1,12 +1,10 @@
 package com.salvoroni.narutopedia.model;
 
 import javax.persistence.*;
-//import lombok.Data;
 import java.util.Set;
 import com.fasterxml.jackson.annotation.*;
 
 
-//@Data
 @Entity
 @Table(name = "hidden_village")
 //@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
@@ -26,6 +24,9 @@ public class Hidden_village {
 
 	@OneToMany(mappedBy = "village", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Clan> clans;
+
+	@OneToOne(mappedBy = "village")
+	private Country country;
 
 
 
@@ -58,5 +59,21 @@ public class Hidden_village {
 
 	public Set<Ninja> getNinja() {
 		return this.ninja;
+	}
+
+	public void setClans(Set<Clan> clans) {
+		this.clans = clans;
+	}
+
+	public Set<Clan> getClans() {
+		return this.clans;
+	}
+
+	public void setCountry(Country country){
+		this.country = country;
+	}
+
+	public Country getCountry(){
+		return this.country;
 	}
 }

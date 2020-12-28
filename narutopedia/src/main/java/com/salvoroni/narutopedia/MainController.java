@@ -14,15 +14,15 @@ import com.salvoroni.narutopedia.service.*;
 import com.salvoroni.narutopedia.DTOmodels.*;
 
 @RestController
-public class GreetingController {
+public class MainController {
 
-	private static final String template = "Hello, %s!";
-	private final AtomicLong counter = new AtomicLong();
+	//private static final String template = "Hello, %s!";
+	//private final AtomicLong counter = new AtomicLong();
 
-	@GetMapping("/greeting")
-	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return new Greeting(counter.incrementAndGet(), String.format(template, name));
-	}
+	//@GetMapping("/greeting")
+	//public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+	//	return new Greeting(counter.incrementAndGet(), String.format(template, name));
+	//}
 
 	@Autowired
 	private MapService mapService;
@@ -35,5 +35,10 @@ public class GreetingController {
 	@GetMapping("/clans")
 	public List<ClansDTO> getClans() {
 		return (List<ClansDTO>) mapService.getClans();
+	}
+
+	@GetMapping("/villages")
+	public List<VillagesDTO> getVillages(){
+		return (List<VillagesDTO>) mapService.getVillages();
 	}
 }
