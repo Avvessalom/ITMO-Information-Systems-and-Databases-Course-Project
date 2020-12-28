@@ -6,7 +6,7 @@ class AddClanModal extends Component{
     constructor(props) {
         super(props);
     }
-    state ={
+    state = {
         newClanData: {
             name: '',
             village: '',
