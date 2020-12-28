@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.salvoroni.narutopedia.model.*;
 import com.salvoroni.narutopedia.service.*;
+import com.salvoroni.narutopedia.DTOmodels.*;
 
 @RestController
 public class GreetingController {
@@ -24,10 +25,15 @@ public class GreetingController {
 	}
 
 	@Autowired
-	private ICountryService countryService;
+	private MapService mapService;
 
-	@GetMapping("/country")
-	public List<Country> getCountries(){
-		return (List<Country>) countryService.findAll();
+	@GetMapping("/ninja")
+	public List<NinjaDTO> getNinja() {
+		return (List<NinjaDTO>) mapService.getNinjasWithVillage();
+	}
+
+	@GetMapping("/clans")
+	public List<ClansDTO> getClans() {
+		return (List<ClansDTO>) mapService.getClans();
 	}
 }
