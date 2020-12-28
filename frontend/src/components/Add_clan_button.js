@@ -19,6 +19,13 @@ class AddClanModal extends Component{
             console.log(response.data)
         })
     }
+    componentWillMount() {
+        axios.get('http://localhost:8080/backend/naruto-api/stdquery/clans').then((response) => {
+            this.setState({
+                villages: response.data
+            })
+        })
+    }
     render() {
         return(
             <Modal
