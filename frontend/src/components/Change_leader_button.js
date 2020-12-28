@@ -90,7 +90,7 @@ export const Change_leader_button = () => {
     return (
         <form>
             <div>
-                <Button variant="info" size="lg" onClick={() => setModalShow(true)}>
+                <Button variant="info" size="lg" className="widthClan" onClick={() => setModalShow(true)}>
                     Change leader
                 </Button>
                 <LeaderModal

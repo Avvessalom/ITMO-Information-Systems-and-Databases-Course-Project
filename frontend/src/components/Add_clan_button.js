@@ -94,7 +94,7 @@ export const Add_clan_button = () => {
     return (
         <form>
             <div>
-                <Button variant="warning" size="lg" onClick={() => setModalShow(true)}>
+                <Button variant="warning" size="lg" className="widthClan" onClick={() => setModalShow(true)}>
                     Add new Clan
                 </Button>
                 <AddClanModal

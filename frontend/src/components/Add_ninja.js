@@ -237,7 +237,7 @@ export const Add_ninja = () => {
     return (
         <form>
             <div>
-                <Button variant="warning" size="lg" onClick={() => setModalShow(true)}>
+                <Button variant="warning" className="widthNinja" size="lg" onClick={() => setModalShow(true)}>
                     Add new Ninja
                 </Button>
                 <CenteredModal

@@ -107,7 +107,7 @@ export const Add_battle_button = () => {
     return (
         <form>
             <div>
-                <Button variant="warning" size="lg" onClick={() => setModalShow(true)}>
+                <Button variant="warning" className="widthCountries" size="lg" onClick={() => setModalShow(true)}>
                     Add new Battle
                 </Button>
                 <AddBattleModal

@@ -86,7 +86,7 @@ export const Parent_child_button = () => {
     return (
         <form>
             <div>
-                <Button variant="warning" size="lg" onClick={() => setModalShow(true)}>
+                <Button variant="warning" className="widthNinja" size="lg" onClick={() => setModalShow(true)}>
                     Parent Child pair
                 </Button>
                 <ParentChildModal
