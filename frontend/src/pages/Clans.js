@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Table from "react-bootstrap/Table";
 import {Change_leader_button} from "../components/Change_leader_button";
 import axios from "axios";
+import {Add_clan_button} from "../components/Add_clan_button";
 
 
 class Clans extends Component {
@@ -33,6 +34,7 @@ class Clans extends Component {
         return (
             <header className="masthead text-center">
                 <div className="ninja-button"><Change_leader_button/></div>
+                <div className="ninja-button"><Add_clan_button/></div>
                 <div className="container">
                     <div className="row">
                         <div className="col-xl-9 mx-auto">
