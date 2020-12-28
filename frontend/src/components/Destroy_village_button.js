@@ -76,7 +76,7 @@ class DestroyModal extends Component {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button type="submit" variant="danger" size="lg" onClick={this.destroyVillage}>DESTROY</Button>
+                    <Button type="submit" variant="danger" className="widthVillages" size="lg" onClick={this.destroyVillage}>DESTROY</Button>
                     <Button onClick={this.props.onHide}>Close</Button>
                 </Modal.Footer>
             </Modal>

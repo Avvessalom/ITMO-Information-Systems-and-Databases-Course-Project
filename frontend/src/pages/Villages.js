@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Table from "react-bootstrap/Table";
 import {Destroy_village_button} from "../components/Destroy_village_button";
 import axios from "axios";
+import {Kage_death_button} from "../components/Kage_death_button";
 
 
 class Villages extends Component {
@@ -33,6 +34,7 @@ class Villages extends Component {
         return (
             <header className="masthead text-center">
                 <div className="ninja-button"><Destroy_village_button/></div>
+                <div className="ninja-button"><Kage_death_button/></div>
                 <div className="container">
                     <div className="row">
                         <div className="col-xl-9 mx-auto">
