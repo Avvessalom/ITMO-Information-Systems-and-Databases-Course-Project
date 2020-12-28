@@ -2,6 +2,7 @@ import React, {Component, Fragment} from "react";
 import Table from "react-bootstrap/Table";
 import {Declare_war_button} from "../components/Declare_war_button";
 import axios from "axios";
+import {Add_battle_button} from "../components/Add_battle_button";
 
 
 class Countries extends Component {
@@ -35,6 +36,7 @@ class Countries extends Component {
         return (
             <header className="masthead text-center">
                 <div className="ninja-button"><Declare_war_button/></div>
+                <div className="ninja-button"><Add_battle_button/></div>
                 <div className="container">
                     <div className="row">
                         <div className="col-xl-9 mx-auto">
