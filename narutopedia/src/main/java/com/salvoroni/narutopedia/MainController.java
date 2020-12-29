@@ -51,4 +51,14 @@ public class MainController {
 	public List<BijuDTO> getBijus(){
 		return (List<BijuDTO>) mapService.getBijus();
 	}
+
+	@GetMapping("/citizens")
+	public List<CitizenDTO> getCitizens() {
+		return (List<CitizenDTO>) mapService.getCitizens();
+	}
+
+	@GetMapping("/technics")
+	public List<TechnicDTO> getTechnics() {
+		return (List<TechnicDTO>) mapService.getTechnics();
+	}
 }

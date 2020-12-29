@@ -11,12 +11,6 @@ public class Technic {
 	@Column(name = "technic_id")
 	private Long id;
 
-	@Column(name = "type")
-	private Long type;
-
-	@Column(name = "additional_type")
-	private Long additional_type;
-
 	@Column(name = "blood_restriction")
 	private boolean blood_restriction;
 
@@ -26,11 +20,20 @@ public class Technic {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "rank")
-	private Long rank;
-
 	@ManyToMany(mappedBy = "technics")
 	Set<Clan> clanRelative;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "type")
+	private Type type;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "additional_type")
+	private Additional_type additional_type;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "rank")
+	private Technic_rank rank;
 
 
 
@@ -44,19 +47,19 @@ public class Technic {
 		return this.id;
 	}
 
-	public void setType(Long type){
+	public void setType(Type type){
 		this.type = type;
 	}
 
-	public Long getType(){
+	public Type getType(){
 		return this.type;
 	}
 
-	public void setAdditional_type(Long additional_type){
+	public void setAdditional_type(Additional_type additional_type){
 		this.additional_type = additional_type;
 	}
 
-	public Long getAdditional_type(){
+	public Additional_type getAdditional_type(){
 		return this.additional_type;
 	}
 
@@ -84,11 +87,11 @@ public class Technic {
 		return this.name;
 	}
 
-	public void setRank(Long rank){
+	public void setRank(Technic_rank rank){
 		this.rank = rank;
 	}
 
-	public Long getRank(){
+	public Technic_rank getRank(){
 		return this.rank;
 	}
 

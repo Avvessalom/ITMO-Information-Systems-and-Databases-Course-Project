@@ -63,6 +63,9 @@
 	</dependencies>
 
 	<build>
+		<finalName>
+			narutopedia
+		</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

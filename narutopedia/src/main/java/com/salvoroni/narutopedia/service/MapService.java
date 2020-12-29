@@ -155,4 +155,49 @@ public class MapService {
 		}
 		return bijuDTO;
 	}
+
+	@Autowired
+	private CitizenRepository citizenRepository;
+
+	public List<CitizenDTO> getCitizens() {
+		return ((List<Citizen>) citizenRepository
+			.findAll())
+			.stream()
+			.map(this::convertToCitizenDTO)
+			.collect(Collectors.toList());
+	}
+
+	private CitizenDTO convertToCitizenDTO(Citizen citizen) {
+		CitizenDTO citizenDTO = new CitizenDTO();
+		citizenDTO.setId(citizen.getId());
+		citizenDTO.setName(citizen.getName());
+		citizenDTO.setVillage(citizen.getVillage().getName());
+		citizenDTO.setAge(citizen.getAge());
+		citizenDTO.setSex(citizen.getSex());
+		citizenDTO.setStatus(citizen.getStatus());
+		return citizenDTO;
+	}
+
+	@Autowired
+	private TechnicRepository technicRepository;
+
+	public List<TechnicDTO> getTechnics() {
+		return ((List<Technic>) technicRepository
+			.findAll())
+			.stream()
+			.map(this::convertToTechnicDTO)
+			.collect(Collectors.toList());
+	}
+
+	private TechnicDTO convertToTechnicDTO(Technic technic) {
+		TechnicDTO technicDTO = new TechnicDTO();
+		technicDTO.setId(technic.getId());
+		technicDTO.setName(technic.getName());
+		technicDTO.setType(technic.getType().getName());
+		technicDTO.setAdditionalType(technic.getAdditional_type().getName());
+		technicDTO.setBloodRestriction(technic.getBlood_restriction());
+		technicDTO.setRank(technic.getRank().getName());
+		technicDTO.setRuneSeals(technic.getRune_seals());
+		return technicDTO;
+	}
 }

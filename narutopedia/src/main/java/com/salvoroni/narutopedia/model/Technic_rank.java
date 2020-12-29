@@ -5,22 +5,22 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "additional_type")
-public class Additional_type {
+@Table(name = "technic_rank")
+public class Technic_rank {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "addtype_id")
+	@Column(name = "techrank_id")
 	private Long id;
 
 	@Column(name = "name")
 	private String name;
 
-	@OneToMany(mappedBy = "additional_type", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "rank", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Technic> technic;
 
 
 
-	public Additional_type(){}
+	public Technic_rank(){}
 
 	public void setId(Long id){
 		this.id = id;
