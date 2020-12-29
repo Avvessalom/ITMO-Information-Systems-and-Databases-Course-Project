@@ -6,8 +6,10 @@ import com.salvoroni.narutopedia.DTOmodels.*;
 import com.salvoroni.narutopedia.model.*;
 import com.salvoroni.narutopedia.repository.*;
 import java.util.List;
+import java.util.LinkedList;
 import java.util.HashSet;
 import java.util.stream.Collectors;
+import java.util.Iterator;
 
 @Service
 public class MapService {
@@ -87,7 +89,70 @@ public class MapService {
 		}
 		villageDTO.setNinjas(village.getNinja().size());
 		villageDTO.setClans(village.getClans().size());
-		villageDTO.setNumber_of_destruction(5);
+		villageDTO.setNumber_of_destruction(village.getQuantity_of_destruction());
 		return villageDTO;
+	}
+
+	@Autowired
+	private CountryRepository countryRepository;
+
+	public List<CountriesDTO> getCountries() {
+		return ((List<Country>) countryRepository
+			.findAll())
+			.stream()
+			.map(this::convertToCountryDTO)
+			.collect(Collectors.toList());
+	}
+
+	private CountriesDTO convertToCountryDTO(Country country) {
+		CountriesDTO countryDTO = new CountriesDTO();
+		countryDTO.setId(country.getId());
+		countryDTO.setName(country.getName());
+		countryDTO.setLords(country.getLords().size());
+		countryDTO.setVillage(country.getVillage().getName());
+		countryDTO.setWars(country.getAttacking_country().size()+
+			country.getDefending_country().size()
+			);
+		if (country.getLords().isEmpty()){
+			countryDTO.setCountryLord("citizens");
+		} else {
+			Iterator<Country_lord> iter = country.getLords().iterator();
+			Country_lord tmp = iter.next();
+			while (iter.hasNext()){
+				Country_lord tmpp = iter.next();
+				if (tmp.getBeginning_of_reign().compareTo(tmpp.getBeginning_of_reign()) >= 0) {
+					tmp = tmpp;
+				}
+			}
+			countryDTO.setCountryLord(tmp.getName());
+		}
+		countryDTO.setCitizens(country.getVillage().getCitizens().size());
+		return countryDTO;
+	}
+
+	@Autowired
+	private BijuRepository bijuRepository;
+
+	public List<BijuDTO> getBijus() {
+		return ((List<Biju>) bijuRepository
+			.findAll())
+			.stream()
+			.map(this::convertToBijuDTO)
+			.collect(Collectors.toList());
+	}
+
+	private BijuDTO convertToBijuDTO(Biju biju) {
+		BijuDTO bijuDTO = new BijuDTO();
+		bijuDTO.setId(biju.getId());
+		bijuDTO.setName(biju.getName());
+		bijuDTO.setTails(biju.getCount_of_tails());
+		if (!biju.getJinchuriki().isEmpty()){
+			List<String> jinchurikiName = new LinkedList<>();
+			for (Ninja jinchuriki : biju.getJinchuriki()){
+				jinchurikiName.add(jinchuriki.getName());
+			}
+			bijuDTO.setJinchuuriki(jinchurikiName);
+		}
+		return bijuDTO;
 	}
 }

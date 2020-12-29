@@ -41,4 +41,14 @@ public class MainController {
 	public List<VillagesDTO> getVillages(){
 		return (List<VillagesDTO>) mapService.getVillages();
 	}
+
+	@GetMapping("/countries")
+	public List<CountriesDTO> getCountries(){
+		return (List<CountriesDTO>) mapService.getCountries();
+	}
+
+	@GetMapping("/bijus")
+	public List<BijuDTO> getBijus(){
+		return (List<BijuDTO>) mapService.getBijus();
+	}
 }

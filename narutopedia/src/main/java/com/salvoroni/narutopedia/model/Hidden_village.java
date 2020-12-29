@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.*;
 
 @Entity
 @Table(name = "hidden_village")
-//@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 public class Hidden_village {
 	@Id
@@ -19,15 +18,28 @@ public class Hidden_village {
 	private String name;
 
 	@OneToMany(mappedBy = "village", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	//@Fetch(value=FetchMode.SELECT)
 	private Set<Ninja> ninja;
 
 	@OneToMany(mappedBy = "village", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Clan> clans;
 
+	@OneToMany(mappedBy = "village", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Citizen> citizens;
+
 	@OneToOne(mappedBy = "village")
 	private Country country;
 
+	@ManyToMany
+	@JoinTable(
+		name = "destroyed_village",
+		joinColumns = @JoinColumn(name = "village_id"),
+		inverseJoinColumns = @JoinColumn(name = "destroyer")
+	)
+	private Set<Ninja> destroyers;
+
+
+	@Column(name = "quantity_of_destruction")
+	private int quantity_of_destruction;
 
 
 
@@ -36,6 +48,30 @@ public class Hidden_village {
 
 
 	public Hidden_village(){}
+
+	public void setCitizens(Set<Citizen> citizens){
+		this.citizens = citizens;
+	}
+
+	public Set<Citizen> getCitizens(){
+		return this.citizens;
+	}
+
+	public void setQuantity_of_destruction(int quantity_of_destruction){
+		this.quantity_of_destruction = quantity_of_destruction;
+	}
+
+	public int getQuantity_of_destruction(){
+		return this.quantity_of_destruction;
+	}
+
+	public void setDestroyers(Set<Ninja> destroyers){
+		this.destroyers = destroyers;
+	}
+
+	public Set<Ninja> getDestroyers(){
+		return this.destroyers;
+	}
 
 	public void setId(Long id){
 		this.id = id;

@@ -23,15 +23,10 @@ public class Ninja {
 	@Column(name = "sex")
 	private String sex;
 
-	//@Column(name = "village")
-	//private Long village;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "village")
-	//@JsonIgnore
 	private Hidden_village village;
 
-	//@Column(name = "clan")
-	//private Long clan;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "clan")
 	private Clan clan;
@@ -42,6 +37,12 @@ public class Ninja {
 	@ManyToMany(mappedBy = "leaders")
 	Set<Clan> clanLeader;
 
+	@ManyToMany(mappedBy = "destroyers")
+	Set<Hidden_village> destroyerOf;
+
+	@ManyToMany(mappedBy = "jinchuriki")
+	Set<Biju> biju;
+
 
 
 
@@ -49,6 +50,22 @@ public class Ninja {
 
 
 	public Ninja(){}
+
+	public void setBiju(Set<Biju> biju){
+		this.biju = biju;
+	}
+
+	public Set<Biju> getBiju(){
+		return this.biju;
+	}
+
+	public void setDestroyerOf(Set<Hidden_village> destroyerOf){
+		this.destroyerOf = destroyerOf;
+	}
+
+	public Set<Hidden_village> getDestroyerOf(){
+		return this.destroyerOf;
+	}
 
 	public void setClanLeader(Set<Clan> clanLeader){
 		this.clanLeader = clanLeader;
