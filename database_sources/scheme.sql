@@ -36,6 +36,13 @@ create table Destroyed_village
     destroyer  integer references Ninja (ninja_ID) on delete set NULL on update cascade
 );
 
+create table Country
+(
+    country_ID     serial primary key,
+    name           varchar(100) unique                                                                       not null,
+    hidden_village integer references Hidden_Village (village_ID) on delete cascade on update cascade unique not null
+);
+
 create table Country_lord
 (
     lord_ID            serial primary key,
@@ -46,13 +53,6 @@ create table Country_lord
     beginning_of_reign date         not null,
     end_of_reign       date         not null,
     country integer references Country(country_ID) on delete cascade on update  cascade not null
-);
-
-create table Country
-(
-    country_ID     serial primary key,
-    name           varchar(100) unique                                                                       not null,
-    hidden_village integer references Hidden_Village (village_ID) on delete cascade on update cascade unique not null
 );
 
 create table Citizen

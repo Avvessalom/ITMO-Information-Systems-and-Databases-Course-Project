@@ -6,6 +6,10 @@
         "Field":"name",
         "Type":"string",
         "Unique": true
+      },
+      {
+        "Field":"quantity_of_destruction",
+        "Type":"int"
       }
     ]
   },
@@ -107,16 +111,31 @@
         "Field": "destroyer",
         "Type": "int",
         "Dependent": "Ninja"
-      },
-      {
-        "Field": "quantity",
-        "Type": "int",
-        "Max": 100500
       }
     ],
     "Ratio": {
       "Operator": "/",
       "Number": 8
+    }
+  },
+  {
+    "Table_name": "Country",
+    "Fields": [
+      {
+        "Field": "name",
+        "Type": "string",
+        "Unique": true
+      },
+      {
+        "Field": "hidden_village",
+        "Type": "int",
+        "Dependent": "Hidden_Village",
+        "Unique": true
+      }
+    ],
+    "Ratio": {
+      "Operator": "/",
+      "Number": 2
     }
   },
   {
@@ -155,31 +174,11 @@
       {
         "Field": "end_of_reign",
         "Type": "date"
-      }
-    ],
-    "Ratio": {
-      "Operator": "/",
-      "Number": 2
-    }
-  },
-  {
-    "Table_name": "Country",
-    "Fields": [
-      {
-        "Field": "name",
-        "Type": "string",
-        "Unique": true
       },
       {
-        "Field": "country_lord",
+        "Field": "country",
         "Type": "int",
-        "Dependent": "Country_lord"
-      },
-      {
-        "Field": "hidden_village",
-        "Type": "int",
-        "Dependent": "Hidden_Village",
-        "Unique": true
+        "Dependent": "Country"
       }
     ],
     "Ratio": {
