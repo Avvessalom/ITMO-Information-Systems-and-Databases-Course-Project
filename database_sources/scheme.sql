@@ -1,7 +1,8 @@
 create table Hidden_Village
 (
     village_ID serial primary key,
-    name       varchar(100) unique not null
+    name       varchar(100) unique not null,
+    quantity_of_destruction  integer
 );
 
 create table Clan
@@ -23,7 +24,6 @@ create table Ninja
     status   varchar(10)
 );
 
-
 create table Clan_leader
 (
     clan_ID  integer references Clan (clan_ID) on delete cascade on update cascade,
@@ -33,8 +33,7 @@ create table Clan_leader
 create table Destroyed_village
 (
     village_ID integer references Hidden_Village (village_ID) on delete cascade on update cascade,
-    destroyer  integer references Ninja (ninja_ID) on delete set NULL on update cascade,
-    quantity   integer
+    destroyer  integer references Ninja (ninja_ID) on delete set NULL on update cascade
 );
 
 create table Country_lord
@@ -45,14 +44,14 @@ create table Country_lord
     sex                varchar(1)   not null check (sex = 'M' or sex = 'F'),
     status             varchar(10),
     beginning_of_reign date         not null,
-    end_of_reign       date         not null
+    end_of_reign       date         not null,
+    country integer references Country(country_ID) on delete cascade on update  cascade not null
 );
 
 create table Country
 (
     country_ID     serial primary key,
     name           varchar(100) unique                                                                       not null,
-    country_lord   integer references Country_lord (lord_ID) on delete set null on update cascade,
     hidden_village integer references Hidden_Village (village_ID) on delete cascade on update cascade unique not null
 );
 
