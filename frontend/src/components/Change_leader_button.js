@@ -11,32 +11,40 @@ class LeaderModal extends Component {
             clan: '',
             candidate: ''
         },
-        ninjas: []
+        candidates: [],
+        clans: []
     }
 
     changeLeader = () => {
-        axios.post('http://localhost:8080/backend/naruto-api/stdquery/villages', this.state.leader).then((response) => {
+        axios.post('http://localhost:8080/narutopedia/clans/leader', this.state.leader).then((response) => {
             console.log((response.data))
         })
     }
 
     componentWillMount() {
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/ninjas')
+        axios.get('http://localhost:8080/narutopedia/ninja')
             .then((response) => {this.setState({
-                ninjas: response.data
+                candidates: response.data
             })
                 .then(error => console.log(error))
             });
+
+        axios.get('http://localhost:8080/narutopedia/clans')
+            .then((response) => {this.setState({
+            clans: response.data
+        })
+            .then(error => console.log(error))
+        });
     }
     render() {
-        let village = this.state.ninjas.map((ninja) => {
+        let clans = this.state.clans.map((clan) => {
             return (
-                <option>{ninja.village}</option>
+                <option>{clan.name}</option>
             )
         })
-        let destroyer = this.state.ninjas.map((ninja) => {
+        let candidates = this.state.candidates.map((candidate) => {
             return (
-                <option>{ninja.name}</option>
+                <option>{candidate.name}</option>
             )
         })
 
@@ -61,8 +69,8 @@ class LeaderModal extends Component {
                             leader.clan = event.target.value;
                             this.setState(leader);
                         })}>
-                            <option>Default select</option>
-                            {village}
+                            <option> </option>
+                            {clans}
                         </Form.Control>
                         <br />
 
@@ -72,14 +80,14 @@ class LeaderModal extends Component {
                             leader.candidate = event.target.value;
                             this.setState(leader);
                         })}>
-                            <option>Default</option>
-                            {destroyer}
+                            <option> </option>
+                            {candidates}
                         </Form.Control>
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button type="submit" onClick={this.changeLeader}>Change</Button>
                     <Button onClick={this.props.onHide}>Close</Button>
+                    <Button type="submit" onClick={this.changeLeader}>Change</Button>
                 </Modal.Footer>
             </Modal>
         )

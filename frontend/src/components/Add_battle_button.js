@@ -45,7 +45,7 @@ class AddBattleModal extends Component {
         })
         let wars = this.state.wars.map((war) => {
             return (
-                <option>{war.name}</option>
+                <option value={war.id}>{war.name}</option>
             )
         })
         return(

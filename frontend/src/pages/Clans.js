@@ -19,17 +19,31 @@ class Clans extends Component {
     }
     render() {
         let clans = this.state.clans.map((clan) => {
-            return (
-                <tr key={clan.id}>
-                    <td>{clan.id}</td>
-                    <td>{clan.name}</td>
-                    <td>{clan.village}</td>
-                    <td>{clan.prestige}</td>
-                    <td>{clan.ninjas}</td>
-                    <td>{clan.leader}</td>
-                    <td>{clan.blood}</td>
-                </tr>
-            )
+            if (clan.blood === true){
+                return (
+                    <tr key={clan.id}>
+                        <td>{clan.id}</td>
+                        <td>{clan.name}</td>
+                        <td>{clan.village}</td>
+                        <td>{clan.prestige}</td>
+                        <td>{clan.ninjas}</td>
+                        <td>{clan.leader}</td>
+                        <td>Yes</td>
+                    </tr>
+                )
+            } else {
+                return (
+                    <tr key={clan.id}>
+                        <td>{clan.id}</td>
+                        <td>{clan.name}</td>
+                        <td>{clan.village}</td>
+                        <td>{clan.prestige}</td>
+                        <td>{clan.ninjas}</td>
+                        <td>{clan.leader}</td>
+                        <td>No</td>
+                    </tr>
+                )
+            }
         })
         return (
             <header className="masthead text-center">
