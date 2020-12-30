@@ -83,3 +83,8 @@ add new citizen
         http://localhost:8080/narutopedia/citizens/addNew
         POST
         {"name":"name", "village":"village", "status":"status", "age":"age", "sex":"sex"}
+
+jinchuurikiCandidats
+        http://localhost:8080/narutopedia/bijus/jinchuurikiCandidats
+        GET
+        some json
