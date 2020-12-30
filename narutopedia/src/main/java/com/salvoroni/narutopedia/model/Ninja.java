@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.*;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 public class Ninja {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ninja_id")
 	private Long id;
 
@@ -43,6 +43,9 @@ public class Ninja {
 	@ManyToMany(mappedBy = "jinchuriki")
 	Set<Biju> biju;
 
+	@ManyToMany(mappedBy = "ninjas")
+	Set<Ninjas_rank> ranks;
+
 
 
 
@@ -50,6 +53,14 @@ public class Ninja {
 
 
 	public Ninja(){}
+
+	public void setRanks(Set<Ninjas_rank> ranks){
+		this.ranks = ranks;
+	}
+
+	public Set<Ninjas_rank> getRanks(){
+		return this.ranks;
+	}
 
 	public void setBiju(Set<Biju> biju){
 		this.biju = biju;

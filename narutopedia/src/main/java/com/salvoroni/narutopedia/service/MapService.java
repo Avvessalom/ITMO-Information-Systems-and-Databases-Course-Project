@@ -16,6 +16,27 @@ public class MapService {
 	@Autowired
 	private NinjaRepository ninjaRepository;
 
+	@Autowired
+	private WarRepository warRepository;
+
+	@Autowired
+	private ClanRepository clanRepository;
+
+	@Autowired
+	private VillageRepository villageRepository;
+
+	@Autowired
+	private CountryRepository countryRepository;
+
+	@Autowired
+	private BijuRepository bijuRepository;
+
+	@Autowired
+	private CitizenRepository citizenRepository;
+
+	@Autowired
+	private TechnicRepository technicRepository;
+
 	public List<NinjaDTO> getNinjasWithVillage() {
 		return ((List<Ninja>) ninjaRepository
 			.findAll())
@@ -35,9 +56,6 @@ public class MapService {
 		ninjaDTO.setStatus(ninja.getStatus());
 		return ninjaDTO;
 	}
-
-	@Autowired
-	private ClanRepository clanRepository;
 
 	public List<ClansDTO> getClans() {
 		return ((List<Clan>) clanRepository
@@ -67,9 +85,6 @@ public class MapService {
 		return clansDTO;
 	}
 
-	@Autowired
-	private VillageRepository villageRepository;
-
 	public List<VillagesDTO> getVillages() {
 		return ((List<Hidden_village>) villageRepository
 			.findAll())
@@ -92,9 +107,6 @@ public class MapService {
 		villageDTO.setNumber_of_destruction(village.getQuantity_of_destruction());
 		return villageDTO;
 	}
-
-	@Autowired
-	private CountryRepository countryRepository;
 
 	public List<CountriesDTO> getCountries() {
 		return ((List<Country>) countryRepository
@@ -130,9 +142,6 @@ public class MapService {
 		return countryDTO;
 	}
 
-	@Autowired
-	private BijuRepository bijuRepository;
-
 	public List<BijuDTO> getBijus() {
 		return ((List<Biju>) bijuRepository
 			.findAll())
@@ -156,9 +165,6 @@ public class MapService {
 		return bijuDTO;
 	}
 
-	@Autowired
-	private CitizenRepository citizenRepository;
-
 	public List<CitizenDTO> getCitizens() {
 		return ((List<Citizen>) citizenRepository
 			.findAll())
@@ -178,9 +184,6 @@ public class MapService {
 		return citizenDTO;
 	}
 
-	@Autowired
-	private TechnicRepository technicRepository;
-
 	public List<TechnicDTO> getTechnics() {
 		return ((List<Technic>) technicRepository
 			.findAll())
@@ -199,5 +202,41 @@ public class MapService {
 		technicDTO.setRank(technic.getRank().getName());
 		technicDTO.setRuneSeals(technic.getRune_seals());
 		return technicDTO;
+	}
+
+	public List<WarDTO> getWars() {
+		return ((List<War>) warRepository
+			.findAll())
+			.stream()
+			.map(this::convertToWarDTO)
+			.collect(Collectors.toList());
+	}
+
+	private WarDTO convertToWarDTO(War war){
+		WarDTO warDTO = new WarDTO();
+		warDTO.setId(war.getId());
+		warDTO.setName(war.getName());
+		warDTO.setAttacking_country(war.getAttacking_country().getName());
+		warDTO.setDefending_country(war.getDefending_country().getName());
+		warDTO.setLoss_of_attackers(war.getLoss_of_attackers());
+		warDTO.setLoss_of_defenders(war.getLoss_of_defenders());
+		warDTO.setStart_date(war.getStart_date());
+		warDTO.setEnd_date(war.getEnd_date());
+		return warDTO;
+	}
+
+	public List<NinjaDTO> getKages() {
+		return ((List<Ninja>) ninjaRepository
+			.findAll())
+			.stream()
+			.filter(ninja -> {
+				for (Ninjas_rank rank : ninja.getRanks()) {
+					if (rank.getName().equals("kage"))
+						return true;
+				}
+				return false;
+			})
+			.map(this::convertToNinjaDTO)
+			.collect(Collectors.toList());
 	}
 }

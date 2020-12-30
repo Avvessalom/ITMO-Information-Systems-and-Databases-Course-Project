@@ -1,58 +1,16 @@
-package com.salvoroni.narutopedia.model;
+package com.salvoroni.narutopedia.DTOmodels;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "war")
-public class War {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "war_id")
+public class WarDTO{
 	private Long id;
-
-	@Column(name = "name")
 	private String name;
-
-	@Column(name = "loss_of_attackers")
+	private String attacking_country;
+	private String defending_country;
 	private int loss_of_attackers;
-
-	@Column(name = "loss_of_defenders")
 	private int loss_of_defenders;
-
-	@Column(name = "start_date")
 	private Date start_date;
-
-	@Column(name = "end_date")
 	private Date end_date;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "attacking_country")
-	private Country attacking_country;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "defending_country")
-	private Country defending_country;
-
-
-
-	public War(){}
-
-	public void setAttacking_country(Country attacking_country){
-		this.attacking_country = attacking_country;
-	}
-
-	public Country getAttacking_country(){
-		return this.attacking_country;
-	}
-
-	public void setDefending_country(Country defending_country){
-		this.defending_country = defending_country;
-	}
-
-	public Country getDefending_country(){
-		return this.defending_country;
-	}
 
 	public void setId(Long id){
 		this.id = id;
@@ -100,5 +58,21 @@ public class War {
 
 	public Date getEnd_date(){
 		return this.end_date;
+	}
+
+	public void setAttacking_country(String attacking_country){
+		this.attacking_country = attacking_country;
+	}
+
+	public String getAttacking_country(){
+		return this.attacking_country;
+	}
+
+	public void setDefending_country(String defending_country){
+		this.defending_country = defending_country;
+	}
+
+	public String getDefending_country(){
+		return this.defending_country;
 	}
 }
