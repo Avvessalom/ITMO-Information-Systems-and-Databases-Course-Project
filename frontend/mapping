@@ -54,6 +54,11 @@ add battle
         POST
         {"war":"war name", "territory":"country name", "loss":"loss", "durration":"durration", "name":"name", "date":"date"}
 
+wars
+    http://localhost:8080/narutopedia/wars
+    GET
+    вся инфа про войну, как отправишь, так отправишь
+
 +clans
         http://localhost:8080/narutopedia/clans
         GET
