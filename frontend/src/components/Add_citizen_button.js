@@ -14,26 +14,26 @@ class CenteredModal extends Component {
             age: '',
             sex: ''
         },
-        ninjas: []
+        villages: []
     }
-    addNinja = () => {
-        axios.post('http://localhost:3000/~s250643/ninjas', this.state.newCitizenData).then((response) => {
+    addCitizen = () => {
+        axios.post('http://localhost:8080/narutopedia/citizens/addNew', this.state.newCitizenData).then((response) => {
             console.log(response.data)
         })
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/ninjas')
+        axios.get('http://localhost:8080/narutopedia/villages')
             .then((response) => {this.setState({
-                ninjas: response.data
+                villages: response.data
             })
                 .then(error => console.log(error))
             });
     }
 
     render() {
-        let village = this.state.ninjas.map((ninja) => {
+        let villages = this.state.villages.map((village) => {
             return (
-                <option>{ninja.village}</option>
+                <option value={village.id}>{village.name}</option>
             )
         })
         return(
@@ -51,7 +51,7 @@ class CenteredModal extends Component {
                 <Modal.Body>
                     <h4>Enter ninja details</h4>
                     <Form.Group>
-                        <Form.Label> Ninja Name</Form.Label>
+                        <Form.Label> Citizen Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter name" id="name" value={this.state.newCitizenData.name} onChange={(event => {
                             let {newCitizenData} = this.state;
                             newCitizenData.name = event.target.value;
@@ -74,7 +74,7 @@ class CenteredModal extends Component {
                             newCitizenData.sex = event.target.value;
                             this.setState(newCitizenData);
                         })}>
-                            <option>No</option>
+                            <option> </option>
                             <option>M</option>
                             <option>F</option>
                         </Form.Control>
@@ -86,8 +86,8 @@ class CenteredModal extends Component {
                             newCitizenData.village = event.target.value;
                             this.setState(newCitizenData);
                         })}>
-                            <option>Default select</option>
-                            {village}
+                            <option> </option>
+                            {villages}
                         </Form.Control>
                         <br />
 
@@ -99,15 +99,15 @@ class CenteredModal extends Component {
                             newCitizenData.status = event.target.value;
                             this.setState(newCitizenData);
                         })}>
-                            <option>No</option>
+                            <option> </option>
                             <option>Dead</option>
                             <option>Alive</option>
                         </Form.Control>
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button type="submit" onClick={this.addNinja}>Send</Button>
                     <Button onClick={this.props.onHide}>Close</Button>
+                    <Button type="submit" onClick={this.addCitizen}>Send</Button>
                 </Modal.Footer>
             </Modal>
         )
