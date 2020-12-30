@@ -11,7 +11,7 @@ class KageCandidatesModal extends Component {
         candidates: []
     }
     componentWillMount() {
-        axios.post('http://localhost:8080/backend/naruto-api/stdquery/test', this.props.candidatesData)
+        axios.get('http://localhost:8080/narutopedia/villges/kegeDeath', this.props.candidatesData)
             .then((response) => {
                 this.setState({
                     candidates: response.data
@@ -78,23 +78,25 @@ class KageDeathModal extends Component {
             name: ''
         },
         ninjas: [],
+        kages: []
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/test')
+        axios.get('http://localhost:8080/narutopedia/villages/kages')
             .then((response) => {
                 this.setState({
-                    kage: response.data
+                    kages: response.data
                 })
             });
     }
     sendDeadStatus = () => {
-        // axios.post('http://localhost:8080/backend/naruto-api/stdquery/test', this.state.kage)
-        //     .then((response) => {
-        //         console.log(response.data)
-        //     })
         this.props.onHide()
     }
     render() {
+        let kages = this.state.kages.map((kage) => {
+            return (
+                <option>{kage.name}</option>
+            )
+        })
         return (
             <Modal
                 {...this.props}
@@ -112,11 +114,11 @@ class KageDeathModal extends Component {
                     <Form.Control as="select" value={this.state.kage.name} onChange={(event => {
                         let {kage} = this.state;
                         kage.name = event.target.value;
-                        // this.setState(kage);
                         this.props.candidates(kage);
                     })}>
                         <option>dead kage</option>
                         <option>dead koge</option>
+                        {kages}
                     </Form.Control>
                     <br />
                 </Modal.Body>

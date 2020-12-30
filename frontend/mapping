@@ -23,6 +23,11 @@ ninja death
         GET
         {"id": "id", "name":"name", "country":"country", "ninjas":"count of ninjas", "clans":"count of clans", "number_of_destruction":"number of destruction"}
 
+kages
+    http://localhost:8080/narutopedia/villages/kages
+    GET
+    {"name":"name"}
+
 kage death 
         http://localhost:8080/narutopedia/villages/kageDeath
         GET
