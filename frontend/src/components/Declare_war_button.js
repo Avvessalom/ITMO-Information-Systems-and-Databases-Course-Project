@@ -16,32 +16,27 @@ class WarModal extends Component {
             start: '',
             end: ''
         },
-        ninjas: []
+        countries: []
     }
 
-    destroyVillage = () => {
-        axios.post('http://localhost:8080/backend/naruto-api/stdquery/villages', this.state.newWarData).then((response) => {
+    declareWar = () => {
+        axios.post('http://localhost:8080/narutopedia/countries/declareWar', this.state.newWarData).then((response) => {
             console.log((response.data))
         })
     }
 
     componentWillMount() {
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/ninjas')
+        axios.get('http://localhost:8080/narutopedia/countries')
             .then((response) => {this.setState({
-                ninjas: response.data
+                countries: response.data
             })
                 .then(error => console.log(error))
             });
     }
     render() {
-        let village = this.state.ninjas.map((ninja) => {
+        let countries = this.state.countries.map((country) => {
             return (
-                <option>{ninja.village}</option>
-            )
-        })
-        let countries = this.state.ninjas.map((ninja) => {
-            return (
-                <option>{ninja.name}</option>
+                <option>{country.name}</option>
             )
         })
         return(
@@ -73,7 +68,7 @@ class WarModal extends Component {
                             newWarData.attacking = event.target.value;
                             this.setState(newWarData);
                         })}>
-                            <option>Default select</option>
+                            <option> </option>
                             {countries}
                         </Form.Control>
                         <br />
@@ -84,7 +79,7 @@ class WarModal extends Component {
                             newWarData.defending = event.target.value;
                             this.setState(newWarData);
                         })}>
-                            <option>Default</option>
+                            <option> </option>
                             {countries}
                         </Form.Control>
                         <br />
@@ -122,8 +117,8 @@ class WarModal extends Component {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button type="submit" variant="danger" size="lg" onClick={this.destroyVillage}>DESTROY</Button>
                     <Button onClick={this.props.onHide}>Close</Button>
+                    <Button type="submit" variant="danger" onClick={this.declareWar}>Declare war</Button>
                 </Modal.Footer>
             </Modal>
         )
