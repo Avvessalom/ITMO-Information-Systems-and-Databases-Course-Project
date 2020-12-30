@@ -15,15 +15,40 @@ class AddBattleModal extends Component {
             name: '',
             date: ''
         },
-        newBattleGet: []
+        wars: [],
+        countries: []
     }
     addBattle = () => {
-        axios.post('http://localhost:8080/backend/naruto-api/stdquery/battles', this.state.newBattleData)
+        axios.post('http://localhost:8080/narutopedia/countries/addBattle', this.state.newBattleData)
             .then((response) => {
                 console.log(response.data)
             })
     }
+    componentWillMount() {
+        axios.get('http://localhost:8080/narutopedia/countries')
+            .then((response) => {
+                this.setState({
+                    countries: response.data
+                })
+            })
+        axios.get('http://localhost:8080/narutopedia/wars')
+            .then((response) => {
+                this.setState({
+                    countries: response.data
+                })
+            })
+    }
     render() {
+        let countries = this.state.countries.map((country) => {
+            return (
+                <option>{country.name}</option>
+            )
+        })
+        let wars = this.state.wars.map((war) => {
+            return (
+                <option>{war.name}</option>
+            )
+        })
         return(
             <Modal
                 {...this.props}
@@ -45,12 +70,13 @@ class AddBattleModal extends Component {
                             newBattleData.war = event.target.value;
                             this.setState(newBattleData);
                         })}>
-                            <option>war</option>
+                            <option> </option>
+                            {wars}
                         </Form.Control>
                         <br />
 
                         <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter loss" id="name" value={this.state.newBattleData.name} onChange={(event => {
+                        <Form.Control type="text" placeholder="Enter battle name" id="name" value={this.state.newBattleData.name} onChange={(event => {
                             let {newBattleData} = this.state;
                             newBattleData.name = event.target.value;
                             this.setState(newBattleData);
@@ -63,7 +89,8 @@ class AddBattleModal extends Component {
                             newBattleData.territory = event.target.value;
                             this.setState(newBattleData);
                         })}>
-                            <option>territory</option>
+                            <option> </option>
+                            {countries}
                         </Form.Control>
                         <br />
 
@@ -95,7 +122,7 @@ class AddBattleModal extends Component {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={this.props.onHide}>Close</Button>
-                    <Button onClick={this.addClan}>Submit</Button>
+                    <Button onClick={this.addBattle}>Submit</Button>
                 </Modal.Footer>
             </Modal>
         )
