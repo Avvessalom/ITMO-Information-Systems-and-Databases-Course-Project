@@ -94,7 +94,7 @@ class KageDeathModal extends Component {
     render() {
         let kages = this.state.kages.map((kage) => {
             return (
-                <option>{kage.name}</option>
+                <option value={kage.id}>{kage.name}</option>
             )
         })
         return (
@@ -117,7 +117,7 @@ class KageDeathModal extends Component {
                         this.props.candidates(kage);
                     })}>
                         <option>dead kage</option>
-                        <option>dead koge</option>
+                        <option value="1">dead koge</option>
                         {kages}
                     </Form.Control>
                     <br />

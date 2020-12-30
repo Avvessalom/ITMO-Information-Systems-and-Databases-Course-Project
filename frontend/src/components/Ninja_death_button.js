@@ -8,7 +8,7 @@ class NinjaDeathModal extends Component {
     }
     state = {
         deadNinjaData: {
-            name: ''
+            id: ''
         },
         ninjas: []
     }
@@ -21,7 +21,7 @@ class NinjaDeathModal extends Component {
             })
     }
     sendDeadStatus = () => {
-        axios.post('http://localhost:8080/narutopedia/ninja/death', this.state.deadNinjaData)
+        axios.post('http://localhost:8080/narutopedia/ninja/death?id=' + this.state.deadNinjaData.id)
             .then((response) => {
                 console.log(response.data)
             })
@@ -30,7 +30,7 @@ class NinjaDeathModal extends Component {
     render() {
         let ninjas = this.state.ninjas.map((ninja) => {
             return (
-                <option>{ninja.name}</option>
+                <option value={ninja.id}>{ninja.name}</option>
             )
         })
         return (
@@ -47,9 +47,9 @@ class NinjaDeathModal extends Component {
                 </Modal.Header>
                 <Modal.Body>
                     <h4>Choose Kage</h4>
-                    <Form.Control as="select" value={this.state.deadNinjaData.name} onChange={(event => {
+                    <Form.Control as="select" value={this.state.deadNinjaData.id} onChange={(event => {
                         let {deadNinjaData} = this.state;
-                        deadNinjaData.name = event.target.value;
+                        deadNinjaData.id = event.target.value;
                         this.setState(deadNinjaData)
                     })}>
                         <option>dead ninja</option>
