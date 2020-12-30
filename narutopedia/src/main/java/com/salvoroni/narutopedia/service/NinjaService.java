@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class NinjaService{
 	@Autowired
@@ -17,9 +19,9 @@ public class NinjaService{
 		return countries;
 	}
 
-	/*public Ninja findById(Long id){
-		return (Ninja) repository.findById(id);
-	}*/
+	public Optional<Ninja> findById(Long id){
+		return repository.findById(id);
+	}
 
 	public void deleteById(Long id){
 		repository.deleteById(id);

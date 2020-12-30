@@ -8,7 +8,7 @@ import java.util.Set;
 @Table(name = "country")
 public class Country {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "country_id")
 	private Long id;
 
@@ -27,10 +27,21 @@ public class Country {
 	@OneToMany(mappedBy = "defending_country", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<War> defending_country;
 
+	@OneToMany(mappedBy = "territory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Battle> battles;
+
 
 
 
 	public Country(){}
+
+	public void setBattles(Set<Battle> battles){
+		this.battles = battles;
+	}
+
+	public Set<Battle> getBattles(){
+		return this.battles;
+	}
 
 	public void setAttacking_country(Set<War> attacking_country){
 		this.attacking_country = attacking_country;

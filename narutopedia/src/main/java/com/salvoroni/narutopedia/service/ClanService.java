@@ -20,4 +20,8 @@ public class ClanService {
 	public Optional<Clan> findById(Long id){
 		return repository.findById(id);
 	}
+
+	public void save(Clan clan){
+		repository.save(clan);
+	}
 }

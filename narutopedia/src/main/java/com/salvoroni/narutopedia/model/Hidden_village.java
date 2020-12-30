@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.*;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 public class Hidden_village {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "village_id")
 	private Long id;
 

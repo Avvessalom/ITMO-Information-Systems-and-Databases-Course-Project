@@ -8,7 +8,7 @@ import java.util.Set;
 @Table(name = "technic_rank")
 public class Technic_rank {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "techrank_id")
 	private Long id;
 

@@ -2,12 +2,13 @@ package com.salvoroni.narutopedia.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "war")
 public class War {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "war_id")
 	private Long id;
 
@@ -34,9 +35,20 @@ public class War {
 	@JoinColumn(name = "defending_country")
 	private Country defending_country;
 
+	@OneToMany(mappedBy = "war", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Battle> battle;
+
 
 
 	public War(){}
+
+	public void setBattle(Set<Battle> battle){
+		this.battle = battle;
+	}
+
+	public Set<Battle> getBattle(){
+		return this.battle;
+	}
 
 	public void setAttacking_country(Country attacking_country){
 		this.attacking_country = attacking_country;

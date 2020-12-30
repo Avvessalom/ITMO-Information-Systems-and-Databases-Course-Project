@@ -8,15 +8,12 @@ import java.util.Set;
 @Table(name = "clan")
 public class Clan {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "clan_id")
 	private Long id;
 
 	@Column(name = "name")
 	private String name;
-
-	//@Column(name = "village")
-	//private Long village;
 
 	@Column(name = "prestige")
 	private int prestige;

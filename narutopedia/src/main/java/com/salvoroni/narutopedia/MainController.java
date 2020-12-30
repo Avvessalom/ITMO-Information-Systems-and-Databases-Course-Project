@@ -2,6 +2,7 @@ package com.salvoroni.narutopedia;
 
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.List;
+import java.util.Date;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,14 +19,6 @@ import com.salvoroni.narutopedia.DTOmodels.*;
 @RestController
 public class MainController {
 
-	//private static final String template = "Hello, %s!";
-	//private final AtomicLong counter = new AtomicLong();
-
-	//@GetMapping("/greeting")
-	//public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-	//	return new Greeting(counter.incrementAndGet(), String.format(template, name));
-	//}
-
 	@Autowired
 	private MapService mapService;
 
@@ -37,6 +30,18 @@ public class MainController {
 
 	@Autowired
 	private VillageService villageService;
+
+	@Autowired
+	private CountryService countryService;
+
+	@Autowired
+	private WarService warService;
+
+	@Autowired
+	private BattleService battleService;
+
+	@Autowired
+	private CitizenService citizenService;
 
 	@GetMapping("/ninja")
 	public List<NinjaDTO> getNinja() {
@@ -86,9 +91,11 @@ public class MainController {
 	@PostMapping("/ninja/death")
 	public String ninjaDeath(@RequestParam(value = "id") Long ninjaId){
 		try{
-			ninjaService.deleteById(ninjaId);
+			Ninja ninja = ninjaService.findById(ninjaId).get();
+			ninja.setStatus("dead");
+			ninjaService.save(ninja);
 			return "ok";
-		} catch (EmptyResultDataAccessException ex){
+		} catch (Exception e){
 			return "notok";
 		}
 	}
@@ -106,6 +113,83 @@ public class MainController {
 			ninjaService.save(ninja);
 			return "ok";
 		} catch(Exception e) {
+			return "notok";
+		}
+	}
+
+	@PostMapping("/countries/declareWar")
+	public String declareWar(@RequestBody DeclareWarDTO newWar) {
+		try {
+			War war = new War();
+			war.setName(newWar.getName());
+			war.setAttacking_country(countryService.findById(newWar.getAttacking()).get());
+			war.setDefending_country(countryService.findById(newWar.getDefending()).get());
+			war.setLoss_of_attackers(newWar.getLossa());
+			war.setLoss_of_defenders(newWar.getLossd());
+			war.setStart_date(new Date());
+			warService.save(war);
+			return "ok";
+		} catch(Exception e){
+			return "notok";
+		}
+	}
+
+	@PostMapping("/countries/addBattle")
+	public String addBattle(@RequestBody BattleDTO battleDTO) {
+		try {
+			Battle battle = new Battle();
+			battle.setLoss(battleDTO.getLoss());
+			battle.setDuration(battleDTO.getDuration());
+			battle.setName(battleDTO.getName());
+			battle.setDate_of_battle(new Date());
+			battle.setWar(warService.findById(battleDTO.getWar_id()).get());
+			battle.setTerritory(countryService.findById(battleDTO.getTerritory()).get());
+			battleService.save(battle);
+			return "ok";
+		} catch(Exception e){
+			return "notok";
+		}
+	}
+
+	@PostMapping("/clans/addClan")
+	public String addClan(@RequestBody AddClanDTO clanDTO){
+		try{
+			Clan clan = new Clan();
+			clan.setName(clanDTO.getName());
+			clan.setPrestige(clanDTO.getPrestige());
+			clan.setVillage(villageService.findById(clanDTO.getVillage()).get());
+			clanService.save(clan);
+			return "ok";
+		} catch (Exception e){
+			return "notok";
+		}
+	}
+
+	@PostMapping("/clans/leader")
+	public String addClanLeader(@RequestBody AddClanLeaderDTO leader) {
+		try {
+			Clan clan = clanService.findById(leader.getClan()).get();
+			Ninja bossOfTheClan = ninjaService.findById(leader.getCandidate()).get();
+			clan.getLeaders().add(bossOfTheClan);
+			clanService.save(clan);
+			return "ok";
+		} catch(Exception e){
+			return "notok";
+		}
+	}
+
+	@PostMapping("/citizens/addNew")
+	public String addCitizen(@RequestBody AddCitizenDTO citizen){
+		try{
+			Citizen newCitizen = new Citizen();
+			newCitizen.setName(citizen.getName());
+			newCitizen.setAge(citizen.getAge());
+			newCitizen.setSex(citizen.getSex());
+			newCitizen.setStatus(citizen.getStatus());
+			newCitizen.setVillage(villageService.findById(citizen.getVillage()).get());
+			citizenService.save(newCitizen);
+			return "ok";
+		}catch(Exception e){
 			return "notok";
 		}
 	}
