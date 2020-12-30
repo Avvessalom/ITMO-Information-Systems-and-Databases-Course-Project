@@ -42,7 +42,7 @@ class Countries extends Component {
                         <div className="col-xl-9 mx-auto">
                             <h1 className="ninja-heading">countries</h1>
                         </div>
-                        <div className="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                        {/*<div className="col-md-10 col-lg-8 col-xl-7 mx-auto">*/}
                             <Table striped bordered hover>
                                 <thead>
                                 <tr>
@@ -59,7 +59,7 @@ class Countries extends Component {
                                 {countries}
                                 </tbody>
                             </Table>
-                        </div>
+                        {/*</div>*/}
                     </div>
                 </div>
             </header>

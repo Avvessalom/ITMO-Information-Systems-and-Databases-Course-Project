@@ -18,17 +18,31 @@ class Technics extends Component {
 
     render() {
         let technics = this.state.technics.map((technics) => {
-            return (
-                <tr key={technics.id}>
-                    <td>{technics.id}</td>
-                    <td>{technics.name}</td>
-                    <td>{technics.type}</td>
-                    <td>{technics.adtype}</td>
-                    <td>{technics.bloodrest}</td>
-                    <td>{technics.rank}</td>
-                    <td>{technics.runes}</td>
-                </tr>
-            )
+            if (technics.bloodRestriction === true){
+                return (
+                    <tr key={technics.id}>
+                        <td>{technics.id}</td>
+                        <td>{technics.name}</td>
+                        <td>{technics.type}</td>
+                        <td>{technics.additionalType}</td>
+                        <td>Yes</td>
+                        <td>{technics.rank}</td>
+                        <td>{technics.runeSeals}</td>
+                    </tr>
+                )
+            } else {
+                return (
+                    <tr key={technics.id}>
+                        <td>{technics.id}</td>
+                        <td>{technics.name}</td>
+                        <td>{technics.type}</td>
+                        <td>{technics.additionalType}</td>
+                        <td>No</td>
+                        <td>{technics.rank}</td>
+                        <td>{technics.runeSeals}</td>
+                    </tr>
+                )
+            }
         });
         return(
             <header className="masthead text-center">
@@ -38,7 +52,7 @@ class Technics extends Component {
                         <div className="col-xl-9 mx-auto">
                             <h1 className="ninja-heading">technics</h1>
                         </div>
-                        <div className="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                        {/*<div className="col-md-10 col-lg-8 col-xl-7 mx-auto">*/}
                             <Table striped bordered hover>
                                 <thead>
                                 <tr>
@@ -57,7 +71,7 @@ class Technics extends Component {
                             </Table>
                         </div>
                     </div>
-                </div>
+                {/*</div>*/}
             </header>
         )
     }
