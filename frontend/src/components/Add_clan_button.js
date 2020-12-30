@@ -15,18 +15,24 @@ class AddClanModal extends Component{
         villages: []
     }
     addClan = () => {
-        axios.post('http://localhost:8080/backend/naruto-api/stdquery/clans', this.state.newClanData).then((response) => {
+        axios.post('http://localhost:8080/narutopedia/clans/addClan', this.state.newClanData).then((response) => {
             console.log(response.data)
         })
+        this.props.onHide();
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/clans').then((response) => {
+        axios.get('http://localhost:8080/narutopedia/villages').then((response) => {
             this.setState({
                 villages: response.data
             })
         })
     }
     render() {
+        let villages = this.state.villages.map((village) => {
+            return (
+                <option value={village.id}>{village.name}</option>
+            )
+        })
         return(
             <Modal
                 {...this.props}
@@ -53,10 +59,11 @@ class AddClanModal extends Component{
                         <Form.Label>Village</Form.Label>
                         <Form.Control as="select" value={this.state.newClanData.village} onChange={(event => {
                             let {newClanData} = this.state;
-                            newClanData.clan = event.target.value;
+                            newClanData.village = event.target.value;
                             this.setState(newClanData);
                         })}>
-                            <option> village</option>
+                            <option> </option>
+                            {villages}
                         </Form.Control>
                         <br />
 
@@ -66,6 +73,7 @@ class AddClanModal extends Component{
                             newClanData.prestige = event.target.value;
                             this.setState(newClanData);
                         })}>
+                            <option> </option>
                             <option>0</option>
                             <option>2</option>
                             <option>3</option>
