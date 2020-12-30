@@ -25,7 +25,7 @@ class Countries extends Component {
                 <tr key={country.id}>
                     <td>{country.id}</td>
                     <td>{country.name}</td>
-                    <td>{country.lord}</td>
+                    <td>{country.countryLord}</td>
                     <td>{country.village}</td>
                     <td>{country.wars}</td>
                     <td>{country.lords}</td>
