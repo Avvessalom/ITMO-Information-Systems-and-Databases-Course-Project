@@ -13,8 +13,6 @@ class WarModal extends Component {
             defending: '',
             lossa: '',
             lossd: '',
-            start: '',
-            end: ''
         },
         countries: []
     }
@@ -99,21 +97,6 @@ class WarModal extends Component {
                             this.setState(newWarData);
                         })}/>
                         <br />
-
-                        <Form.Label>Start of war</Form.Label>
-                        <Form.Control type="text" placeholder="Enter loss" id="start" value={this.state.newWarData.start} onChange={(event => {
-                            let {newWarData} = this.state;
-                            newWarData.start = event.target.value;
-                            this.setState(newWarData);
-                        })}/>
-                        <br />
-
-                        <Form.Label>End of war</Form.Label>
-                        <Form.Control type="text" placeholder="Enter loss" id="end" value={this.state.newWarData.end} onChange={(event => {
-                            let {newWarData} = this.state;
-                            newWarData.end = event.target.value;
-                            this.setState(newWarData);
-                        })}/>
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>

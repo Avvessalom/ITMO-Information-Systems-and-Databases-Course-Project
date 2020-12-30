@@ -13,7 +13,6 @@ class AddBattleModal extends Component {
             loss: '',
             duration: '',
             name: '',
-            date: ''
         },
         wars: [],
         countries: []
@@ -109,15 +108,6 @@ class AddBattleModal extends Component {
                             this.setState(newBattleData);
                         })}/>
                         <br />
-
-                        <Form.Label>Date of battle</Form.Label>
-                        <Form.Control type="text" placeholder="Enter loss" id="date" value={this.state.newBattleData.date} onChange={(event => {
-                            let {newBattleData} = this.state;
-                            newBattleData.date = event.target.value;
-                            this.setState(newBattleData);
-                        })}/>
-                        <br />
-
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>

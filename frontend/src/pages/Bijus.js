@@ -170,7 +170,7 @@ class Bijus extends Component {
                             <ListGroup variant="flush">
                                 {bijus2}
                             </ListGroup>
-                            <Button variant="danger">Seal</Button>
+                            <Seal_biju_button tails={2} />
                         </Card.Body>
 
                     </Card>
@@ -184,7 +184,7 @@ class Bijus extends Component {
                             <ListGroup variant="flush">
                                 {bijus3}
                             </ListGroup>
-                            <Button variant="danger">Seal</Button>
+                            <Seal_biju_button tails={3} />
                         </Card.Body>
                     </Card>
                 </CardDeck>
@@ -199,7 +199,7 @@ class Bijus extends Component {
                             <ListGroup variant="flush">
                                 {bijus4}
                             </ListGroup>
-                            <Button variant="danger">Seal</Button>
+                            <Seal_biju_button tails={4} />
                         </Card.Body>
                     </Card>
 
@@ -212,7 +212,7 @@ class Bijus extends Component {
                             <ListGroup variant="flush">
                                 {bijus5}
                             </ListGroup>
-                            <Button variant="danger">Seal</Button>
+                            <Seal_biju_button tails={5} />
                         </Card.Body>
                     </Card>
 
@@ -225,7 +225,7 @@ class Bijus extends Component {
                             <ListGroup variant="flush">
                                 {bijus6}
                             </ListGroup>
-                            <Button variant="danger">Seal</Button>
+                            <Seal_biju_button tails={6} />
                         </Card.Body>
                     </Card>
                 </CardDeck>
@@ -240,7 +240,7 @@ class Bijus extends Component {
                             <ListGroup variant="flush">
                                 {bijus7}
                             </ListGroup>
-                            <Button variant="danger">Seal</Button>
+                            <Seal_biju_button tails={7} />
                         </Card.Body>
                     </Card>
 
@@ -253,7 +253,7 @@ class Bijus extends Component {
                             <ListGroup variant="flush">
                                 {bijus8}
                             </ListGroup>
-                                {/*<Seal_biju_button tails={8} />*/}
+                                <Seal_biju_button tails={8} />
                         </Card.Body>
                     </Card>
 
@@ -266,7 +266,7 @@ class Bijus extends Component {
                             <ListGroup variant="flush">
                                 {bijus9}
                             </ListGroup>
-                            <Button variant="danger">Seal</Button>
+                            <Seal_biju_button tails={9} />
                         </Card.Body>
                     </Card>
                 </CardDeck>
