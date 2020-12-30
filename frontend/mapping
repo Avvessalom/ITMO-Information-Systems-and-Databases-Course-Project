@@ -93,3 +93,23 @@ sealing biju
         http://localhost:8080/narutopedia/bijus
         POST
         {"id": "id", "name": "name"}
+
+add new technic
+        http://localhost:8080/narutopedia/technics/addNew
+        POST
+        {"name":"","type":"id","adtype":"id","bloodrest":"No","rank":"id","runes":""}
+
+technic types
+        http://localhost:8080/narutopedia/technics/types
+        GET
+        {"id": "id", "name": "name"...}
+
+technic additional types
+        http://localhost:8080/narutopedia/technics/additionalType
+        GET
+        {"id": "id", "name": "name"...}
+
+technic ranks
+        http://localhost:8080/narutopedia/technics/rank
+        GET
+        {"id": "id", "name": "name"...}
