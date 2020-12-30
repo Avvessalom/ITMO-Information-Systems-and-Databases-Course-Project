@@ -11,17 +11,25 @@ class DestroyModal extends Component {
             name: '',
             destroyer: ''
         },
-        ninjas: []
+        ninjas: [],
+        villages: []
     }
 
     destroyVillage = () => {
-        axios.post('http://localhost:8080/backend/naruto-api/stdquery/villages', this.state.village).then((response) => {
+        axios.post('http://localhost:8080/narutopedia/villages/destroyVillage', this.state.village).then((response) => {
             console.log((response.data))
         })
+        this.props.onHide();
     }
 
     componentWillMount() {
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/ninjas')
+        axios.get('http://localhost:8080/narutopedia/villages')
+            .then((response) => {this.setState({
+                villages: response.data
+            })
+                .then(error => console.log(error))
+            });
+        axios.get('http://localhost:8080/narutopedia/ninja')
             .then((response) => {this.setState({
                 ninjas: response.data
             })
@@ -29,9 +37,9 @@ class DestroyModal extends Component {
             });
     }
     render() {
-        let village = this.state.ninjas.map((ninja) => {
+        let village = this.state.villages.map((ninja) => {
             return (
-                <option>{ninja.village}</option>
+                <option>{ninja.name}</option>
             )
         })
         let destroyer = this.state.ninjas.map((ninja) => {
@@ -60,7 +68,7 @@ class DestroyModal extends Component {
                             village.name = event.target.value;
                             this.setState(village);
                         })}>
-                            <option>Default select</option>
+                            <option> </option>
                             {village}
                         </Form.Control>
                         <br />
@@ -70,7 +78,7 @@ class DestroyModal extends Component {
                             village.destroyer = event.target.value;
                             this.setState(village);
                         })}>
-                            <option>Default</option>
+                            <option> </option>
                             {destroyer}
                         </Form.Control>
                     </Form.Group>
