@@ -10,7 +10,7 @@ class Villages extends Component {
         villages: []
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/village')
+        axios.get('http://localhost:8080/narutopedia/villages')
         .then((response) => {
             this.setState({
                 villages: response.data

@@ -8,7 +8,7 @@ class Technics extends Component {
         technics: []
     }
 
-    componentWillMount() {axios.get('http://localhost:8080/backend/naruto-api/stdquery/technics')
+    componentWillMount() {axios.get('http://localhost:8080/narutopedia/technics')
         .then((response) => {
             this.setState({
                 technics: response.data
@@ -17,7 +17,7 @@ class Technics extends Component {
     }
 
     render() {
-        let technics = this.state.technics.map((ninja) => {
+        let technics = this.state.technics.map((technics) => {
             return (
                 <tr key={technics.id}>
                     <td>{technics.id}</td>

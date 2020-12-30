@@ -10,7 +10,7 @@ class Clans extends Component {
         clans: []
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/clans')
+        axios.get('http://localhost:8080/narutopedia/clans')
             .then((response) => {
                 this.setState({
                     clans: response.data
