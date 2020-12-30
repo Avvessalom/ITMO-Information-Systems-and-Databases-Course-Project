@@ -1,9 +1,9 @@
-+ninja
++++ninja
         http://localhost:8080/narutopedia/ninja
         GET
         {"id": id,"name":"name","age": age,"sex": "sex","village":"village:","clan":"clan","status":"status"}
 
-add new ninja
++++add new ninja
         http://localhost:8080/narutopedia/ninja/addNew
         POST
         send {"name":"asdsa","clan":"2","village":"10","status":"Alive","age":"1","sex":"F"}
@@ -13,17 +13,17 @@ ninja parent child
         POST
         send {"parent":"parent name", "child":"child name"}
 
-ninja death 
++++ninja death 
         http://localhost:8080/narutopedia/ninja/death
         POST
         send {"name":"name"}
 
-+villages
++++villages
         http://localhost:8080/narutopedia/villages
         GET
         {"id": "id", "name":"name", "country":"country", "ninjas":"count of ninjas", "clans":"count of clans", "number_of_destruction":"number of destruction"}
 
-kages
++++kages
     http://localhost:8080/narutopedia/villages/kages
     GET
     some json with {"id":"id", "name":"name" ...}
@@ -39,27 +39,27 @@ destroy village
         POST
         {"name":"5","destroyer":"memuehotoki"}
 
-+countries
++++countries
         http://localhost:8080/narutopedia/countries
         GET
         {"id": "id", "name":"name", "lord":"lord", "village":"village", "wars":"count of wars", "lords":"count of lords", "citizens":"count of citizens"}
 
-declare war
++++declare war
         http://localhost:8080/narutopedia/countries/declareWar
         POST
         {name: '', attacking: '', defending: '', lossa: '', lossd: '', start: '', end: ''}
 
-add battle 
++++add battle 
         http://localhost:8080/narutopedia/countries/addBattle
         POST
         {"war":"war name", "territory":"country name", "loss":"loss", "durration":"durration", "name":"name", "date":"date"}
 
-wars
++++wars
     http://localhost:8080/narutopedia/wars
     GET
     вся инфа про войну, как отправишь, так отправишь
 
-+clans
++++clans
         http://localhost:8080/narutopedia/clans
         GET
         {"id": "id", "name":"name", "village":"village", "prestige":"prestige", "ninjas":"count of ninjas", "leader":"clan leader", "blood":"blood restriction"}
@@ -74,7 +74,7 @@ add clan leader
         POST
         {"clan":"clan", "candidate":"candidate"}
 
-+citizens
++++citizens
         http://localhost:8080/narutopedia/citizens
         GET
         {"id": "id", "name":"name", "village":"village", "age":"age", "sex":"sex", "status":"status}
@@ -90,6 +90,6 @@ jinchuurikiCandidats
         some json with {"id":"id", "name":"name" ...}
 
 sealing biju
-    http://localhost:8080/narutopedia/bijus
-    POST
-    {"id": "id", "name": "name"}
+        http://localhost:8080/narutopedia/bijus
+        POST
+        {"id": "id", "name": "name"}
