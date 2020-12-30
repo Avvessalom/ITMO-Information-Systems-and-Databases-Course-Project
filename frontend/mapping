@@ -88,3 +88,8 @@ jinchuurikiCandidats
         http://localhost:8080/narutopedia/bijus/jinchuurikiCandidats
         GET
         some json with {"id":"id", "name":"name" ...}
+
+sealing biju
+    http://localhost:8080/narutopedia/bijus
+    POST
+    {"id": "id", "name": "name"}

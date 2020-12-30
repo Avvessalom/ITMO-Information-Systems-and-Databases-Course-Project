@@ -12,6 +12,7 @@ import Gyuuki from "../assets/images/8gyuuki.jpg"
 import Kurama from "../assets/images/9kurama.jpg"
 import {Button, ListGroup} from "react-bootstrap";
 import axios from "axios";
+import Seal_biju_button from "../components/Seal_biju_button";
 
 class Bijus extends Component {
     state = {
@@ -156,7 +157,7 @@ class Bijus extends Component {
                             <ListGroup variant="flush">
                                 {bijus1}
                             </ListGroup>
-                            <Button variant="danger">Seal</Button>
+                                <Seal_biju_button tails={1} />
                         </Card.Body>
                     </Card>
 
@@ -252,7 +253,7 @@ class Bijus extends Component {
                             <ListGroup variant="flush">
                                 {bijus8}
                             </ListGroup>
-                            <Button variant="danger">Seal</Button>
+                                {/*<Seal_biju_button tails={8} />*/}
                         </Card.Body>
                     </Card>
 
