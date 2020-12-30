@@ -6,7 +6,7 @@ class TechnicModel extends Component{
     constructor(props) {
         super(props);
     }
-    state ={
+    state = {
         newTechnicData: {
             name: '',
             type: '',
@@ -14,15 +14,54 @@ class TechnicModel extends Component{
             bloodrest: '',
             rank: '',
             runes: ''
-        }}
+        },
+        types: [],
+        additionalType: [],
+        rank: []
+    }
 
     addTechnic = () => {
-        axios.post('http://localhost:8080/backend/naruto-api/stdquery/technics', this.state.newTechnicData).then((responce) =>{
+        axios.post('http://localhost:8080/narutopedia/technics/addNew', this.state.newTechnicData).then((responce) =>{
             console.log(responce.data)
         })
     }
+    componentWillMount() {
+        axios.get('http://localhost:8080/narutopedia/technics/types')
+            .then((response) => {
+                this.setState({
+                    types: response.data
+                })
+            })
+        axios.get('http://localhost:8080/narutopedia/technics/additionalType')
+            .then((response) => {
+                this.setState({
+                    additionalType: response.data
+                })
+            })
+        axios.get('http://localhost:8080/narutopedia/technics/rank')
+            .then((response) => {
+                this.setState({
+                    rank: response.data
+                })
+            })
+    }
 
     render() {
+        let types = this.state.types.map((type) => {
+            return (
+                <option value={type.id}>{type.name}</option>
+            )
+        })
+        let additionalTypes = this.state.additionalType.map((additionalType) => {
+            return (
+                <option value={additionalType.id}>{additionalType.name}</option>
+            )
+        })
+        let ranks = this.state.rank.map((rank) => {
+            return (
+                <option value={rank.id}>{rank.name}</option>
+            )
+        })
         return(
             <Modal
                 {...this.props}
@@ -52,8 +91,8 @@ class TechnicModel extends Component{
                             newTechnicData.type = event.target.value;
                             this.setState(newTechnicData);
                         })}>
-                            <option>Default</option>
-                            type
+                            <option> </option>
+                            {types}
                         </Form.Control>
                         <br />
 
@@ -63,8 +102,8 @@ class TechnicModel extends Component{
                             newTechnicData.adtype = event.target.value;
                             this.setState(newTechnicData);
                         })}>
-                            <option>Default</option>
-                            adtype
+                            <option> </option>
+                            {additionalTypes}
                         </Form.Control>
                         <br />
 
@@ -74,7 +113,7 @@ class TechnicModel extends Component{
                             newTechnicData.bloodrest = event.target.value;
                             this.setState(newTechnicData);
                         })}>
-                            <option>Default</option>
+                            <option> </option>
                             <option>Yes</option>
                             <option>No</option>
                         </Form.Control>
@@ -86,8 +125,8 @@ class TechnicModel extends Component{
                             newTechnicData.rank = event.target.value;
                             this.setState(newTechnicData);
                         })}>
-                            <option>Default</option>
-                            rank
+                            <option> </option>
+                            {ranks}
                         </Form.Control>
                         <br />
 
@@ -114,7 +153,7 @@ export const Add_technic = () => {
         <form>
             <div>
                 <Button variant="dark" size="lg" onClick={() => setModalShow(true)}>
-                    Add new Ninja
+                    Add new Technic
                 </Button>
                 <TechnicModel
                     show={modalShow}
