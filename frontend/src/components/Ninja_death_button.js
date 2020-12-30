@@ -13,7 +13,7 @@ class NinjaDeathModal extends Component {
         ninjas: []
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/test')
+        axios.get('http://localhost:8080/narutopedia/ninja')
             .then((response) => {
                 this.setState({
                     ninjas: response.data
@@ -21,10 +21,11 @@ class NinjaDeathModal extends Component {
             })
     }
     sendDeadStatus = () => {
-        axios.post('http://localhost:8080/backend/naruto-api/stdquery/test', this.state.deadNinjaData)
+        axios.post('http://localhost:8080/narutopedia/ninja/death', this.state.deadNinjaData)
             .then((response) => {
                 console.log(response.data)
             })
+        this.props.onHide()
     }
     render() {
         let ninjas = this.state.ninjas.map((ninja) => {
@@ -47,9 +48,9 @@ class NinjaDeathModal extends Component {
                 <Modal.Body>
                     <h4>Choose Kage</h4>
                     <Form.Control as="select" value={this.state.deadNinjaData.name} onChange={(event => {
-                        let {ninja} = this.state;
-                        ninja.name = event.target.value;
-                        this.setState(ninja)
+                        let {deadNinjaData} = this.state;
+                        deadNinjaData.name = event.target.value;
+                        this.setState(deadNinjaData)
                     })}>
                         <option>dead ninja</option>
                         {ninjas}
