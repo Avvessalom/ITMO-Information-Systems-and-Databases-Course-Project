@@ -15,7 +15,7 @@ import axios from "axios";
 
 class Bijus extends Component {
     state = {
-        biju1: [],
+        biju: [],
         biju2: [],
         biju3: [],
         biju4: [],
@@ -26,67 +26,122 @@ class Bijus extends Component {
         biju9: []
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=1',)
+        axios.get('http://localhost:8080/narutopedia/bijus',)
             .then((response) => {
                 this.setState({
-                    biju1: response.data
-                })
-            })
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=2',)
-            .then((response) => {
-                this.setState({
-                    biju2: response.data
-                })
-            })
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=3',)
-            .then((response) => {
-                this.setState({
-                    biju3: response.data
-                })
-            })
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=4',)
-            .then((response) => {
-                this.setState({
-                    biju4: response.data
-                })
-            })
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=5',)
-            .then((response) => {
-                this.setState({
-                    biju5: response.data
-                })
-            })
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=6',)
-            .then((response) => {
-                this.setState({
-                    biju6: response.data
-                })
-            })
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=7',)
-            .then((response) => {
-                this.setState({
-                    biju7: response.data
-                })
-            })
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=8',)
-            .then((response) => {
-                this.setState({
-                    biju8: response.data
-                })
-            })
-        axios.get('http://localhost:8080/backend/naruto-api/stdquery/bijus?id=9',)
-            .then((response) => {
-                this.setState({
-                    biju9: response.data
+                    biju: response.data
                 })
             })
     }
 
     render() {
-        let bijus1 = this.state.biju1.map((biju) => {
-                return (
-                    <ListGroup.Item>{biju.previous}</ListGroup.Item>
-                )
+        let bijus1 = this.state.biju.map((biju) => {
+            if (biju.id === 1) {
+                let previous = biju.jinchuuriki;
+                let items = []
+                for (let name in previous){
+                    items.push(
+                        <ListGroup.Item>{previous[name]}</ListGroup.Item>
+                    )
+                }
+                return(items)
+            }
+        });
+        let bijus2 = this.state.biju.map((biju) => {
+            if (biju.id === 2) {
+                let previous = biju.jinchuuriki;
+                let items = []
+                for (let name in previous){
+                    items.push(
+                        <ListGroup.Item>{previous[name]}</ListGroup.Item>
+                    )
+                }
+                return(items)
+            }
+        });
+        let bijus3 = this.state.biju.map((biju) => {
+            if (biju.id === 3) {
+                let previous = biju.jinchuuriki;
+                let items = []
+                for (let name in previous){
+                    items.push(
+                        <ListGroup.Item>{previous[name]}</ListGroup.Item>
+                    )
+                }
+                return(items)
+            }
+        });
+        let bijus4 = this.state.biju.map((biju) => {
+            if (biju.id === 4) {
+                let previous = biju.jinchuuriki;
+                let items = []
+                for (let name in previous){
+                    items.push(
+                        <ListGroup.Item>{previous[name]}</ListGroup.Item>
+                    )
+                }
+                return(items)
+            }
+        });
+        let bijus5 = this.state.biju.map((biju) => {
+            if (biju.id === 5) {
+                let previous = biju.jinchuuriki;
+                let items = []
+                for (let name in previous){
+                    items.push(
+                        <ListGroup.Item>{previous[name]}</ListGroup.Item>
+                    )
+                }
+                return(items)
+            }
+        });
+        let bijus6 = this.state.biju.map((biju) => {
+            if (biju.id === 6) {
+                let previous = biju.jinchuuriki;
+                let items = []
+                for (let name in previous){
+                    items.push(
+                        <ListGroup.Item>{previous[name]}</ListGroup.Item>
+                    )
+                }
+                return(items)
+            }
+        });
+        let bijus7 = this.state.biju.map((biju) => {
+            if (biju.id === 7) {
+                let previous = biju.jinchuuriki;
+                let items = []
+                for (let name in previous){
+                    items.push(
+                        <ListGroup.Item>{previous[name]}</ListGroup.Item>
+                    )
+                }
+                return(items)
+            }
+        });
+        let bijus8 = this.state.biju.map((biju) => {
+            if (biju.id === 8) {
+                let previous = biju.jinchuuriki;
+                let items = []
+                for (let name in previous){
+                    items.push(
+                        <ListGroup.Item>{previous[name]}</ListGroup.Item>
+                    )
+                }
+                return(items)
+            }
+        });
+        let bijus9 = this.state.biju.map((biju) => {
+            if (biju.id === 9) {
+                let previous = biju.jinchuuriki;
+                let items = []
+                for (let name in previous){
+                    items.push(
+                        <ListGroup.Item>{previous[name]}</ListGroup.Item>
+                    )
+                }
+                return(items)
+            }
         });
 
         return (
@@ -112,7 +167,7 @@ class Bijus extends Component {
                             <Card.Subtitle className="mb-2 text-muted">2 tail</Card.Subtitle>
                             <Card.Header>Previous jinchurikis</Card.Header>
                             <ListGroup variant="flush">
-                                123
+                                {bijus2}
                             </ListGroup>
                             <Button variant="danger">Seal</Button>
                         </Card.Body>
@@ -126,7 +181,7 @@ class Bijus extends Component {
                             <Card.Subtitle className="mb-2 text-muted">3 tail</Card.Subtitle>
                             <Card.Header>Previous jinchurikis</Card.Header>
                             <ListGroup variant="flush">
-                                <ListGroup.Item>123</ListGroup.Item>
+                                {bijus3}
                             </ListGroup>
                             <Button variant="danger">Seal</Button>
                         </Card.Body>
@@ -141,7 +196,7 @@ class Bijus extends Component {
                             <Card.Subtitle className="mb-2 text-muted">4 tail</Card.Subtitle>
                             <Card.Header>Previous jinchurikis</Card.Header>
                             <ListGroup variant="flush">
-                                <ListGroup.Item>123</ListGroup.Item>
+                                {bijus4}
                             </ListGroup>
                             <Button variant="danger">Seal</Button>
                         </Card.Body>
@@ -154,7 +209,7 @@ class Bijus extends Component {
                             <Card.Subtitle className="mb-2 text-muted">5 tail</Card.Subtitle>
                             <Card.Header>Previous jinchurikis</Card.Header>
                             <ListGroup variant="flush">
-                                <ListGroup.Item>123</ListGroup.Item>
+                                {bijus5}
                             </ListGroup>
                             <Button variant="danger">Seal</Button>
                         </Card.Body>
@@ -167,7 +222,7 @@ class Bijus extends Component {
                             <Card.Subtitle className="mb-2 text-muted">6 tail</Card.Subtitle>
                             <Card.Header>Previous jinchurikis</Card.Header>
                             <ListGroup variant="flush">
-                                <ListGroup.Item>123</ListGroup.Item>
+                                {bijus6}
                             </ListGroup>
                             <Button variant="danger">Seal</Button>
                         </Card.Body>
@@ -182,7 +237,7 @@ class Bijus extends Component {
                             <Card.Subtitle className="mb-2 text-muted">7 tail</Card.Subtitle>
                             <Card.Header>Previous jinchurikis</Card.Header>
                             <ListGroup variant="flush">
-                                <ListGroup.Item>123</ListGroup.Item>
+                                {bijus7}
                             </ListGroup>
                             <Button variant="danger">Seal</Button>
                         </Card.Body>
@@ -195,7 +250,7 @@ class Bijus extends Component {
                             <Card.Subtitle className="mb-2 text-muted">8 tail</Card.Subtitle>
                             <Card.Header>Previous jinchurikis</Card.Header>
                             <ListGroup variant="flush">
-                                <ListGroup.Item>123</ListGroup.Item>
+                                {bijus8}
                             </ListGroup>
                             <Button variant="danger">Seal</Button>
                         </Card.Body>
@@ -208,7 +263,7 @@ class Bijus extends Component {
                             <Card.Subtitle className="mb-2 text-muted">9 tail</Card.Subtitle>
                             <Card.Header>Previous jinchurikis</Card.Header>
                             <ListGroup variant="flush">
-                                <ListGroup.Item>123</ListGroup.Item>
+                                {bijus9}
                             </ListGroup>
                             <Button variant="danger">Seal</Button>
                         </Card.Body>
@@ -218,5 +273,4 @@ class Bijus extends Component {
         )
     }
 }
-
 export default Bijus;
