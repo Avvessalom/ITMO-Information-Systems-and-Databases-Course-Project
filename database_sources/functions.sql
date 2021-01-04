@@ -36,7 +36,7 @@ $$
 declare
     previous_jinchuriki integer;
 begin
-    previous_jinchuriki = (select ninja_id from jinchuriki where biju = biju_for_sealing);
+    previous_jinchuriki = (select ninja_id from jinchuriki where biju = biju_for_sealing limit 1);
     update ninja
     set status = 'dead'
     where ninja_id = previous_jinchuriki;
@@ -45,18 +45,16 @@ end;
 $$
     language plpgsql;
 
-create or replace function choose_kage_candidates(old_kage integer, war integer) returns integer as
+create or replace function choose_kage_candidates(old_kage integer, war integer) returns setof integer as
 $$
 declare
     village_of_kage integer;
-    candidates      integer;
 begin
-    village_of_kage = (select village from ninja where ninja_id = old_kage);
-    candidates = (select *
+    village_of_kage = (select village from ninja where ninja_id = old_kage limit 1);
+    return query select heroes.ninja_id
                   from heroes
                            join ninja on ninja.ninja_id = heroes.ninja_id
-                  where village = village_of_kage);
-    return candidates;
+                  where village = village_of_kage;
 end;
 $$
     language plpgsql;
