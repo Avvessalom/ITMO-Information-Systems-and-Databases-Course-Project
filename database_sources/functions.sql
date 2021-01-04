@@ -45,13 +45,13 @@ end;
 $$
     language plpgsql;
 
-create or replace function choose_kage_candidates(old_kage integer, war integer) returns setof integer as
+create or replace function choose_kage_candidates(old_kage integer, war integer) returns setof ninja as
 $$
 declare
     village_of_kage integer;
 begin
     village_of_kage = (select village from ninja where ninja_id = old_kage limit 1);
-    return query select heroes.ninja_id
+    return query select ninja.ninja_id, ninja.name, ninja.age, ninja.sex, ninja.village, ninja.clan, ninja.status
                   from heroes
                            join ninja on ninja.ninja_id = heroes.ninja_id
                   where village = village_of_kage;
