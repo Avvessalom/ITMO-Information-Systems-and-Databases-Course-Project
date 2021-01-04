@@ -46,6 +46,17 @@ public class Ninja {
 	@ManyToMany(mappedBy = "ninjas")
 	Set<Ninjas_rank> ranks;
 
+	@ManyToMany
+	@JoinTable(
+		name = "ninja_parents",
+		joinColumns = @JoinColumn(name = "parent_id"),
+		inverseJoinColumns = @JoinColumn(name = "children_id")
+	)
+	private Set<Ninja> parents;
+
+	@ManyToMany(mappedBy = "parents")
+	Set<Ninja> children;
+
 
 
 
@@ -53,6 +64,22 @@ public class Ninja {
 
 
 	public Ninja(){}
+
+	public void setParents(Set<Ninja> parents){
+		this.parents = parents;
+	}
+
+	public Set<Ninja> getParents(){
+		return this.parents;
+	}
+
+	public void setChildren(Set<Ninja> children){
+		this.children = children;
+	}
+
+	public Set<Ninja> getChildren(){
+		return this.children;
+	}
 
 	public void setRanks(Set<Ninjas_rank> ranks){
 		this.ranks = ranks;

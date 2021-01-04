@@ -43,6 +43,21 @@ public class MainController {
 	@Autowired
 	private CitizenService citizenService;
 
+	@Autowired
+	private TypeService typeService;
+
+	@Autowired
+	private Additional_typeService addTypeService;
+
+	@Autowired
+	private RankService rankService;
+
+	@Autowired
+	private TechnicService technicService;
+
+	@Autowired
+	private BijuService bijuService;
+
 	@GetMapping("/ninja")
 	public List<NinjaDTO> getNinja() {
 		return (List<NinjaDTO>) mapService.getNinjasWithVillage();
@@ -86,6 +101,32 @@ public class MainController {
 	@GetMapping("/villages/kages")
 	public List<NinjaDTO> getKages() {
 		return (List<NinjaDTO>) mapService.getKages();
+	}
+
+	@GetMapping("/technics/types")
+	public List<StdDTO> getTypes() {
+		return (List<StdDTO>) mapService.getTypes();
+	}
+
+	@GetMapping("/technics/additionalType")
+	public List<StdDTO> getAdditionalType() {
+		return (List<StdDTO>) mapService.getAddTypes();
+	}
+
+	@GetMapping("/technics/rank")
+	public List<StdDTO> getRanks() {
+		return (List<StdDTO>) mapService.getRank();
+	}
+
+	@GetMapping("/bijus/jinchuurikiCandidats")
+	public List<NinjaDTO> getJinchurikiCandidates(){
+		return (List<NinjaDTO>) mapService.getJinchurikiCandidates();
+	}
+
+	@PostMapping("/villages/kageDeath")
+	public List<NinjaDTO> getKageCandidates(@RequestBody CandidateDTO candidate){
+		ninjaDeath(Long.valueOf(candidate.getOldKage()));
+		return (List<NinjaDTO>) mapService.getKageCandidates(candidate);
 	}
 
 	@PostMapping("/ninja/death")
@@ -192,5 +233,54 @@ public class MainController {
 		}catch(Exception e){
 			return "notok";
 		}
+	}
+
+	@PostMapping("/technics/addNew")
+	public String addTechnic(@RequestBody AddTechnicDTO newTech) {
+		try {
+			Technic tmp = new Technic();
+			tmp.setBlood_restriction(newTech.getBloodrest());
+			tmp.setRune_seals(newTech.getRunes());
+			tmp.setName(newTech.getName());
+			tmp.setType(typeService.findById(newTech.getType()).get());
+			tmp.setAdditional_type(addTypeService.findById(newTech.getAdtype()).get());
+			tmp.setRank(rankService.findById(newTech.getRank()).get());
+			technicService.save(tmp);
+			return "ok";
+		}catch(Exception e){
+			return "notok";
+		}
+	}
+
+	@PostMapping("/ninja/parent")
+	public String ninjaParentChild(@RequestBody ChildrenParentDTO cpDTO) {
+		try{
+			Ninja parent = ninjaService.findById(cpDTO.getParent()).get();
+			Ninja child = ninjaService.findById(cpDTO.getChild()).get();
+			parent.getChildren().add(child);
+			ninjaService.save(parent);
+			return "ok";
+		} catch(Exception e){
+			return "notok";
+		}
+	}
+
+	@PostMapping("/villages/destroyVillage")
+	public String destroyVillage(@RequestBody DestroyVillageDTO destVil){
+		try {
+			Hidden_village destroyed = villageService.findById(destVil.getVillageid()).get();
+			Ninja destroyer = ninjaService.findById(destVil.getDestroyer()).get();
+			destroyed.getDestroyers().add(destroyer);
+			villageService.save(destroyed);
+			return "ok";
+		} catch(Exception e){
+			return "notok";
+		}
+	}
+
+	@PostMapping("/bijus")
+	public String sealBiju(@RequestBody SealBijuDTO seal){
+		bijuService.sealTheBiju(seal.getBiju_id(), seal.getNinja_id());
+		return "ok";
 	}
 }

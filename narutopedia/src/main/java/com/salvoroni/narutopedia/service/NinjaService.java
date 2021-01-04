@@ -30,4 +30,8 @@ public class NinjaService{
 	public void save(Ninja ninja){
 		repository.save(ninja);
 	}
+
+	public List<Ninja> choose_kage_candidates(int oldKage, int warId){
+		return repository.choose_kage_candidates(oldKage, warId);
+	}
 }

@@ -36,7 +36,7 @@ $$
 declare
     previous_jinchuriki integer;
 begin
-    previous_jinchuriki = (select ninja_id from jinchuriki where biju = biju_for_sealing);
+    previous_jinchuriki = (select ninja_id from jinchuriki where biju = biju_for_sealing limit 1);
     update ninja
     set status = 'dead'
     where ninja_id = previous_jinchuriki;
@@ -52,7 +52,7 @@ declare
     candidates      integer;
 begin
     village_of_kage = (select village from ninja where ninja_id = old_kage);
-    candidates = (select *
+    candidates = (select ninja_id
                   from heroes
                            join ninja on ninja.ninja_id = heroes.ninja_id
                   where village = village_of_kage);

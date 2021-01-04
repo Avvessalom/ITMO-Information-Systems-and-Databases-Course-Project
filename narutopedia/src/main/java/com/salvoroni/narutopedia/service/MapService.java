@@ -37,6 +37,15 @@ public class MapService {
 	@Autowired
 	private TechnicRepository technicRepository;
 
+	@Autowired
+	private TypeService typeService;
+
+	@Autowired
+	private Additional_typeService addTypeService;
+
+	@Autowired
+	private RankService rankService;
+
 	public List<NinjaDTO> getNinjasWithVillage() {
 		return ((List<Ninja>) ninjaRepository
 			.findAll())
@@ -225,6 +234,19 @@ public class MapService {
 		return warDTO;
 	}
 
+	public List<NinjaDTO> getJinchurikiCandidates() {
+		return ((List<Ninja>) ninjaRepository
+			.findAll())
+			.stream()
+			.filter(ninja -> {
+				if (ninja.getStatus().equals("alive") && ninja.getBiju().isEmpty())
+					return true;
+				return false;
+			})
+			.map(this::convertToNinjaDTO)
+			.collect(Collectors.toList());
+	}
+
 	public List<NinjaDTO> getKages() {
 		return ((List<Ninja>) ninjaRepository
 			.findAll())
@@ -238,5 +260,58 @@ public class MapService {
 			})
 			.map(this::convertToNinjaDTO)
 			.collect(Collectors.toList());
+	}
+
+	public List<NinjaDTO> getKageCandidates(CandidateDTO candidate){
+		return ((List<Ninja>) ninjaRepository
+			.choose_kage_candidates(candidate.getOldKage(), candidate.getWarId()))
+			.stream()
+			.map(this::convertToNinjaDTO)
+			.collect(Collectors.toList());
+	}
+
+	public List<StdDTO> getTypes(){
+		return ((List<Type>) typeService
+			.findAll())
+			.stream()
+			.map(this::convertToSTD)
+			.collect(Collectors.toList());
+	}
+
+	private StdDTO convertToSTD(Type type){
+		StdDTO std = new StdDTO();
+		std.setId(type.getId());
+		std.setName(type.getName());
+		return std;
+	}
+
+	public List<StdDTO> getAddTypes(){
+		return ((List<Additional_type>) addTypeService
+			.findAll())
+			.stream()
+			.map(this::convertToStd)
+			.collect(Collectors.toList());
+	}
+
+	private StdDTO convertToStd(Additional_type type){
+		StdDTO std = new StdDTO();
+		std.setId(type.getId());
+		std.setName(type.getName());
+		return std;
+	}
+
+	public List<StdDTO> getRank(){
+		return ((List<Technic_rank>) rankService
+			.findAll())
+			.stream()
+			.map(this::convertToStd)
+			.collect(Collectors.toList());
+	}
+
+	private StdDTO convertToStd(Technic_rank type){
+		StdDTO std = new StdDTO();
+		std.setId(type.getId());
+		std.setName(type.getName());
+		return std;
 	}
 }

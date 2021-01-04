@@ -22,4 +22,8 @@ public class VillageService {
 	public Optional<Hidden_village> findById(Long id){
 		return repository.findById(id);
 	}
+
+	public void save(Hidden_village village) {
+		repository.save(village);
+	}
 }
