@@ -92,3 +92,19 @@ header .masthead .overlay {
   left: 0;
   opacity: .3;
 }
+
+.widthClan {
+  width: 165px;
+}
+
+.widthNinja {
+  width: 182px;
+}
+
+.widthCountries {
+  width: 170px;
+}
+
+.widthVillages {
+  width: 170px;
+}

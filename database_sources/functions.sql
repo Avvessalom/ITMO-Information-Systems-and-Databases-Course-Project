@@ -45,18 +45,16 @@ end;
 $$
     language plpgsql;
 
-create or replace function choose_kage_candidates(old_kage integer, war integer) returns integer as
+create or replace function choose_kage_candidates(old_kage integer, war integer) returns setof ninja as
 $$
 declare
     village_of_kage integer;
-    candidates      integer;
 begin
-    village_of_kage = (select village from ninja where ninja_id = old_kage);
-    candidates = (select ninja_id
+    village_of_kage = (select village from ninja where ninja_id = old_kage limit 1);
+    return query select ninja.ninja_id, ninja.name, ninja.age, ninja.sex, ninja.village, ninja.clan, ninja.status
                   from heroes
                            join ninja on ninja.ninja_id = heroes.ninja_id
-                  where village = village_of_kage);
-    return candidates;
+                  where village = village_of_kage;
 end;
 $$
     language plpgsql;
@@ -239,7 +237,7 @@ create trigger on_death
 execute procedure ninja_death();
 
 create trigger check_blood_restriction
-    after insert or update
+    before insert or update
     on ninja_technic
 execute procedure check_blood_restriction();
 

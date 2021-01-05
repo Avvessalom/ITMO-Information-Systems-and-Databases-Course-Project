@@ -1,0 +1,115 @@
++++ninja
+        http://localhost:8080/narutopedia/ninja
+        GET
+        {"id": id,"name":"name","age": age,"sex": "sex","village":"village:","clan":"clan","status":"status"}
+
++++add new ninja
+        http://localhost:8080/narutopedia/ninja/addNew
+        POST
+        send {"name":"asdsa","clan":"2","village":"10","status":"Alive","age":"1","sex":"F"}
+
+ninja parent child
+        http://localhost:8080/narutopedia/ninja/parent
+        POST
+        send {"parent":"parent name", "child":"child name"}
+
++++ninja death 
+        http://localhost:8080/narutopedia/ninja/death
+        POST
+        send {"name":"name"}
+
++++villages
+        http://localhost:8080/narutopedia/villages
+        GET
+        {"id": "id", "name":"name", "country":"country", "ninjas":"count of ninjas", "clans":"count of clans", "number_of_destruction":"number of destruction"}
+
++++kages
+    http://localhost:8080/narutopedia/villages/kages
+    GET
+    some json with {"id":"id", "name":"name" ...}
+
+kage death 
+        http://localhost:8080/narutopedia/villages/kageDeath
+        GET
+        send {"name":"kage name"}
+        get  {"id": id,"name":"name","age": age,"sex": "sex","village":"village:","clan":"clan","status":"status"}
+
+destroy village
+        http://localhost:8080/narutopedia/villages/destroyVillage
+        POST
+        {"name":"5","destroyer":"memuehotoki"}
+
++++countries
+        http://localhost:8080/narutopedia/countries
+        GET
+        {"id": "id", "name":"name", "lord":"lord", "village":"village", "wars":"count of wars", "lords":"count of lords", "citizens":"count of citizens"}
+
++++declare war
+        http://localhost:8080/narutopedia/countries/declareWar
+        POST
+        {name: '', attacking: '', defending: '', lossa: '', lossd: '', start: '', end: ''}
+
++++add battle 
+        http://localhost:8080/narutopedia/countries/addBattle
+        POST
+        {"war":"war name", "territory":"country name", "loss":"loss", "durration":"durration", "name":"name", "date":"date"}
+
++++wars
+    http://localhost:8080/narutopedia/wars
+    GET
+    вся инфа про войну, как отправишь, так отправишь
+
++++clans
+        http://localhost:8080/narutopedia/clans
+        GET
+        {"id": "id", "name":"name", "village":"village", "prestige":"prestige", "ninjas":"count of ninjas", "leader":"clan leader", "blood":"blood restriction"}
+
+add clan
+        http://localhost:8080/narutopedia/clans/addClan
+        POST
+        {"id":"id", "name":"name", "village":"village", "prestige":"prestige", "ninjas":"ninjas", "leader":"leader", "blood":"blood"}
+
+add clan leader 
+        http://localhost:8080/narutopedia/clans/leader
+        POST
+        {"clan":"clan", "candidate":"candidate"}
+
++++citizens
+        http://localhost:8080/narutopedia/citizens
+        GET
+        {"id": "id", "name":"name", "village":"village", "age":"age", "sex":"sex", "status":"status}
+
+add new citizen
+        http://localhost:8080/narutopedia/citizens/addNew
+        POST
+        {"name":"name", "village":"village", "status":"status", "age":"age", "sex":"sex"}
+
+jinchuurikiCandidats
+        http://localhost:8080/narutopedia/bijus/jinchuurikiCandidats
+        GET
+        some json with {"id":"id", "name":"name" ...}
+
+sealing biju
+        http://localhost:8080/narutopedia/bijus
+        POST
+        {"id": "id", "name": "name"}
+
+add new technic
+        http://localhost:8080/narutopedia/technics/addNew
+        POST
+        {"name":"","type":"id","adtype":"id","bloodrest":"No","rank":"id","runes":""}
+
+technic types
+        http://localhost:8080/narutopedia/technics/types
+        GET
+        {"id": "id", "name": "name"...}
+
+technic additional types
+        http://localhost:8080/narutopedia/technics/additionalType
+        GET
+        {"id": "id", "name": "name"...}
+
+technic ranks
+        http://localhost:8080/narutopedia/technics/rank
+        GET
+        {"id": "id", "name": "name"...}
