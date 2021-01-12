@@ -14,7 +14,7 @@ export const Home = () => {
                             {/*</p>*/}
                         </div>
                         <div className="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                            <Search_form />
+                            {/*<Search_form />*/}
                         </div>
                     </div>
                 </div>

@@ -35,7 +35,7 @@ export const Navbar = () => (
                     <NavLink className="nav-link" to="/~s250643/technics">Technics</NavLink>
                 </li>
             </ul>
-            <Navbar_form />
+            {/*<Navbar_form />*/}
         </div>
     </nav>
 )
