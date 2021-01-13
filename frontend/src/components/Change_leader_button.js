@@ -39,7 +39,7 @@ class LeaderModal extends Component {
     render() {
         let clans = this.state.clans.map((clan) => {
             return (
-                <option>{clan.name}</option>
+                <option value={clan.id}>{clan.name}</option>
             )
         })
         let candidates = this.state.candidates.map((candidate) => {

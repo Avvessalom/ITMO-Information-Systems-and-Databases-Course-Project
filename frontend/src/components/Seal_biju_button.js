@@ -61,7 +61,7 @@ class SealBijuModal extends Component {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={this.props.onHide}>Close</Button>
-                    <Button onClick={this.addBattle}>Submit</Button>
+                    <Button onClick={this.sealBiju}>Submit</Button>
                 </Modal.Footer>
             </Modal>
         )
