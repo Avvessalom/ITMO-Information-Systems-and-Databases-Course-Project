@@ -46,16 +46,16 @@ class CenteredModal extends Component {
     }
 
     render() {
-        let clan = this.state.clans.map((ninja) => {
+        let clan = this.state.clans.map((clan) => {
             return (
-                <option>{ninja.name}</option>
+                <option value={clan.id}>{clan.name}</option>
             )
-        })
-        let village = this.state.villages.map((ninja) => {
+        });
+        let village = this.state.villages.map((village) => {
             return (
-                <option>{ninja.name}</option>
+                <option value={village.id}>{village.name}</option>
             )
-        })
+        });
         return(
             <Modal
                 {...this.props}

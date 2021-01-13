@@ -16,24 +16,24 @@ class AddBattleModal extends Component {
         },
         wars: [],
         countries: []
-    }
+    };
     addBattle = () => {
         axios.post('http://localhost:8080/narutopedia/countries/addBattle', this.state.newBattleData)
             .then((response) => {
                 console.log(response.data)
             })
-    }
+    };
     componentWillMount() {
         axios.get('http://localhost:8080/narutopedia/countries')
             .then((response) => {
                 this.setState({
                     countries: response.data
                 })
-            })
+            });
         axios.get('http://localhost:8080/narutopedia/wars')
             .then((response) => {
                 this.setState({
-                    countries: response.data
+                    wars: response.data
                 })
             })
     }

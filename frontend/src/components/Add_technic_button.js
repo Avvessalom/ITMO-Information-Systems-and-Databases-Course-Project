@@ -18,13 +18,13 @@ class TechnicModel extends Component{
         types: [],
         additionalType: [],
         rank: []
-    }
+    };
 
     addTechnic = () => {
         axios.post('http://localhost:8080/narutopedia/technics/addNew', this.state.newTechnicData).then((responce) =>{
             console.log(responce.data)
         })
-    }
+    };
     componentWillMount() {
         axios.get('http://localhost:8080/narutopedia/technics/types')
             .then((response) => {
@@ -51,17 +51,17 @@ class TechnicModel extends Component{
             return (
                 <option value={type.id}>{type.name}</option>
             )
-        })
+        });
         let additionalTypes = this.state.additionalType.map((additionalType) => {
             return (
                 <option value={additionalType.id}>{additionalType.name}</option>
             )
-        })
+        });
         let ranks = this.state.rank.map((rank) => {
             return (
                 <option value={rank.id}>{rank.name}</option>
             )
-        })
+        });
         return(
             <Modal
                 {...this.props}
@@ -77,8 +77,9 @@ class TechnicModel extends Component{
                 <Modal.Body>
                     <h4>Enter technic details</h4>
                     <Form.Group>
-                        <Form.Label> Technic Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter name" id="name" value={this.state.newTechnicData.name} onChange={(event => {
+                        <Form.Label>Technic Name</Form.Label>
+                        <Form.Control type="text" placeholder="Enter name" id="name" value={
+                            this.state.newTechnicData.name} onChange={(event => {
                             let {newTechnicData} = this.state;
                             newTechnicData.name = event.target.value;
                             this.setState(newTechnicData);
