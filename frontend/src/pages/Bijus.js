@@ -27,7 +27,7 @@ class Bijus extends Component {
         biju9: []
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/bijus',)
+        axios.get('http://localhost:26000/narutopedia/bijus',)
             .then((response) => {
                 this.setState({
                     biju: response.data

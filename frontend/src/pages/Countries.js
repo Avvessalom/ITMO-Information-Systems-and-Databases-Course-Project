@@ -11,7 +11,7 @@ class Countries extends Component {
     }
 
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/countries')
+        axios.get('http://localhost:26000/narutopedia/countries')
             .then((response) => {
                 this.setState({
                     countries: response.data

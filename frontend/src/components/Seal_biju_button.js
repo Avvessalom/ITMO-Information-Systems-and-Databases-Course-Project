@@ -14,7 +14,7 @@ class SealBijuModal extends Component {
         candidates: []
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/bijus/jinchuurikiCandidats')
+        axios.get('http://localhost:26000/narutopedia/bijus/jinchuurikiCandidats')
             .then((response) => {
                 this.setState({
                     candidates: response.data
@@ -22,7 +22,7 @@ class SealBijuModal extends Component {
             })
     }
     sealBiju = () => {
-        axios.post('http://localhost:8080/narutopedia/bijus', this.state.newJinchuurikiData)
+        axios.post('http://localhost:26000/narutopedia/bijus', this.state.newJinchuurikiData)
             .then((response) => {
                 console.log(response.data)
             })

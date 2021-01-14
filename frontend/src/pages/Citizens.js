@@ -9,7 +9,7 @@ class Citizens extends Component {
         citizens: []
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/citizens')
+        axios.get('http://localhost:26000/narutopedia/citizens')
             .then((response) => {
                 this.setState({
                     citizens: response.data

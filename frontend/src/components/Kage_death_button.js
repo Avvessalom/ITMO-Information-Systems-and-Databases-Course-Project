@@ -11,7 +11,7 @@ class KageCandidatesModal extends Component {
         candidates: []
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/villges/kegeDeath', this.props.candidatesData)
+        axios.get('http://localhost:26000/narutopedia/villges/kegeDeath', this.props.candidatesData)
             .then((response) => {
                 this.setState({
                     candidates: response.data
@@ -81,7 +81,7 @@ class KageDeathModal extends Component {
         kages: []
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/villages/kages')
+        axios.get('http://localhost:26000/narutopedia/villages/kages')
             .then((response) => {
                 this.setState({
                     kages: response.data

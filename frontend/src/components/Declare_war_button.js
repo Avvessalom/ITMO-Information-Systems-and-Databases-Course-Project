@@ -18,13 +18,13 @@ class WarModal extends Component {
     }
 
     declareWar = () => {
-        axios.post('http://localhost:8080/narutopedia/countries/declareWar', this.state.newWarData).then((response) => {
+        axios.post('http://localhost:26000/narutopedia/countries/declareWar', this.state.newWarData).then((response) => {
             console.log((response.data))
         })
     }
 
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/countries')
+        axios.get('http://localhost:26000/narutopedia/countries')
             .then((response) => {this.setState({
                 countries: response.data
             })

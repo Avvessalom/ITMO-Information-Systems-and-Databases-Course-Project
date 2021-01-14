@@ -14,13 +14,13 @@ class ParentChildModal extends Component {
         ninjas: []
     }
     addPair = () => {
-        axios.post('http://localhost:8080/narutopedia/ninja/parent', this.state.newPairData)
+        axios.post('http://localhost:26000/narutopedia/ninja/parent', this.state.newPairData)
             .then((response) => {
                 console.log(response.data)
             })
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/ninja')
+        axios.get('http://localhost:26000/narutopedia/ninja')
             .then((response) => {
                 this.setState({
                     ninjas: response.data

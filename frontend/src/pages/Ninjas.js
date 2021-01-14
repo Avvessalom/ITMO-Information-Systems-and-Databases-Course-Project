@@ -11,7 +11,7 @@ class Ninjas extends Component {
     }
 
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/ninja')
+        axios.get('http://localhost:26000/narutopedia/ninja')
             .then((response) => {this.setState({
                 ninjas: response.data
             })

@@ -16,20 +16,20 @@ class DestroyModal extends Component {
     }
 
     destroyVillage = () => {
-        axios.post('http://localhost:8080/narutopedia/villages/destroyVillage', this.state.village).then((response) => {
+        axios.post('http://localhost:26000/narutopedia/villages/destroyVillage', this.state.village).then((response) => {
             console.log((response.data))
         })
         this.props.onHide();
     }
 
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/villages')
+        axios.get('http://localhost:26000/narutopedia/villages')
             .then((response) => {this.setState({
                 villages: response.data
             })
                 .then(error => console.log(error))
             });
-        axios.get('http://localhost:8080/narutopedia/ninja')
+        axios.get('http://localhost:26000/narutopedia/ninja')
             .then((response) => {this.setState({
                 ninjas: response.data
             })

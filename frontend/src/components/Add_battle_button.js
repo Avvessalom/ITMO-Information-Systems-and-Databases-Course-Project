@@ -18,19 +18,19 @@ class AddBattleModal extends Component {
         countries: []
     };
     addBattle = () => {
-        axios.post('http://localhost:8080/narutopedia/countries/addBattle', this.state.newBattleData)
+        axios.post('http://localhost:26000/narutopedia/countries/addBattle', this.state.newBattleData)
             .then((response) => {
                 console.log(response.data)
             })
     };
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/countries')
+        axios.get('http://localhost:26000/narutopedia/countries')
             .then((response) => {
                 this.setState({
                     countries: response.data
                 })
             });
-        axios.get('http://localhost:8080/narutopedia/wars')
+        axios.get('http://localhost:26000/narutopedia/wars')
             .then((response) => {
                 this.setState({
                     wars: response.data

@@ -17,12 +17,12 @@ class CenteredModal extends Component {
         villages: []
     }
     addCitizen = () => {
-        axios.post('http://localhost:8080/narutopedia/citizens/addNew', this.state.newCitizenData).then((response) => {
+        axios.post('http://localhost:26000/narutopedia/citizens/addNew', this.state.newCitizenData).then((response) => {
             console.log(response.data)
         })
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/villages')
+        axios.get('http://localhost:26000/narutopedia/villages')
             .then((response) => {this.setState({
                 villages: response.data
             })

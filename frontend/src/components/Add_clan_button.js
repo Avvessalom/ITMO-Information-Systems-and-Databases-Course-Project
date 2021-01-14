@@ -15,13 +15,13 @@ class AddClanModal extends Component{
         villages: []
     }
     addClan = () => {
-        axios.post('http://localhost:8080/narutopedia/clans/addClan', this.state.newClanData).then((response) => {
+        axios.post('http://localhost:26000/narutopedia/clans/addClan', this.state.newClanData).then((response) => {
             console.log(response.data)
         })
         this.props.onHide();
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/villages').then((response) => {
+        axios.get('http://localhost:26000/narutopedia/villages').then((response) => {
             this.setState({
                 villages: response.data
             })

@@ -21,24 +21,24 @@ class TechnicModel extends Component{
     };
 
     addTechnic = () => {
-        axios.post('http://localhost:8080/narutopedia/technics/addNew', this.state.newTechnicData).then((responce) =>{
+        axios.post('http://localhost:26000/narutopedia/technics/addNew', this.state.newTechnicData).then((responce) =>{
             console.log(responce.data)
         })
     };
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/technics/types')
+        axios.get('http://localhost:26000/narutopedia/technics/types')
             .then((response) => {
                 this.setState({
                     types: response.data
                 })
             })
-        axios.get('http://localhost:8080/narutopedia/technics/additionalType')
+        axios.get('http://localhost:26000/narutopedia/technics/additionalType')
             .then((response) => {
                 this.setState({
                     additionalType: response.data
                 })
             })
-        axios.get('http://localhost:8080/narutopedia/technics/rank')
+        axios.get('http://localhost:26000/narutopedia/technics/rank')
             .then((response) => {
                 this.setState({
                     ranks: response.data

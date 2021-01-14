@@ -8,7 +8,7 @@ class Technics extends Component {
         technics: []
     }
 
-    componentWillMount() {axios.get('http://localhost:8080/narutopedia/technics')
+    componentWillMount() {axios.get('http://localhost:26000/narutopedia/technics')
         .then((response) => {
             this.setState({
                 technics: response.data

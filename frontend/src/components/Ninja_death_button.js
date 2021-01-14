@@ -13,7 +13,7 @@ class NinjaDeathModal extends Component {
         ninjas: []
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/ninja')
+        axios.get('http://localhost:26000/narutopedia/ninja')
             .then((response) => {
                 this.setState({
                     ninjas: response.data
@@ -21,7 +21,7 @@ class NinjaDeathModal extends Component {
             })
     }
     sendDeadStatus = () => {
-        axios.post('http://localhost:8080/narutopedia/ninja/death?id=' + this.state.deadNinjaData.id)
+        axios.post('http://localhost:26000/narutopedia/ninja/death?id=' + this.state.deadNinjaData.id)
             .then((response) => {
                 console.log(response.data)
             })

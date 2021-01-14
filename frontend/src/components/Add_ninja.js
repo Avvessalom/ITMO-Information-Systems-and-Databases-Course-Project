@@ -20,24 +20,24 @@ class CenteredModal extends Component {
         villages: []
     }
     addNinja = () => {
-        axios.post('http://localhost:8080/narutopedia/ninja/addNew', this.state.newNinjaData).then((response) => {
+        axios.post('http://localhost:26000/narutopedia/ninja/addNew', this.state.newNinjaData).then((response) => {
             console.log(response.data)
         })
     }
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/ninja')
+        axios.get('http://localhost:26000/narutopedia/ninja')
             .then((response) => {this.setState({
                 ninjas: response.data
             })
                 .then(error => console.log(error))
             });
-        axios.get('http://localhost:8080/narutopedia/clans')
+        axios.get('http://localhost:26000/narutopedia/clans')
             .then((response) => {this.setState({
                 clans: response.data
             })
                 .then(error => console.log(error))
             });
-        axios.get('http://localhost:8080/narutopedia/villages')
+        axios.get('http://localhost:26000/narutopedia/villages')
             .then((response) => {this.setState({
                 villages: response.data
             })

@@ -16,20 +16,20 @@ class LeaderModal extends Component {
     }
 
     changeLeader = () => {
-        axios.post('http://localhost:8080/narutopedia/clans/leader', this.state.leader).then((response) => {
+        axios.post('http://localhost:26000/narutopedia/clans/leader', this.state.leader).then((response) => {
             console.log((response.data))
         })
     }
 
     componentWillMount() {
-        axios.get('http://localhost:8080/narutopedia/ninja')
+        axios.get('http://localhost:26000/narutopedia/ninja')
             .then((response) => {this.setState({
                 candidates: response.data
             })
                 .then(error => console.log(error))
             });
 
-        axios.get('http://localhost:8080/narutopedia/clans')
+        axios.get('http://localhost:26000/narutopedia/clans')
             .then((response) => {this.setState({
             clans: response.data
         })
