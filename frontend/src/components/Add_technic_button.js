@@ -41,7 +41,7 @@ class TechnicModel extends Component{
         axios.get('http://localhost:8080/narutopedia/technics/rank')
             .then((response) => {
                 this.setState({
-                    rank: response.data
+                    ranks: response.data
                 })
             })
     }

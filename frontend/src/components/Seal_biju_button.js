@@ -52,6 +52,7 @@ class SealBijuModal extends Component {
                         <Form.Control as="select" value={this.state.newJinchuurikiData.name} onChange={(event => {
                             let {newJinchuurikiData} = this.state;
                             newJinchuurikiData.name = event.target.value;
+                            newJinchuurikiData.id = this.props.tails;
                             this.setState(newJinchuurikiData);
                         })}>
                             <option> </option>

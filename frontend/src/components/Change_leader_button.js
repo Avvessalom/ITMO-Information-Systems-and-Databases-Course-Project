@@ -44,7 +44,7 @@ class LeaderModal extends Component {
         })
         let candidates = this.state.candidates.map((candidate) => {
             return (
-                <option>{candidate.name}</option>
+                <option value={candidate.id}>{candidate.name}</option>
             )
         })
 
