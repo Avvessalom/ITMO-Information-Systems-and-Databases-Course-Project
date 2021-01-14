@@ -39,7 +39,7 @@ class DestroyModal extends Component {
     render() {
         let village = this.state.villages.map((ninja) => {
             return (
-                <option>{ninja.name}</option>
+                <option value={ninja.id}>{ninja.name}</option>
             )
         })
         let destroyer = this.state.ninjas.map((ninja) => {

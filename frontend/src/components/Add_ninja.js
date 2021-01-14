@@ -105,7 +105,7 @@ class CenteredModal extends Component {
                             newNinjaData.sex = event.target.value;
                             this.setState(newNinjaData);
                         })}>
-                            <option>No</option>
+                            <option>No, thank you</option>
                             <option>M</option>
                             <option>F</option>
                         </Form.Control>

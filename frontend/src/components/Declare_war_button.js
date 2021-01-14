@@ -34,7 +34,7 @@ class WarModal extends Component {
     render() {
         let countries = this.state.countries.map((country) => {
             return (
-                <option>{country.name}</option>
+                <option value={country.id}>{country.name}</option>
             )
         })
         return(
