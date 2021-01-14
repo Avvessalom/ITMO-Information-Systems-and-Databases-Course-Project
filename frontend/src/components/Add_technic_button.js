@@ -17,7 +17,7 @@ class TechnicModel extends Component{
         },
         types: [],
         additionalType: [],
-        rank: []
+        ranks: []
     };
 
     addTechnic = () => {
@@ -51,17 +51,17 @@ class TechnicModel extends Component{
             return (
                 <option value={type.id}>{type.name}</option>
             )
-        });
+        })
         let additionalTypes = this.state.additionalType.map((additionalType) => {
             return (
                 <option value={additionalType.id}>{additionalType.name}</option>
             )
-        });
-        let ranks = this.state.rank.map((rank) => {
+        })
+        let ranks = this.state.ranks.map((rank) => {
             return (
                 <option value={rank.id}>{rank.name}</option>
             )
-        });
+        })
         return(
             <Modal
                 {...this.props}
