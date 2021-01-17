@@ -21,6 +21,7 @@ class WarModal extends Component {
         axios.post('http://localhost:26000/narutopedia/countries/declareWar', this.state.newWarData).then((response) => {
             console.log((response.data))
         })
+        this.props.onHide();
     }
 
     componentWillMount() {

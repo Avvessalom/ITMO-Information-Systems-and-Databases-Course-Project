@@ -19,6 +19,7 @@ class LeaderModal extends Component {
         axios.post('http://localhost:26000/narutopedia/clans/leader', this.state.leader).then((response) => {
             console.log((response.data))
         })
+        this.props.onHide();
     }
 
     componentWillMount() {

@@ -20,6 +20,7 @@ class CenteredModal extends Component {
         axios.post('http://localhost:26000/narutopedia/citizens/addNew', this.state.newCitizenData).then((response) => {
             console.log(response.data)
         })
+        this.props.onHide();
     }
     componentWillMount() {
         axios.get('http://localhost:26000/narutopedia/villages')
@@ -45,11 +46,11 @@ class CenteredModal extends Component {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        Add new Ninja
+                        Add new Citizen
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <h4>Enter ninja details</h4>
+                    <h4>Enter citizen details</h4>
                     <Form.Group>
                         <Form.Label> Citizen Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter name" id="name" value={this.state.newCitizenData.name} onChange={(event => {

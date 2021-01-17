@@ -157,7 +157,7 @@ class Bijus extends Component {
                             <ListGroup variant="flush">
                                 {bijus1}
                             </ListGroup>
-                                <Seal_biju_button tails={1} />
+                                <Seal_biju_button tails={"1"} />
                         </Card.Body>
                     </Card>
 

@@ -23,6 +23,7 @@ class CenteredModal extends Component {
         axios.post('http://localhost:26000/narutopedia/ninja/addNew', this.state.newNinjaData).then((response) => {
             console.log(response.data)
         })
+        this.props.onHide();
     }
     componentWillMount() {
         axios.get('http://localhost:26000/narutopedia/ninja')
@@ -131,8 +132,8 @@ class CenteredModal extends Component {
                             this.setState(newNinjaData);
                         })}>
                             <option>No</option>
-                            <option>Dead</option>
-                            <option>Alive</option>
+                            <option>dead</option>
+                            <option>alive</option>
                         </Form.Control>
                     </Form.Group>
                 </Modal.Body>

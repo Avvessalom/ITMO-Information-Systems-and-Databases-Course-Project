@@ -207,8 +207,6 @@ begin
 end;
 $$
     language plpgsql;
-select count(parent_id)
-from parents;
 
 -- Triggers
 

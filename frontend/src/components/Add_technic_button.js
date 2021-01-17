@@ -24,6 +24,7 @@ class TechnicModel extends Component{
         axios.post('http://localhost:26000/narutopedia/technics/addNew', this.state.newTechnicData).then((responce) =>{
             console.log(responce.data)
         })
+        this.props.onHide();
     };
     componentWillMount() {
         axios.get('http://localhost:26000/narutopedia/technics/types')

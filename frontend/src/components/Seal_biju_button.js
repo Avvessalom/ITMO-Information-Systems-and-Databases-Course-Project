@@ -26,6 +26,7 @@ class SealBijuModal extends Component {
             .then((response) => {
                 console.log(response.data)
             })
+        this.props.onHide();
     }
     render() {
         let candidates = this.state.candidates.map((candidate) => {

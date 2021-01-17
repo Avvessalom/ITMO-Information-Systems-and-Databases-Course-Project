@@ -31,7 +31,7 @@ class ParentChildModal extends Component {
     render() {
         let ninja = this.state.ninjas.map((ninja) => {
             return(
-                <option>{ninja.name}</option>
+                <option value={ninja.id}>{ninja.name}</option>
             )
         })
         return(

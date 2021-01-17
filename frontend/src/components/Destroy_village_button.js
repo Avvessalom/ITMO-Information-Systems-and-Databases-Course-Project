@@ -8,8 +8,8 @@ class DestroyModal extends Component {
     }
     state = {
         village: {
-            name: '',
-            destroyer: ''
+            name: 0,
+            destroyer: 0
         },
         ninjas: [],
         villages: []
@@ -44,7 +44,7 @@ class DestroyModal extends Component {
         })
         let destroyer = this.state.ninjas.map((ninja) => {
             return (
-                <option>{ninja.name}</option>
+                <option value={ninja.id}>{ninja.name}</option>
             )
         })
         return(
