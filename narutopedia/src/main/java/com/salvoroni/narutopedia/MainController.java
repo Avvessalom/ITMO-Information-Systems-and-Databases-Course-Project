@@ -142,6 +142,7 @@ public class MainController {
 			ninjaService.save(ninja);
 			return "ok";
 		} catch (Exception e){
+			e.printStackTrace();
 			return "notok";
 		}
 	}
@@ -159,6 +160,7 @@ public class MainController {
 			ninjaService.save(ninja);
 			return "ok";
 		} catch(Exception e) {
+			e.printStackTrace();
 			return "notok";
 		}
 	}
@@ -176,6 +178,7 @@ public class MainController {
 			warService.save(war);
 			return "ok";
 		} catch(Exception e){
+			e.printStackTrace();
 			return "notok";
 		}
 	}
@@ -188,11 +191,12 @@ public class MainController {
 			battle.setDuration(battleDTO.getDuration());
 			battle.setName(battleDTO.getName());
 			battle.setDate_of_battle(new Date());
-			battle.setWar(warService.findById(battleDTO.getWar_id()).get());
+			battle.setWar(warService.findById(battleDTO.getWar()).get());
 			battle.setTerritory(countryService.findById(battleDTO.getTerritory()).get());
 			battleService.save(battle);
 			return "ok";
 		} catch(Exception e){
+			e.printStackTrace();
 			return "notok";
 		}
 	}
@@ -207,6 +211,7 @@ public class MainController {
 			clanService.save(clan);
 			return "ok";
 		} catch (Exception e){
+			e.printStackTrace();
 			return "notok";
 		}
 	}
@@ -220,6 +225,7 @@ public class MainController {
 			clanService.save(clan);
 			return "ok";
 		} catch(Exception e){
+			e.printStackTrace();
 			return "notok";
 		}
 	}
@@ -236,6 +242,7 @@ public class MainController {
 			citizenService.save(newCitizen);
 			return "ok";
 		}catch(Exception e){
+			e.printStackTrace();
 			return "notok";
 		}
 	}
@@ -253,6 +260,7 @@ public class MainController {
 			technicService.save(tmp);
 			return "ok";
 		}catch(Exception e){
+			e.printStackTrace();
 			return "notok";
 		}
 	}
@@ -266,6 +274,7 @@ public class MainController {
 			ninjaService.save(parent);
 			return "ok";
 		} catch(Exception e){
+			e.printStackTrace();
 			return "notok";
 		}
 	}
@@ -279,6 +288,7 @@ public class MainController {
 			villageService.save(destroyed);
 			return "ok";
 		} catch(Exception e){
+			e.printStackTrace();
 			return "notok";
 		}
 	}

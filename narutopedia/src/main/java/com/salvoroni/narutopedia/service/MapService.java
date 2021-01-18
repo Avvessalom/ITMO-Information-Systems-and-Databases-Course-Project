@@ -59,7 +59,7 @@ public class MapService {
 
 	private AllBattleDTO convertToBattleDTO(Battle battle){
 		AllBattleDTO battleDTO = new AllBattleDTO();
-		battleDTO.setWar_id(battle.getId());
+		battleDTO.setBattle_id(battle.getId());
 		battleDTO.setTerritory(battle.getTerritory().getName());
 		battleDTO.setLoss(battle.getLoss());
 		battleDTO.setDuration(battle.getDuration());
@@ -105,8 +105,30 @@ public class MapService {
 		clansDTO.setNinjas(clan.getNinja().size());
 		if (clan.getLeaders().isEmpty()){
 			clansDTO.setLeader("anarchy");
+		} else if (clan
+			.getLeaders()
+			.stream()
+			.filter(leader -> {
+				if (leader.getStatus().equals("alive"))
+					return true;
+				return false;
+			})
+			.collect(Collectors.toSet())
+			.isEmpty())
+		{
+			clansDTO.setLeader("all leaders is dead");
 		} else {
-			clansDTO.setLeader(clan.getLeaders().stream().findFirst().get().getName());
+			clansDTO.setLeader(clan
+				.getLeaders()
+				.stream()
+				.filter(leader -> {
+					if (leader.getStatus().equals("alive"))
+						return true;
+					return false;
+				})
+				.findFirst()
+				.get()
+				.getName());
 		}
 		if ( clan.getTechnics().size() == 0 ){
 			clansDTO.setBlood(false);
@@ -168,6 +190,9 @@ public class MapService {
 				}
 			}
 			countryDTO.setCountryLord(tmp.getName());
+			if (tmp.getStatus().equals("dead")){
+				countryDTO.setCountryLord("lord is dead");
+			}
 		}
 		countryDTO.setCitizens(country.getVillage().getCitizens().size());
 		return countryDTO;

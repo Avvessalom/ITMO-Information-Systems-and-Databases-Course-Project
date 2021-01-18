@@ -1,7 +1,7 @@
 package com.salvoroni.narutopedia.DTOmodels;
 
 public class AllBattleDTO {
-	private Long war_id;
+	private Long battle_id;
 	private String territory;
 	private int loss;
 	private int duration;
@@ -10,12 +10,12 @@ public class AllBattleDTO {
 
 	public AllBattleDTO(){}
 
-	public void setWar_id(Long war_id){
-		this.war_id = war_id;
+	public void setBattle_id(Long battle_id){
+		this.battle_id = battle_id;
 	}
 
-	public Long getWar_id(){
-		return this.war_id;
+	public Long getBattle_id(){
+		return this.battle_id;
 	}
 
 	public void setWar(String war){
