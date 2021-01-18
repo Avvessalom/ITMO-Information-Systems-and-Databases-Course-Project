@@ -8,7 +8,7 @@ class DestroyModal extends Component {
     }
     state = {
         village: {
-            name: 0,
+            villageid: 0,
             destroyer: 0
         },
         ninjas: [],
@@ -63,9 +63,9 @@ class DestroyModal extends Component {
                     <h4>Choose village you want to destroy</h4>
                     <Form.Group>
                         <Form.Label>Village</Form.Label>
-                        <Form.Control as="select" value={this.state.village.name} onChange={(event => {
+                        <Form.Control as="select" value={this.state.village.villageid} onChange={(event => {
                             let {village} = this.state;
-                            village.name = event.target.value;
+                            village.villageid = event.target.value;
                             this.setState(village);
                         })}>
                             <option> </option>

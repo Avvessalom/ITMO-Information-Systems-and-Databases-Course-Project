@@ -21,7 +21,7 @@ class Battles extends Component{
         let battles = this.state.battles.map((battle) => {
             return (
                 <tr key={battle.id}>
-                    <td>{battle.id}</td>
+                    <td>{battle.battle_id}</td>
                     <td>{battle.name}</td>
                     <td>{battle.war}</td>
                     <td>{battle.territory}</td>
