@@ -285,6 +285,7 @@ public class MainController {
 			Hidden_village destroyed = villageService.findById(destVil.getVillageid()).get();
 			Ninja destroyer = ninjaService.findById(destVil.getDestroyer()).get();
 			destroyed.getDestroyers().add(destroyer);
+			destroyed.setQuantity_of_destruction(destroyed.getQuantity_of_destruction() + 1);
 			villageService.save(destroyed);
 			return "ok";
 		} catch(Exception e){
