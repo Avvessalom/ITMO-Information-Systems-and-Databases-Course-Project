@@ -98,6 +98,11 @@ public class MainController {
 		return (List<WarDTO>) mapService.getWars();
 	}
 
+	@GetMapping("/battles")
+	public List<AllBattleDTO> getBattles() {
+		return (List<AllBattleDTO>) mapService.getBattles();
+	}
+
 	@GetMapping("/villages/kages")
 	public List<NinjaDTO> getKages() {
 		return (List<NinjaDTO>) mapService.getKages();

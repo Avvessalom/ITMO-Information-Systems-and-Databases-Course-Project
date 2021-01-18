@@ -55,6 +55,10 @@ public class Battle {
 		this.duration = duration;
 	}
 
+	public int getDuration(){
+		return this.duration;
+	}
+
 	public void setName(String name){
 		this.name = name;
 	}

@@ -46,6 +46,28 @@ public class MapService {
 	@Autowired
 	private RankService rankService;
 
+	@Autowired
+	private BattleService battleService;
+
+	public List<AllBattleDTO> getBattles(){
+		return ((List<Battle>) battleService
+			.findAll())
+			.stream()
+			.map(this::convertToBattleDTO)
+			.collect(Collectors.toList());
+	}
+
+	private AllBattleDTO convertToBattleDTO(Battle battle){
+		AllBattleDTO battleDTO = new AllBattleDTO();
+		battleDTO.setWar_id(battle.getId());
+		battleDTO.setTerritory(battle.getTerritory().getName());
+		battleDTO.setLoss(battle.getLoss());
+		battleDTO.setDuration(battle.getDuration());
+		battleDTO.setName(battle.getName());
+		battleDTO.setWar(battle.getWar().getName());
+		return battleDTO;
+	}
+
 	public List<NinjaDTO> getNinjasWithVillage() {
 		return ((List<Ninja>) ninjaRepository
 			.findAll())
