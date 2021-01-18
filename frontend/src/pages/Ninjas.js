@@ -35,7 +35,9 @@ class Ninjas extends Component {
         });
         return (
             <header className="masthead text-center">
-                <div className="ninja-button"><Add_ninja/><Parent_child_button/></div>
+                <div className="ninja-button"><Add_ninja/>
+                {/*<Parent_child_button/>*/}
+                </div>
                 <div className="ninja-button"><Ninja_death_button/></div>
                 <div className="container">
                     <div className="row">

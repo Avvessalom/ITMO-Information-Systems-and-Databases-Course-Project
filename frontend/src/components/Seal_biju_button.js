@@ -8,8 +8,8 @@ class SealBijuModal extends Component {
     }
     state = {
         newJinchuurikiData:{
-            id:   '',
-            name: ''
+            biju_id:   '',
+            ninja_id: ''
         },
         candidates: []
     }
@@ -50,10 +50,10 @@ class SealBijuModal extends Component {
                     <h4>Select new Jinchuuriki</h4>
                     <Form.Group>
                         <Form.Label>New Jinchuuriki</Form.Label>
-                        <Form.Control as="select" value={this.state.newJinchuurikiData.name} onChange={(event => {
+                        <Form.Control as="select" value={this.state.newJinchuurikiData.ninja_id} onChange={(event => {
                             let {newJinchuurikiData} = this.state;
-                            newJinchuurikiData.name = event.target.value;
-                            newJinchuurikiData.id = this.props.tails;
+                            newJinchuurikiData.ninja_id = event.target.value;
+                            newJinchuurikiData.biju_id = this.props.tails;
                             this.setState(newJinchuurikiData);
                         })}>
                             <option> </option>

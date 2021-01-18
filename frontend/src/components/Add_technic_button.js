@@ -116,8 +116,8 @@ class TechnicModel extends Component{
                             this.setState(newTechnicData);
                         })}>
                             <option> </option>
-                            <option>Yes</option>
-                            <option>No</option>
+                            <option value={true}>Yes</option>
+                            <option value={false}>No</option>
                         </Form.Control>
                         <br />
 
