@@ -106,7 +106,7 @@ declare
     destroy_quantity integer ;
 begin
     if (tg_op = 'update') then
-        destroy_quantity = (select quantity_of_destruction from hidden_village where village_id = old.village_id);
+        destroy_quantity = (select quantity_of_destruction from hidden_village where village_id = new.village_id);
         insert into hidden_village(village_id, name, quantity_of_destruction) values (old.village_id, old.name ,destroy_quantity + 1);
     end if;
     return new;
@@ -224,7 +224,7 @@ execute procedure check_on_delete_jinchuriki();
 
 create trigger on_actions_with_village
     after delete
-    on hidden_village
+    on destroyed_village
     for each row
 execute procedure actions_with_village();
 
