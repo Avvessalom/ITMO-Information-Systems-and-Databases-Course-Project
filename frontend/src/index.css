@@ -75,6 +75,10 @@ code {
   margin-top: 5px;
 }
 
+.nav-wars {
+  justify-content: flex-start;
+}
+
 .overlay {
   position: absolute;
   height: 860px;

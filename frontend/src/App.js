@@ -9,6 +9,8 @@ import Villages from "./pages/Villages"
 import Countries from "./pages/Countries"
 import Citizens from "./pages/Citizens"
 import Technics from "./pages/Technics"
+import Wars from "./pages/Wars";
+import Battles from "./pages/Battles";
 
 function App() {
     return (
@@ -24,6 +26,8 @@ function App() {
                     <Route path={'/~s250643/clans'} component={Clans} />
                     <Route path={'/~s250643/citizens'} component={Citizens} />
                     <Route path={'/~s250643/technics'} component={Technics} />
+                    <Route path={'/~s250643/wars'} component={Wars}/>
+                    <Route path={'/~s250643/battles'} component={Battles}/>
                 </Switch>
             </div>
         </BrowserRouter>

@@ -3,6 +3,7 @@ import Table from "react-bootstrap/Table";
 import {Declare_war_button} from "../components/Declare_war_button";
 import axios from "axios";
 import {Add_battle_button} from "../components/Add_battle_button";
+import {NavLink} from "react-router-dom";
 
 
 class Countries extends Component {
@@ -35,7 +36,11 @@ class Countries extends Component {
         })
         return (
             <header className="masthead text-center">
-                <div className="ninja-button"><Declare_war_button/></div>
+                <div className="ninja-button">
+                    <NavLink className="nav-link nav-wars" to="/~s250643/wars">Wars</NavLink>
+                    <NavLink className="nav-link nav-wars" to="/~s250643/battles">Battles</NavLink>
+                    <Declare_war_button/>
+                </div>
                 <div className="ninja-button"><Add_battle_button/></div>
                 <div className="container">
                     <div className="row">
