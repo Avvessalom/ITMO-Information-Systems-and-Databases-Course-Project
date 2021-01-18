@@ -37,8 +37,6 @@ class Countries extends Component {
         return (
             <header className="masthead text-center">
                 <div className="ninja-button">
-                    <NavLink className="nav-link nav-wars" to="/~s250643/wars">Wars</NavLink>
-                    <NavLink className="nav-link nav-wars" to="/~s250643/battles">Battles</NavLink>
                     <Declare_war_button/>
                 </div>
                 <div className="ninja-button"><Add_battle_button/></div>

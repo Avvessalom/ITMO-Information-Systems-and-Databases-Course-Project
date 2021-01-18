@@ -2,6 +2,7 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import {Navbar_form} from "./Navbar_form";
 import Image from 'react-bootstrap/Image'
+import {Declare_war_button} from "./Declare_war_button";
 
 export const Navbar = () => (
     <nav className="navbar navbar-light navbar-expand-lg bg-light">
@@ -34,6 +35,13 @@ export const Navbar = () => (
                 <li className="nav-item">
                     <NavLink className="nav-link" to="/~s250643/technics">Technics</NavLink>
                 </li>
+                <li>
+                    <NavLink className="nav-link nav-wars" to="/~s250643/wars">Wars</NavLink>
+                </li>
+                <li>
+                    <NavLink className="nav-link nav-wars" to="/~s250643/battles">Battles</NavLink>
+                </li>
+
             </ul>
             {/*<Navbar_form />*/}
         </div>
