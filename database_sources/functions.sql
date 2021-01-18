@@ -91,23 +91,23 @@ language plpgsql;
 
 --Triggers
 
-create or replace function destroy_village() returns trigger as
-$$
-begin
-    insert into hidden_village(name) values ('ruin of village');
-    return new;
-end;
-$$
-    language plpgsql;
+-- create or replace function destroy_village() returns trigger as
+-- $$
+-- begin
+--     insert into hidden_village(name) values ('ruin of village');
+--     return new;
+-- end;
+-- $$
+--     language plpgsql;
 
 create or replace function actions_with_village() returns trigger as
 $village$
 declare
     destroy_quantity integer ;
 begin
-    if (tg_op = 'delete') then
-        destroy_quantity = (select quantity from destroyed_village where destroyed_village.village_id = old.village_id);
-        insert into destroyed_village(village_id, quantity) values (old.village_id, destroy_quantity + 1);
+    if (tg_op = 'update') then
+        destroy_quantity = (select quantity_of_destruction from hidden_village where village_id = old.village_id);
+        insert into hidden_village(village_id, name, quantity_of_destruction) values (old.village_id, old.name ,destroy_quantity + 1);
     end if;
     return new;
 end;
