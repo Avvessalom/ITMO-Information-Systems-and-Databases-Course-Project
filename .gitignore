@@ -6,8 +6,8 @@ database_sources/scripts/sqlTester
 *.iml
 out
 gen
-/frontend/yarn.lock
-/frontend/.eslintcache
+frontend/yarn.lock
+frontend/.eslintcache
 
 
 # dependencies
