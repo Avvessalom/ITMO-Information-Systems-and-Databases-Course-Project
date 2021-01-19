@@ -313,6 +313,9 @@ public class MapService {
 		return ((List<Ninja>) ninjaRepository
 			.choose_kage_candidates(candidate.getOldKage(), candidate.getWarId()))
 			.stream()
+			.filter(ninja -> {
+				return ninja.getStatus().equals("alive");
+			})
 			.map(this::convertToNinjaDTO)
 			.collect(Collectors.toList());
 	}
