@@ -58,8 +58,10 @@ class KageCandidatesModal extends Component {
                         <th>Status</th>
                     </tr>
                         </thead>
+                        <tbody>
+                        {candidat}
+                        </tbody>
                     </Table>
-                    {candidat}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={this.props.onHide}>Close</Button>
