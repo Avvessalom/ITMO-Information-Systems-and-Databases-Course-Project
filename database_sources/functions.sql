@@ -210,11 +210,11 @@ $$
 
 -- Triggers
 
-create trigger on_destroy
-    after insert or update
-    on destroyed_village
-    for each statement
-execute procedure destroy_village();
+-- create trigger on_destroy
+--     after insert or update
+--     on destroyed_village
+--     for each statement
+-- execute procedure destroy_village();
 
 create trigger on_jinchuriki_die
     before delete
@@ -223,7 +223,7 @@ create trigger on_jinchuriki_die
 execute procedure check_on_delete_jinchuriki();
 
 create trigger on_actions_with_village
-    after delete
+    after delete or update
     on destroyed_village
     for each row
 execute procedure actions_with_village();
