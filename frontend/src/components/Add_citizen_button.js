@@ -101,8 +101,8 @@ class CenteredModal extends Component {
                             this.setState(newCitizenData);
                         })}>
                             <option> </option>
-                            <option>Dead</option>
-                            <option>Alive</option>
+                            <option>dead</option>
+                            <option>alive</option>
                         </Form.Control>
                     </Form.Group>
                 </Modal.Body>
