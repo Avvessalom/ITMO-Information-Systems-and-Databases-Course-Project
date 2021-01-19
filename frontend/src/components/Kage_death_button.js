@@ -165,11 +165,18 @@ export const Kage_death_button = () => {
     const [candidatesData, setCandidatesData] = React.useState(false);
     if (candidatesModalShow === true) {
         return (
+            <form>
+            <div>
+                <Button variant="danger" size="lg" className="widthVillages" onClick={() => setModalShow(true)}>
+                    Kage Dead
+                </Button>
             <KageCandidatesModal
                 show={candidatesModalShow}
                 onHide={() => setCandidatesModalShow(false)}
                 candidatesData = {candidatesData}
             />
+            </div>
+            </form>
         )
     }
     return (
